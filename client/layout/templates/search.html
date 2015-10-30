@@ -1,0 +1,14 @@
+<template name="searches">
+  
+  <section class="search-con">
+  <form class="search" id="options">
+    <input type="text" name="q" placeholder="Search...">
+    <ul class="subnav">
+      {{#each results}}
+        <li draggable="true" ondragstart="drag(event)" class="songClass" id="{{id}}"><img src="{{pic}}" alt="{{text}}" /><a href="//www.youtube.com/embed/{{id}}" target="iframe_a">{{text}}</a></li>
+      {{/each}}
+    </ul>
+  </form>
+  </section>
+
+</template>

@@ -1,0 +1,133 @@
+/* CSS declarations go here */
+
+/*Global*/
+h1 {
+  text-align: center;
+}
+
+img {
+  width: 50px;
+  height: 50px;
+}
+
+a {
+  text-decoration: none;
+}
+
+form {
+  text-align: center;
+}
+
+/*The User*/
+.userDis{
+  border: 5px solid purple;
+  /*text-align: center;*/
+  width: 48%;
+  /*float: right;*/
+  list-style-type: none;
+}
+
+.userDis li {
+  font-size: .8em;
+  list-style-type: none;
+}
+
+.userDis button {
+  float: right;
+}
+
+.delete:hover {
+  background: red;
+  border-radius: 6px;
+  box-shadow: 5px 5px 2px #888888;
+}
+
+/*The Player*/
+.container {
+  border: 5px solid red;
+  text-align:center;
+  width:48%;
+}
+iframe{
+  width: 300px;
+}
+
+/*Playlist*/
+.playListClass{
+  border: 5px solid blue;
+  display: block;
+  float: right;
+  width: 48%;
+}
+
+.playListClass li {
+  list-style-type: none;
+}
+
+/* >>>>>>>> The Search <<<<<<<<< */
+
+.search-con {
+  border: 5px solid green;
+  display: block;
+  float: right;
+  width: 48%;
+}
+
+input {
+  position: relative;
+}
+
+/*.search-con li {
+  border: 1px solid gray;
+  font-size: .8em;
+  list-style-type: none;
+  padding: 1em;
+  margin-right: 5px;
+}*/
+
+/* >>>>> DEMO <<<<< */
+
+#options a{
+    border-left: 0 none;
+    text-decoration: none;
+}
+#options>a {
+    /*background-image: url(triangle.png);*/
+    background-position: 85% center;
+    background-repeat: no-repeat;
+    padding-right: 42px;
+}
+.subnav {
+    visibility: hidden;
+    position: absolute;
+    /*top: 110%;*/
+    /*right: 0;*/
+    width: 40%;
+    height: auto;
+    opacity: 1;
+    transition: all 0.1s;
+    background: rgb(72, 230, 140);
+    /*bottom:0;*/
+}
+.subnav li {
+    float: none;
+    list-style-type: none;
+    text-align: left;
+}
+.subnav li a {
+  border-bottom: 1px;
+}
+
+.subnav .songClass:hover {
+  background-color: yellow;
+  box-shadow: 0 0 5px rgba(81, 203, 238, 1);
+  padding: 3px 0px 3px 3px;
+  margin: 5px 1px 3px 0px;
+  border: 2px solid rgba(81, 203, 238, 1);
+  z-index: 10px
+}
+/*#options:hover .subnav {
+    visibility: visible;
+    top: 100%;
+    opacity: 1;
+}*/

@@ -1,0 +1,22 @@
+<template name="user">
+
+  <div class="userDis" ondrop="drop(event)" ondragover="allowDrop(event)">
+    <h2>{{currentUser.username}}'s Saved Playlist</h2>
+
+    <form class="saveForm">
+      <input type="submit" value="create playlist">
+
+      <strong>
+      {{#if clickCreate}}
+        <input type="text" name="q" placeholder="Search...">
+      {{/if}}
+      </strong>
+    </form>
+
+    {{#each song}}
+      <li><img src="{{pic}}" alt="{{text}}" /><a href="//www.youtube.com/embed/{{id}}" target="iframe_a">{{text}}</a></li>
+      <button class="delete">&times;</button>
+    {{/each}}
+  </div>
+
+</template>
