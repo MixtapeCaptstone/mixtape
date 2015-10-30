@@ -79,6 +79,11 @@ Template.body.events({
     }else if ( ! $(e.target).closest('.subnav').length ) {
         $('.subnav').hide();
     }
+  },
+  'click .songClass': function () {
+    console.log('click');
+    var songId = this.id;
+    player.loadVideoById(songId);
   }
 });
 
