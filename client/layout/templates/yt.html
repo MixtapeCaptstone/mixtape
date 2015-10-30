@@ -1,6 +1,25 @@
 <template name="player">
-    <div class="container">
+    <div id="player" controls="0" name="iframe_a">
       <h1>Video Plays Here</h1>
-      <iframe src="https://www.youtube.com/embed/VIDEO_ID" name="iframe_a" height="200px" width="300px"></iframe>
     </div>
+    <div class="playerBar">
+      <div id="parentButtons">
+        <div id="escolta" class="escolta">></div>
+        <div id="forward">>></div>
+    </div>
+      <div class="progressParent">
+        <div class="progress"></div>
+      </div>
+      <div class="volumeBar">
+        <div id="5" class="volumeDiv"></div>
+        <div id="4" class="volumeDiv"></div>
+        <div id="3" class="volumeDiv"></div>
+        <div id="2" class="volumeDiv"></div>
+        <div id="1" class="volumeDiv"></div>
+      </div>
+
+    </div>
+    <!-- {{> songDiv}} -->
+
+
 </template>

@@ -1,0 +1,10 @@
+<template name="searches">
+  <div class="list" ondrop="drop(event)" ondragover="allowDrop(event)">
+  <h2>Search Results</h2>
+    <ul id="search">
+      {{#each results}}
+        <li draggable="true" ondragstart="drag(event)" id="{{id}}"><img class="songClass" src="{{pic}}" id="{{id}}" alt="{{text}}" />{{text}}</li>
+      {{/each}}
+    </ul>
+  </div>
+</template>

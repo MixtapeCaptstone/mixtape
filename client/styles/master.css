@@ -1,0 +1,148 @@
+body {
+  background-color: white;
+
+}
+
+#parentButtons {
+  display: inline-block;
+  background-color: red;
+  width: 51px;
+}
+
+.escolta {
+  display: inline-block;
+  font-family: Tahoma;
+  letter-spacing:1px;
+  font-size:11px;
+  color: #666;
+  width: 25px;
+  text-align: center;
+  height: 20px;
+  line-height: 20px;
+  background-color: #ccc;
+  cursor: pointer;
+  opacity: 40%;
+  z-index: -1;
+  border-right: 1px solid grey
+}
+
+#forward {
+  float: right;
+  display: inline-block;
+  font-family: Tahoma;
+  letter-spacing:1px;
+  font-size:11px;
+  color: #666;
+  width: 25px;
+  text-align: center;
+  height: 20px;
+  line-height: 20px;
+  background-color: #ccc;
+  cursor: pointer;
+  opacity: 40%;
+  z-index: -1;
+}
+
+
+#stopVideo {
+  display: inline-block;
+  font-family: Tahoma;
+  letter-spacing:1px;
+  font-size:11px;
+  color: #666;
+  width: 40px;
+  text-align: center;
+  height: 20px;
+  line-height: 20px;
+  background-color: #ccc;
+  cursor: pointer;
+  opacity: 40%;
+  z-index: -1;
+}
+
+.progress {
+  position: relative;
+  background-color:red;
+  height: 20px;
+  width: 0;
+  /*pointer-events: none;*/
+  opacity: .5;
+  /*margin-left: 40px;*/
+  border-right: 1px solid grey;
+}
+
+.progressParent{
+  margin-left: 0px;
+  position: absolute;
+  display: inline;
+  width: 220px;
+  /*float: right;*/
+  /*text-align: center;*/
+  height: 20px;
+  z-index: 3;
+}
+
+#artistName {
+  display:inline-block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  letter-spacing:1px;
+  font-size:11px;
+  width: 200px;
+  float: right;
+  text-align: center;
+  height: 20px;
+  line-height: 20px;
+  z-index: 5;
+}
+
+.playerBar{
+  border: 1px solid grey;
+  display: block;
+  /*left margin: 0px;*/
+  width: 300px;
+}
+
+.song{
+  border: 1px solid grey;
+  display: block;
+  /*left margin: 0px;*/
+  width: 300px;
+  font-family: Tahoma;
+  letter-spacing:1px;
+  font-size:11px;
+  color: #666;
+  text-align: center;
+  height: 20px;
+}
+
+.volumeDiv {
+  bottom: 3;
+  display: inline-block;
+  float: right;
+  width: 4px;
+  height: 12px;
+  margin-top: 5px;
+  margin-right: 1px;
+  margin-bottom: 1px;
+  background-color: rgb(143, 143, 143);
+}
+
+.volumeBar {
+  float: right;
+  height: 20px;
+  width:30px;
+}
+
+.timeBar{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 100%;
+    background-color: #ccc;
+}
+
+
+#video{position:absolute;top:100px;left:20px;}
