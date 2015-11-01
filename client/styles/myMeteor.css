@@ -20,9 +20,9 @@ form {
 
 /*The User*/
 .userDis{
-  border: 5px solid purple;
+  border: 1px solid grey;
   /*text-align: center;*/
-  width: 48%;
+  width: 300px;
   /*float: right;*/
   list-style-type: none;
 }
