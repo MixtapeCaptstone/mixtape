@@ -1,6 +1,23 @@
 body {
   background-color: white;
+}
 
+#leftDiv {
+  display: inline-block;
+  float: left;
+  width: 49.5%;
+  height: 800px;
+  border: solid 1px grey;
+  margin: 0;
+}
+
+#rightDiv {
+  display: inline-block;
+  float: right;
+  width: 50%;
+  height: 800px;
+  border: solid 1px grey;
+  margin: 0;
 }
 
 #parentButtons {
@@ -105,6 +122,23 @@ body {
 }
 
 .song{
+  border-top: 1px solid grey;
+  border-left: 0;
+  border-right: 0;
+  display: block;
+  text-overflow: ellipsis;
+
+  /*left margin: 0px;*/
+  width: 300px;
+  font-family: Tahoma;
+  letter-spacing:1px;
+  font-size:11px;
+  color: #666;
+  text-align: center;
+  height: 20px;
+}
+
+#playListSong{
   border: 1px solid grey;
   display: block;
   /*left margin: 0px;*/
@@ -144,5 +178,17 @@ body {
     background-color: #ccc;
 }
 
+#songName {
+  text-overflow: ellipsis;
+}
+
+#mainHeading {
+  font-family: Helvetica;
+}
 
 #video{position:absolute;top:100px;left:20px;}
+
+#playerBox {
+  border: 1px solid grey;
+  width: 302px;
+}

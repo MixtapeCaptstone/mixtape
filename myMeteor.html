@@ -9,21 +9,24 @@
 </head>
 
 <body>
-  <h1>The Mixtapez</h1>
+  <h1 id="mainHeading">The Mixtapez</h1>
+<div id="leftDiv">
 
   {{> loginButtons}}
-
-  <strong>
-    {{#if clickCreate}}
-      {{> searches}}
-    {{/if}}
-  </strong>
-
-
-
   {{> player}}
 
-  {{> user}}
+</div>
+<div id="rightDiv">
+
+  <strong>
+      {{> searches}}
+
+  </strong>
+</div>
+
+
+
+
 
   <!-- <form class="new-search" name="new-search">
     <h3>Search</h3>
