@@ -11,4 +11,14 @@
   </form>
   </section>
 
+  <form class="saveForm">
+    <input type="submit" value="create playlist">
+
+    <strong>
+    {{#if clickCreate}}
+      <input type="text" name="q" placeholder="Search...">
+    {{/if}}
+    </strong>
+  </form>
+
 </template>

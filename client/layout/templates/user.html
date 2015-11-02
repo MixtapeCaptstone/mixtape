@@ -3,7 +3,7 @@
   <div class="userDis" ondrop="drop(event)" ondragover="allowDrop(event)">
     <h2>{{currentUser.username}}'s Saved Playlist</h2>
 
-    <form class="saveForm">
+    <!-- <form class="saveForm">
       <input type="submit" value="create playlist">
 
       <strong>
@@ -11,11 +11,11 @@
         <input type="text" name="q" placeholder="Search...">
       {{/if}}
       </strong>
-    </form>
+    </form> -->
 
     {{#each song}}
-      <li><img src="{{pic}}" alt="{{text}}" />{{text}}</li>
-      <button class="delete">&times;</button>
+      <div class="song" id="playListSong"><div id="songName">{{text}} <button class="delete">&times;</button></div></div>
+
     {{/each}}
   </div>
 

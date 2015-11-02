@@ -18,6 +18,7 @@ Meteor.methods( {
     return res;
   },
   addSong: function (text) {
+    console.log("added song");
     // var name = Meteor.user().username;
     Song.insert({
       text: text.text,

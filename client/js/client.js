@@ -23,6 +23,7 @@ Template.searches.helpers({
 
 Template.user.events({
   "drop .userDis": function (event) {
+    console.log("Drop event");
     var x = Session.get('tempSave');
     var y = Session.get('results');
     // if results.text === li#songID.title
