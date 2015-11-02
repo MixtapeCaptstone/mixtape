@@ -34,6 +34,14 @@ Template.user.events({
       }
     });
   },
+  'click #playListSong': function () {
+    console.log('click');
+    var songId = this.id;
+    player.loadVideoById(songId);
+  }
+});
+
+Template.searches.events ({
   "click .saveForm": function (e) {
     event.preventDefault();
     // var name = prompt('Please enter a playlist name', 'name');
