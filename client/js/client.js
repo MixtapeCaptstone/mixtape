@@ -8,16 +8,6 @@ Template.user.helpers({
   song: function () {
     // console.log(Song.find({}).fetch());
     return Song.find({});
-  },
-  clickCreate: function () {
-    // TODO make user give playlist title
-      return Session.get('clickCreate')
-    }
-});
-
-Template.searches.helpers({
-  results: function () {
-    return Session.get('results');
   }
 });
 
@@ -41,6 +31,16 @@ Template.user.events({
   }
 });
 
+Template.searches.helpers({
+  results: function () {
+    return Session.get('results');
+  },
+  clickCreate: function () {
+    // TODO make user give playlist title
+      return Session.get('clickCreate')
+  }
+});
+
 Template.searches.events ({
   "click .saveForm": function (e) {
     event.preventDefault();
@@ -51,6 +51,13 @@ Template.searches.events ({
     Session.set('clickCreate', true);
     // console.log('E is:', e);
   }
+});
+
+Template.body.helpers({
+  clickCreate: function () {
+    // TODO make user give playlist title
+      return Session.get('clickCreate')
+    }
 });
 
 Template.body.events({
@@ -96,12 +103,6 @@ Template.body.events({
   }
 });
 
-Template.body.helpers({
-  clickCreate: function () {
-    // TODO make user give playlist title
-      return Session.get('clickCreate')
-    }
-});
 
 // JQUERY things
 Meteor.startup(function () {

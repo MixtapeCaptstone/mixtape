@@ -36,6 +36,10 @@ form {
   float: right;
 }
 
+.delete {
+  margin-top: -20px;
+}
+
 .delete:hover {
   background: red;
   border-radius: 6px;
@@ -71,6 +75,7 @@ iframe{
   display: block;
   float: right;
   width: 48%;
+  overflow: hidden;
 }
 
 input {

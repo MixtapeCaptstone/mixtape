@@ -14,8 +14,13 @@
     </form> -->
 
     {{#each song}}
-      <div class="song" id="playListSong"><div id="songName">{{text}} <button class="delete">&times;</button></div></div>
+      <div class="song" id="playListSong">
 
+        <div id="songName">{{text}}
+        </div>
+
+      </div>
+      <button class="delete">&times;</button>
     {{/each}}
   </div>
 
