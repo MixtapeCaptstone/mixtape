@@ -106,13 +106,13 @@ input {
     visibility: hidden;
     position: absolute;
     /*top: 110%;*/
-    /*right: 0;*/
+    right: 0;
     width: 40%;
     height: auto;
     opacity: 1;
     transition: all 0.1s;
-    background: rgb(72, 230, 140);
-    /*bottom:0;*/
+    /*background: rgb(72, 230, 140);*/
+    background: rgba(0, 0, 0, 0.5);
 }
 .subnav li {
     float: none;
@@ -124,7 +124,7 @@ input {
 }
 
 .subnav .songClass:hover {
-  background-color: yellow;
+  background-color: rgb(68, 138, 201);
   box-shadow: 0 0 5px rgba(81, 203, 238, 1);
   padding: 3px 0px 3px 3px;
   margin: 5px 1px 3px 0px;
