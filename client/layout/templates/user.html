@@ -1,7 +1,16 @@
 <template name="user">
 
   <div class="userDis" ondrop="drop(event)" ondragover="allowDrop(event)">
+
     <h2>{{currentUser.username}}'s Saved Playlist</h2>
+
+    <!-- <strong>
+      {{#if playlist}}
+        {{#each title}}
+    <h2>{{text}}'s Saved Playlist</h2>
+        {{/each}}
+      {{/if}}
+    </strong> -->
 
     <!-- <form class="saveForm">
       <input type="submit" value="create playlist">
@@ -14,8 +23,13 @@
     </form> -->
 
     {{#each song}}
-      <div class="song" id="playListSong"><div id="songName">{{text}} <button class="delete">&times;</button></div></div>
+      <div class="song" id="playListSong">
 
+        <div id="songName">{{text}}
+        </div>
+
+      </div>
+      <button class="delete">&times;</button>
     {{/each}}
   </div>
 

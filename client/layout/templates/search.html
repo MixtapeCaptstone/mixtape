@@ -1,24 +1,41 @@
 <template name="searches">
 
   <section class="search-con">
+
   <form class="search" id="options">
-    <input type="text" name="q" placeholder="Search...">
+
+    <strong>
+      {{#if clickCreate}}
+        <input type="text" name="q" placeholder="Search...">
+      {{/if}}
+  </strong>
+
+
     <ul class="subnav">
       {{#each results}}
         <li draggable="true" ondragstart="drag(event)" class="songClass" id="{{id}}"><img src="{{pic}}" alt="{{text}}" />{{text}}</li>
       {{/each}}
     </ul>
+
+
   </form>
+
   </section>
 
-  <form class="saveForm">
+  <form class="showIt">
     <input type="submit" value="create playlist">
+  </form>
+
 
     <strong>
     {{#if clickCreate}}
-      <input type="text" name="q" placeholder="Search...">
+    <form class="savePlay">
+
+      <input type="text" class="q" name="q" placeholder="playlist title...">
+
+    </form>
     {{/if}}
     </strong>
-  </form>
+
 
 </template>

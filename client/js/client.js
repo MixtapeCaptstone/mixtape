@@ -9,16 +9,13 @@ Template.user.helpers({
     // console.log(Song.find({}).fetch());
     return Song.find({});
   },
-  clickCreate: function () {
-    // TODO make user give playlist title
-      return Session.get('clickCreate')
-    }
-});
-
-Template.searches.helpers({
-  results: function () {
-    return Session.get('results');
-  }
+  // playlist: function () {
+  //   // TODO display title as title!
+  //
+  //   var x = Session.get('title');
+  //   console.log(x);
+  //   return x
+  // }
 });
 
 Template.user.events({
@@ -41,16 +38,32 @@ Template.user.events({
   }
 });
 
-Template.searches.events ({
-  "click .saveForm": function (e) {
-    event.preventDefault();
-    // var name = prompt('Please enter a playlist name', 'name');
-    // console.log(name);
-    var playlist = ({playlist: name});
-    // Meteor.call('addSong', playlist);
-    Session.set('clickCreate', true);
-    // console.log('E is:', e);
+Template.searches.helpers({
+  results: function () {
+    return Session.get('results');
+  },
+  clickCreate: function () {
+    // TODO make user give playlist title
+      return Session.get('clickCreate');
   }
+});
+
+Template.searches.events ({
+  "click .showIt": function (e) {
+    event.preventDefault();
+
+    var playlist = ({playlist: name});
+
+    Session.set('clickCreate', true);
+
+  }
+});
+
+Template.body.helpers({
+  clickCreate: function () {
+    // TODO make user give playlist title
+      return Session.get('clickCreate')
+    }
 });
 
 Template.body.events({
@@ -93,15 +106,23 @@ Template.body.events({
     console.log('click');
     var songId = this.id;
     player.loadVideoById(songId);
+  },
+  'submit .savePlay': function (e) {
+    // Create a new Playlist
+    // Prevent default on submit
+    e.preventDefault();
+
+    // Capture the entered title
+    var title = {text: e.target.q.value};
+
+    Session.set("title", title);
+    console.log(Session.get('title'));
+
+    // Clear the form
+    e.target.q.value = '';
   }
 });
 
-Template.body.helpers({
-  clickCreate: function () {
-    // TODO make user give playlist title
-      return Session.get('clickCreate')
-    }
-});
 
 // JQUERY things
 Meteor.startup(function () {

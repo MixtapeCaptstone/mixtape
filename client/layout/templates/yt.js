@@ -43,7 +43,7 @@ function onPlayerReady(event) {
         return false;
     });
 
-    console.log("Player is ready");
+    // console.log("Player is ready");
     var minutes = Math.floor((player.getDuration()) / 60);
     var seconds = player.getDuration() % 60;
     $('.duration').text(minutes + ':' + seconds);
