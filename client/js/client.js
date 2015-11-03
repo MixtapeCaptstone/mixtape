@@ -16,6 +16,7 @@ Template.user.helpers({
   //   console.log(x);
   //   return x
   // }
+
 });
 
 Template.user.events({
@@ -31,10 +32,21 @@ Template.user.events({
       }
     });
   },
-  'click #playListSong': function () {
-    console.log('click');
+  'click .songHover': function (event) {
+    console.log('click', event.target);
+    $('#focus').removeAttr('id'); //remove previous focus
+    event.target.id = "focus"; //set focus
+    
     var songId = this.id;
     player.loadVideoById(songId);
+  },
+  'mouseenter .songName': function(event){
+    thisDiv = event.target; //get "this"
+    $(thisDiv).attr("class", "songHover" );//set hover class
+  },
+  'mouseleave .songHover': function(event){
+    thisDiv = event.target; //get "this"
+    $(thisDiv).attr("class", "songName" ); //remove hover class
   }
 });
 
