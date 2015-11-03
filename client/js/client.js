@@ -53,15 +53,15 @@ Template.searches.helpers({
 });
 
 Template.searches.events ({
-  "click .showIt": function (e) {
-    // Ensuring that the user creates a playlist first
-    event.preventDefault();
-
-    var playlist = ({playlist: name});
-
-    Session.set('clickCreate', true);
-
-  },
+  // "click .showIt": function (e) {
+  //   // Ensuring that the user creates a playlist first
+  //   event.preventDefault();
+  //
+  //   var playlist = ({playlist: name});
+  //
+  //   Session.set('clickCreate', true);
+  //
+  // },
   'submit .savePlay': function (e) {
     // Create a new Playlist
     // Prevent default on submit
@@ -81,6 +81,45 @@ Template.searches.events ({
 
     // Clear the form
     e.target.q.value = '';
+  }
+});
+
+Template.nav.events({
+  "click .showCreate": function (e) {
+    // Ensuring that the user creates a playlist first
+    e.preventDefault();
+
+    var playlist = ({playlist: name});
+    Session.set('playa', false);
+    Session.set('mix', false);
+    Session.set('showLast', false);
+    Session.set('clickCreate', true);
+  },
+  "click .myMixes": function (e) {
+    e.preventDefault();
+    console.log("my mix");
+    Session.set('playa', false);
+    Session.set('clickCreate', false);
+    Session.set('mix', true);
+  },
+  "click .playa": function (e) {
+    e.preventDefault();
+    console.log("playa");
+    Session.set('mix', false);
+    Session.set('clickCreate', false);
+    Session.set('playa', true);
+  }
+});
+
+Template.playlist.helpers({
+  playa: function () {
+    return Session.get('playa');
+  }
+});
+
+Template.mix.helpers({
+  mix: function () {
+    return Session.get('mix');
   }
 });
 
