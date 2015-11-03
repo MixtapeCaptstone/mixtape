@@ -8,7 +8,14 @@ Template.user.helpers({
   song: function () {
     // console.log(Song.find({}).fetch());
     return Song.find({});
-  }
+  },
+  // playlist: function () {
+  //   // TODO display title as title!
+  //
+  //   var x = Session.get('title');
+  //   console.log(x);
+  //   return x
+  // }
 });
 
 Template.user.events({
@@ -37,19 +44,18 @@ Template.searches.helpers({
   },
   clickCreate: function () {
     // TODO make user give playlist title
-      return Session.get('clickCreate')
+      return Session.get('clickCreate');
   }
 });
 
 Template.searches.events ({
-  "click .saveForm": function (e) {
+  "click .showIt": function (e) {
     event.preventDefault();
-    // var name = prompt('Please enter a playlist name', 'name');
-    // console.log(name);
+
     var playlist = ({playlist: name});
-    // Meteor.call('addSong', playlist);
+
     Session.set('clickCreate', true);
-    // console.log('E is:', e);
+
   }
 });
 
@@ -100,6 +106,20 @@ Template.body.events({
     console.log('click');
     var songId = this.id;
     player.loadVideoById(songId);
+  },
+  'submit .savePlay': function (e) {
+    // Create a new Playlist
+    // Prevent default on submit
+    e.preventDefault();
+
+    // Capture the entered title
+    var title = {text: e.target.q.value};
+
+    Session.set("title", title);
+    console.log(Session.get('title'));
+
+    // Clear the form
+    e.target.q.value = '';
   }
 });
 

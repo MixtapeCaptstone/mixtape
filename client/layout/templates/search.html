@@ -22,14 +22,20 @@
 
   </section>
 
-  <form class="saveForm">
+  <form class="showIt">
     <input type="submit" value="create playlist">
+  </form>
+
 
     <strong>
     {{#if clickCreate}}
-      <input type="text" name="q" placeholder="Search...">
+    <form class="savePlay">
+
+      <input type="text" class="q" name="q" placeholder="playlist title...">
+
+    </form>
     {{/if}}
     </strong>
-  </form>
+
 
 </template>
