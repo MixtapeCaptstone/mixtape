@@ -43,19 +43,44 @@ Template.searches.helpers({
     return Session.get('results');
   },
   clickCreate: function () {
-    // TODO make user give playlist title
+    //Ensures user enters a title first.
       return Session.get('clickCreate');
+  },
+  showLast: function () {
+    // Displays the search bar
+    return Session.get('showLast');
   }
 });
 
 Template.searches.events ({
   "click .showIt": function (e) {
+    // Ensuring that the user creates a playlist first
     event.preventDefault();
 
     var playlist = ({playlist: name});
 
     Session.set('clickCreate', true);
 
+  },
+  'submit .savePlay': function (e) {
+    // Create a new Playlist
+    // Prevent default on submit
+    e.preventDefault();
+
+    // Capture the entered title
+    var title = {text: e.target.q.value};
+
+    //Triggers display of the search bar
+    Session.set('showLast', true);
+
+    Session.set("title", title);
+    console.log(Session.get('title'));
+
+    //Hide the input field
+    Session.set('clickCreate', false);
+
+    // Clear the form
+    e.target.q.value = '';
   }
 });
 
@@ -106,20 +131,6 @@ Template.body.events({
     console.log('click');
     var songId = this.id;
     player.loadVideoById(songId);
-  },
-  'submit .savePlay': function (e) {
-    // Create a new Playlist
-    // Prevent default on submit
-    e.preventDefault();
-
-    // Capture the entered title
-    var title = {text: e.target.q.value};
-
-    Session.set("title", title);
-    console.log(Session.get('title'));
-
-    // Clear the form
-    e.target.q.value = '';
   }
 });
 

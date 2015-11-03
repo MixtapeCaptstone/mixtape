@@ -4,6 +4,8 @@
 
     <h2>{{currentUser.username}}'s Saved Playlist</h2>
 
+
+    <!-- TODO Trying to have this display the title of the playlist  -->
     <!-- <strong>
       {{#if playlist}}
         {{#each title}}
@@ -11,16 +13,6 @@
         {{/each}}
       {{/if}}
     </strong> -->
-
-    <!-- <form class="saveForm">
-      <input type="submit" value="create playlist">
-
-      <strong>
-      {{#if clickCreate}}
-        <input type="text" name="q" placeholder="Search...">
-      {{/if}}
-      </strong>
-    </form> -->
 
     {{#each song}}
       <div class="song" id="playListSong">
