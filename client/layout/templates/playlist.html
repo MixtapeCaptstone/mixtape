@@ -6,6 +6,15 @@
   <strong>
     {{#if playa}}
       <h2>PLAYLISTS</h2>
+
+      {{#each allLists}}
+        <div class="song" id="playListSong">
+
+          <div class="songName">{{name}}
+          </div>
+
+        </div>
+      {{/each}}
     {{/if}}
   </strong>
 

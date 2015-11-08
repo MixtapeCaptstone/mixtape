@@ -1,6 +1,8 @@
+SongClient = new Mongo.Collection(null);//Create collection only on the client.
 Song = new Mongo.Collection('song');
-
-Meteor.subscribe('song');
+Lists = new Mongo.Collection('lists');
+//
+// Meteor.subscribe('song');//TODO I don't think we need this.
 
 // METEOR THINGS
 Template.user.helpers({
@@ -16,7 +18,10 @@ Template.user.helpers({
   //   console.log(x);
   //   return x
   // }
-
+  //same as song helper, only for client
+  songClient: function(){
+    return SongClient.find({});
+  }
 });
 
 Template.user.events({
@@ -27,8 +32,18 @@ Template.user.events({
     // if results.text === li#songID.title
     y.forEach(function(e) {
       if(e.id === x){
-        // console.log('working', e.text);
+        //Call addSong to save to server
         Meteor.call('addSong', e);
+        //Save onto client
+        SongClient.insert({
+          text: e.text,
+          createdAt: new Date(),
+          id: e.id,
+          pic: e.pic,
+          owner: Meteor.userId(),
+          username: Meteor.user().username,
+          playlist: e.playlist
+        });
       }
     });
   },
@@ -36,7 +51,7 @@ Template.user.events({
     console.log('click', event.target);
     $('#focus').removeAttr('id'); //remove previous focus
     event.target.id = "focus"; //set focus
-    
+
     var songId = this.id;
     player.loadVideoById(songId);
   },
@@ -93,6 +108,15 @@ Template.searches.events ({
 
     // Clear the form
     e.target.q.value = '';
+  },
+  //Submits newly created playlist to server
+  'click #submitPlaylist': function(){
+    var title = Session.get('title');
+    var list = SongClient.find().fetch();
+    var playlist = {title: 'myPlay', player: list};
+    Meteor.call('setSong', list, title);//Add to MongoDB on the server
+    SongClient.remove({}); //Remove the client's temporary playlist
+    Session.set("title", ""); //Remove Session title
   }
 });
 
@@ -126,6 +150,9 @@ Template.nav.events({
 Template.playlist.helpers({
   playa: function () {
     return Session.get('playa');
+  },
+  allLists: function(){
+    return Lists.find({});
   }
 });
 
@@ -138,7 +165,7 @@ Template.mix.helpers({
 Template.body.helpers({
   clickCreate: function () {
     // TODO make user give playlist title
-      return Session.get('clickCreate')
+      return Session.get('clickCreate');
     }
 });
 
@@ -169,7 +196,7 @@ Template.body.events({
     event.target.q.value = '';
   },
   "click .delete": function () {
-    Song.remove(this._id);
+    SongClient.remove(this._id);
   },
   "click": function (e) {
     if ( $(e.target).closest('.search-con').length ) {
@@ -200,7 +227,7 @@ Meteor.startup(function () {
   // Allows the 'id' text to be dragged
   drag = function (ev) {
     ev.dataTransfer.setData("text", ev.target.id);
-    var x = ev.srcElement.id;
+    var x = ev.target.id; //ev.srcElement doesn't work in Firefox
     Session.set('tempSave', x);
   };
 
