@@ -155,6 +155,13 @@ Template.playlist.helpers({
     return Lists.find({});
   }
 });
+Template.playlist.events({
+  "click .playlistName": function(){
+    console.log("test");
+    SongClient.remove({}); //Remove the client's temporary playlist
+    Session.set("title", ""); //Remove Session title
+  }
+});
 
 Template.mix.helpers({
   mix: function () {
