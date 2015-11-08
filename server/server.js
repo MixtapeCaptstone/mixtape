@@ -1,4 +1,5 @@
 Song = new Mongo.Collection('song');
+Lists = new Mongo.Collection('lists');
 
 // Meteor.publish('song', function() {
 //   return Song.find({});
@@ -18,7 +19,7 @@ Meteor.methods( {
     return res;
   },
   addSong: function (text) {
-    console.log("added song");
+    // console.log("added song", text);
     // var name = Meteor.user().username;
     Song.insert({
       text: text.text,
@@ -29,5 +30,12 @@ Meteor.methods( {
       username: Meteor.user().username,
       playlist: text.playlist
     });
+  },
+
+  setSong: function (list, title) {
+    var newList = {name: title.text, playlist: list};
+  if(title.length > 0){
+    Lists.insert(newList);
+  }
   }
 });
