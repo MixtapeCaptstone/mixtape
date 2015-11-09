@@ -21,6 +21,9 @@ Template.user.helpers({
   //same as song helper, only for client
   songClient: function(){
     return SongClient.find({});
+  },
+  title: function() {
+    return Session.get('title');
   }
 });
 
