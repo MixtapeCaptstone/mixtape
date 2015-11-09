@@ -11,14 +11,6 @@ Template.user.helpers({
     // console.log(Song.find({}).fetch());
     return Song.find({});
   },
-  // playlist: function () {
-  //   // TODO display title as title!
-  //
-  //   var x = Session.get('title');
-  //   console.log(x);
-  //   return x
-  // }
-  //same as song helper, only for client
   songClient: function(){
     return SongClient.find({});
   },
@@ -83,28 +75,18 @@ Template.searches.helpers({
 });
 
 Template.searches.events ({
-  // "click .showIt": function (e) {
-  //   // Ensuring that the user creates a playlist first
-  //   event.preventDefault();
-  //
-  //   var playlist = ({playlist: name});
-  //
-  //   Session.set('clickCreate', true);
-  //
-  // },
   'submit .savePlay': function (e) {
     // Create a new Playlist
     // Prevent default on submit
     e.preventDefault();
 
     // Capture the entered title
-    var title = {text: e.target.q.value};
+    var title = [{text: e.target.q.value}];
 
     //Triggers display of the search bar
     Session.set('showLast', true);
 
     Session.set("title", title);
-    console.log(Session.get('title'));
 
     //Hide the input field
     Session.set('clickCreate', false);
@@ -225,13 +207,9 @@ Template.body.events({
 
 // JQUERY things
 Meteor.startup(function () {
-  // Allows the element to be dropped into a different div
+  // Allows the element to be dropped into a different div, and prevents default drop.
   allowDrop = function (ev) {
     ev.preventDefault();
-    // $("#search li").draggable ({
-    //   drag: drag,
-    //   drop: drop
-    // });
   };
 
   // Allows the 'id' text to be dragged
@@ -245,12 +223,6 @@ Meteor.startup(function () {
   drop = function (ev) {
     ev.preventDefault();
     var data = ev.dataTransfer.getData("text");
-    // $(this).removeAttr('id');
-    // $(this).appendTo('ul #saveMe');
-    // console.log(data);
-    // console.log(ev.target);
-    // ev.target.appendChild(data);
-    // ev.target.appendChild(document.getElementById(data));
   };
   Accounts.ui.config({
     // require username rather then email
