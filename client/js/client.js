@@ -8,8 +8,20 @@ Lists = new Mongo.Collection('lists');
 Template.user.helpers({
   // This is how to call the database and pass things
   song: function () {
+    // CHANGED Testing display logic
     // console.log(Song.find({}).fetch());
-    return Song.find({});
+    var y = Session.get('title');
+    var x = y[0].text;
+    var name = Meteor.user().username;
+    var callback = []
+    var z = Song.find({});
+    console.log(name, x, y);
+    z.forEach(function(tune){
+      if (tune.username === name)
+        callback.push(tune);
+    })
+    console.log(callback);
+    return callback;
   },
   songClient: function(){
     return SongClient.find({});
@@ -24,11 +36,13 @@ Template.user.events({
     console.log("Drop event");
     var x = Session.get('tempSave');
     var y = Session.get('results');
+    var z = Session.get('title')[0].text;
     // if results.text === li#songID.title
     y.forEach(function(e) {
       if(e.id === x){
         //Call addSong to save to server
         Meteor.call('addSong', e);
+        // CHANGED 'e.playlist' >> 'z'
         //Save onto client
         SongClient.insert({
           text: e.text,
@@ -37,7 +51,7 @@ Template.user.events({
           pic: e.pic,
           owner: Meteor.userId(),
           username: Meteor.user().username,
-          playlist: e.playlist
+          playlist: z
         });
       }
     });
@@ -71,6 +85,9 @@ Template.searches.helpers({
   showLast: function () {
     // Displays the search bar
     return Session.get('showLast');
+  },
+  noTitle: function () {
+    return Session.get('noTitle');
   }
 });
 
@@ -82,23 +99,37 @@ Template.searches.events ({
 
     // Capture the entered title
     var title = [{text: e.target.q.value}];
+    var z = Lists.find().fetch();
+    // Comparing entered title against EXISTING titles
+    var exist = z.map(function(e) { return e.name; }).indexOf(e.target.q.value);
 
-    //Triggers display of the search bar
-    Session.set('showLast', true);
+    // Making sure there is text entered and entry doesn't already exist. '.trim()' takes away whitespace.
+    if(e.target.q.value.trim() !== '' && exist  < 0) {
+      //Triggers display of the search bar
+      Session.set('showLast', true);
 
-    Session.set("title", title);
+      Session.set("title", title);
 
-    //Hide the input field
-    Session.set('clickCreate', false);
+      //Hide the input field
+      Session.set('clickCreate', false);
 
-    // Clear the form
-    e.target.q.value = '';
+      Session.set('noTitle', false);
+
+      // Clear the form
+      e.target.q.value = '';
+    } else {
+      console.log('no title');
+      Session.set('noTitle', true);
+    }
   },
   //Submits newly created playlist to server
   'click #submitPlaylist': function(){
-    var title = Session.get('title');
+    console.log('submitting');
+    // CHANGED title = Session.get('title')
+    var title = Session.get('title')[0].text;
     var list = SongClient.find().fetch();
-    var playlist = {title: 'myPlay', player: list};
+    // CHANGED 'myPlay' >> 'title'
+    var playlist = {text: title, player: list};
     Meteor.call('setSong', list, title);//Add to MongoDB on the server
     SongClient.remove({}); //Remove the client's temporary playlist
     Session.set("title", ""); //Remove Session title
@@ -162,8 +193,6 @@ Template.body.helpers({
 });
 
 Template.body.events({
-
-  // CHANGED .new-search >> .search
   "submit .search": function (event) {
     // Prevent default browser form submit
     event.preventDefault();
@@ -183,6 +212,7 @@ Template.body.events({
       // console.log('X',x);
       Session.set('results', x);
     });
+    // Display the search results drop-down
     $('.subnav').css('visibility', 'visible');
     // Clear the form
     event.target.q.value = '';
