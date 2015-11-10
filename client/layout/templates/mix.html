@@ -4,6 +4,14 @@
   <strong>
     {{#if mix}}
       <h2>MIX</h2>
+      {{#each myLists}}
+        <div class="playlistDiv">
+
+          <div class="playlistName" id="{{name}}">{{name}}
+          <button class="delete">&times;</button>
+          </div>
+        </div>
+      {{/each}}
     {{/if}}
   </strong>
 
