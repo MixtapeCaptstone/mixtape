@@ -202,7 +202,6 @@ Template.playlist.helpers({
 });
 Template.playlist.events({
   "click .playlistName": function(event){
-    console.log("test");
     Session.set("listName", event.target.id);
     SongClient.remove({}); //Remove the client's temporary playlist
     Session.set("title", ""); //Remove Session title
@@ -216,15 +215,21 @@ Template.playlist.events({
 });
 
 Template.mix.helpers({
-  // TODO: display users playlists
   mix: function () {
     return Session.get('mix');
+  },
+  myLists: function(){
+    return Lists.find({author: Meteor.user().username});
   }
 });
 
 Template.mix.events({
-  // TODO: display users playlists
-})
+  "click .playlistName": function(event){
+    Session.set("listName", event.target.id);
+    SongClient.remove({}); //Remove the client's temporary playlist
+    Session.set("title", ""); //Remove Session title
+  }
+});
 
 Template.body.helpers({
   clickCreate: function () {

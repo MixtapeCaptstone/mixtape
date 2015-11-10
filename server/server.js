@@ -17,7 +17,7 @@ Meteor.methods( {
     };
     var res = Meteor.http.call('GET', url, {params: params});
     return res;
-  },
+  },//TODO Do we need the addSong method anymore?
   addSong: function (text) {
     // console.log("added song", text);
     // var name = Meteor.user().username;
@@ -35,7 +35,7 @@ Meteor.methods( {
   setSong: function (list, title) {
     console.log("list:", list);
     console.log("title:", title);
-    Lists.insert({name: title, playlist: list});
+    Lists.insert({name: title, author: Meteor.user().username, playlist: list});
   },
   delete: function (id) {
     console.log('deleted', id);
