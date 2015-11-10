@@ -1,0 +1,64 @@
+<!-- https://app.moqups.com/louise.m.adkins@gmail.com/xWUUfxPetK/edit/page/a2e300f46 -->
+<template name="loginsignup">
+  <ul class="small-block-grid-10 medium-block-grid-6 large-block-grid-6">
+    <!--LEFT SIDE-->
+    <!-- <div class="large-6 medium-6 small-11 columns" id="card-section"> -->
+      <!--VIDEO PLAYER WILL BE HERE-->
+      <!--VIDEO CONTROLS WILL BE HERE-->
+      <!-- <p id="currentPlaylistTitle">Current/Example Playlist</p> -->
+      <!-- (Will add font stylings later) -->
+      <!-- Track list here -->
+        <!--<p id="trackNames">Track Names</h6>-->
+    <!-- </div> -->
+
+    <!--RIGHT SIDE-->
+   <div>
+     <div class="grid-block">
+        <!-- <div class="small-12 medium-6 large-6  grid-content"> -->
+        <!-- <div id="aboutMixtapez"> -->
+          <a href="/" id="logoCentered">Mixtapez</a>
+          <!-- <i class="fa fa-user fa-4x" id="userIconLogin"></i> -->
+                  <p id="aboutText">WTF is mixtapez? and how will this grab my attention enough for me to want to create an account??</p>
+                </div>
+                <!-- <div class="panel"> -->
+                  <form>
+                <label>
+                  <h3>Make Your Own Account</h3>
+                  <input type="text" placeholder="Choose a Username">
+                    <p></p>
+                  <!-- Add password character minimum? -->
+                  <input type="password" placeholder="Pick a Password">
+                    <br>
+                  <input type="password" placeholder="Confirm Password">
+                </label>
+                  <p></p>
+                <a class="button radius" id="primaryButtonStyle" href="#">Get Started!</a>
+                </form>
+              <!-- </div> -->
+            </div>
+
+          <!-- </div> -->
+          <br>
+          <!-- TODO Center this puppy  -->
+            <i class="fa fa-user fa-4x" id="userIconLogin"></i>
+          <br>
+            <form>
+              <div class="grid-block">
+                <div>
+                  <label>
+                    <h3>Already Have An Account?</h3>
+
+                    {{> loginButtons}}
+                    <input type="text" placeholder="Enter Username">
+                      <p></p>
+                    <input type="password" placeholder="Enter Your Password">
+                    <!-- Add a "username/password incorrect. try again. forgot password/username? link" or something similiar. Oh wait except we don't have any email input so how..hm. Ok one thing at a time. Moving on.-->
+                      <p></p>
+                    <a class="button radius" id="primaryButtonStyle" href="#">Welcome Back!</a>
+                  </label>
+                </div>
+              </div>
+            </form>
+    <!-- </div> -->
+  </ul>
+</template>

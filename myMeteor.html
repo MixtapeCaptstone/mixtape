@@ -1,5 +1,15 @@
 <head>
   <title>myMixTapez</title>
+  <!-- FONTS (Will choose between l8er) -->
+  <!--<link href='https://fonts.googleapis.com/css?family=Patrick+Hand+SC' rel='stylesheet' type='text/css'> -->
+  <!--<link href='https://fonts.googleapis.com/css?family=Permanent+Marker' rel='stylesheet' type='text/css'> -->
+  <!-- <link href='https://fonts.googleapis.com/css?family=Roboto:400,500,300,300italic,400italic' rel='stylesheet' type='text/css'> -->
+  <!-- <link href='https://fonts.googleapis.com/css?family=Didact+Gothic' rel='stylesheet' type='text/css'> -->
+  <!-- <link href='https://fonts.googleapis.com/css?family=Kite+One' rel='stylesheet' type='text/css'> -->
+  <link href='https://fonts.googleapis.com/css?family=Kalam:700' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700,700italic,400italic' rel='stylesheet' type='text/css'>
+
+
   <!-- JQUERY -->
   <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
 
@@ -7,22 +17,32 @@
   <script  src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
 
 </head>
-
 <body>
-  <h1 id="mainHeading">The Mixtapez</h1>
-<div id="leftDiv">
+  <ul class="small-block-grid-10 medium-block-grid-6 large-block-grid-6" data-equalizer>
 
-  {{> loginButtons}}
-  {{> player}}
+    <!--LEFT SIDE-->
+    <div class="large-6 medium-6 small-11 columns" id="card-section" data-equalizer-watch>
+      <div class="panel">
 
-</div>
-<div id="rightDiv">
+        {{> player}}
+        <!-- {{> user}} -->
+        <!-- {{> tracklistArea}} -->
+        <!-- {{> emptyTrackListArea}} -->
+      </div>
+    </div>
 
-  {{> nav}}
-  {{> mix}}
-  {{> playlist}}
-  {{> searches}}
+  <!--RIGHT SIDE-->
+    <div class="large-6 medium-6 small-11 columns" data-equalizer-watch>
+      <div class="panel">
+        {{> loginsignup}}
+        {{> playlistsBrowseCreate}}
+        {{> videoSearch}}
+        {{> mix}}
+        {{> playlist}}
+        {{> searches}}
+      </div>
+    </div>
 
-</div>
-
+  </ul>
+{{initFoundation}}
 </body>

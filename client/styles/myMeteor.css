@@ -1,4 +1,4 @@
-/* CSS declarations go here */
+ CSS declarations go here */
 
 /*Global*/
 h1 {
@@ -14,16 +14,16 @@ a {
   text-decoration: none;
 }
 
-form {
+/*form {
   text-align: center;
-}
+}*/
 
 /*The User*/
-.userDis{
+/*.userDis{
   border: 1px solid grey;
-  /*text-align: center;*/
+  text-align: center;
   width: 300px;
-  /*float: right;*/
+  float: right;
   list-style-type: none;
 }
 
@@ -44,7 +44,7 @@ form {
   background: red;
   border-radius: 4px;
   box-shadow: 2px 2px 10px #888888;
-}
+}*/
 
 /*The Player*/
 .container {
@@ -78,9 +78,6 @@ iframe{
   overflow: hidden;
 }
 
-input {
-  position: relative;
-}
 
 /*.search-con li {
   border: 1px solid gray;
@@ -135,4 +132,5 @@ input {
     visibility: visible;
     top: 100%;
     opacity: 1;
-}*/
+}
+*/

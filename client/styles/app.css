@@ -1,0 +1,200 @@
+/*font-family: 'Didact Gothic', sans-serif;*/
+/*font-family: 'Kite One', sans-serif;*/
+/*font-family: 'Cantora One', sans-serif;*/
+/*font-family: 'Bubbler One', sans-serif;*/
+/*font-family: 'Patrick Hand SC', cursive;*/
+/*font-family: 'Permanent Marker', cursive;*/
+
+
+/*-----------GLOBAL STYLES-----------*/
+body {
+  font-family: 'Lato', sans-serif;
+}
+
+#card-section {
+
+}
+
+.panel {
+  /* Foundation style, will need to overwrite*/
+}
+
+/*a{
+
+}*/
+
+p {
+  font-family: 'Lato', sans-serif;
+}
+
+form {
+  text-align: center;
+  font-style: italic;
+}
+
+/*Playlist Name*/
+h2 {
+  font-family: 'Kalam', cursive;
+  /*font-family: 'Permanent Marker', cursive;*/
+  padding-top: .5em;
+}
+
+/*Logo*/
+h3 {
+  font-family: 'Kalam', cursive;
+  /*font-family: 'Permanent Marker', cursive;*/
+  text-align: center;
+  letter-spacing: 0.0625em;
+}
+
+
+#logoCentered {
+  font-family: 'Kalam', cursive;
+  /*font-family: 'Permanent Marker', cursive;*/
+  text-align: center;
+  font-size:2.5em;
+  /*letter-spacing: 0.0625em;*/
+  color: #000;
+}
+
+#logoCentered:hover {
+  color: #606060;
+}
+
+/*-----------(MOSTLY)GLOBAL STYLES-----------*/
+/*
+#logoCornerDiv {
+
+}*/
+
+/*#logoCorner {
+  text-align: center;
+  font-family: 'Permanent Marker', cursive;
+  font-family: 'Kalam', cursive;
+  font-size:2.5em;
+  letter-spacing: 0.0625em;
+}*/
+#userIconLogin {
+  /*align-self: center;*/
+  margin-bottom: .5em;
+  color: #33e0d6;
+}
+
+#headerUserNav {
+  display: inline-block;
+  float:right;
+}
+
+#userIcon {
+  padding-left: 2em;
+  color: #000;
+}
+#userIcon:hover {
+  color: #606060;
+
+}
+
+#userAreaEllipsis {
+  padding-left: .5em;
+  color: #33e0d6;
+}
+#userAreaEllipsis:hover {
+  color: #5fe7df;
+}
+
+#loggedinUsernameDisplay {
+  float: right;
+  margin-bottom: 50px;
+}
+
+#primaryButtonStyle {
+  background-color: #33e0d6;
+  font-family: 'Lato', sans-serif;
+  /*font-family: 'Kalam', cursive;*/
+  /*font-family: 'Permanent Marker', cursive;*/
+  text-align: center;
+  letter-spacing: 0.0625em;
+}
+
+#mixActionButtons {
+  margin-top: 50px;
+  text-align: center;
+}
+
+#newPlaylistButton {
+  background-color: #33e0d6;
+  font-family: 'Lato', sans-serif;
+  /*font-family: 'Kalam', cursive;*/
+  /*font-family: 'Permanent Marker', cursive;*/
+  text-align: center;
+  /*letter-spacing: 0.0625em;*/
+}
+
+.showCreate {
+  text-align: center;
+}
+
+.mixNameInput {
+  font-family: 'Lato', sans-serif;
+}
+
+#submitNewMixName {
+  background-color: #33e0d6;
+  font-family: 'Lato', sans-serif;
+}
+.searchInput {
+  font-family: 'Lato', sans-serif;
+}
+
+#browseMineButton {
+  background-color: #33e0d6;
+  font-family: 'Lato', sans-serif;
+  /*font-family: 'Kalam', cursive;*/
+  /*font-family: 'Permanent Marker', cursive;*/
+  text-align: center;
+  letter-spacing: 0.0625em;
+}
+
+.myMixes {
+  text-align: center;
+}
+
+
+#browseAllButton {
+  background-color: #33e0d6;
+  font-family: 'Lato', sans-serif;
+  /*font-family: 'Kalam', cursive;*/
+  /*font-family: 'Permanent Marker', cursive;*/
+  text-align: center;
+  letter-spacing: 0.0625em;
+}
+
+.playa {
+text-align: center;
+}
+
+
+#deleteTrack {
+  background-color: #e61610;
+}
+
+/*#currentPlaylistTitle {
+  font-family: 'Kalam', cursive;
+}*/
+
+#trackNames {
+  /*font-family: 'Lato', sans-serif;*/
+}
+
+
+/*-----------VIEW-UNIQUE STYLES-----------*/
+
+/*#logoDivCentered {
+  /*Centered. */
+}
+
+/*This next one may be unnecessary but just thought I'd add it for now */*/
+
+#aboutText {
+  text-align: center;
+}

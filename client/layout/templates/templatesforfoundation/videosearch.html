@@ -1,0 +1,50 @@
+<template name="videoSearch">
+
+  <strong>
+  {{#if clickCreate}}
+  <form class="savePlay">
+    <input type="text" class="q mixNameInput" name="q" placeholder="Give it a brief, descriptive name">
+    <!-- <p>(Don't worry, you can change it later!)</p> -->
+    <!-- button: Now, add some videos! -->
+    <!-- on enter key to -->
+    <button type="submit" class="button small radius" id="submitNewMixName">Now, add some videos!</button>
+  </form>
+  {{/if}}
+  </strong>
+
+
+  <section class="search-con">
+    <!-- Text: Add videos to Playlist Name -->
+  <form class="search" id="options">
+
+    <strong>
+      {{#if showLast}}
+        <input type="text" class="searchInput" name="q" placeholder="Search...">
+      {{/if}}
+    </strong>
+
+    <ul class="subnav">
+      {{#each results}}
+        <li draggable="true" ondragstart="drag(event)" class="songClass" id="{{id}}"><img src="{{pic}}" alt="{{text}}" />{{text}}</li>
+      {{/each}}
+    </ul>
+  </form>
+
+
+  <!-- <div class="list" ondrop="drop(event)" ondragover="allowDrop(event)">
+
+  <h2>Search Results</h2>
+
+  <strong>
+    {{#if clickCreate}}
+    <ul id="search">
+      {{#each results}}
+        <li draggable="true" ondragstart="drag(event)" id="{{id}}"><img class="songClass" src="{{pic}}" id="{{id}}" alt="{{text}}" />{{text}}</li>
+      {{/each}}
+    </ul>
+    {{/if}}
+  </strong>
+  </div> -->
+
+</section>
+</template>
