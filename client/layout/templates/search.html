@@ -1,26 +1,6 @@
 <template name="searches">
 
-  <section class="search-con">
 
-  <form class="search" id="options">
-
-    <strong>
-      {{#if showLast}}
-        <input type="text" name="q" placeholder="Search...">
-      {{/if}}
-    </strong>
-
-
-    <ul class="subnav">
-      {{#each results}}
-        <li draggable="true" ondragstart="drag(event)" class="songClass" id="{{id}}"><img src="{{pic}}" alt="{{text}}" />{{text}}</li>
-      {{/each}}
-    </ul>
-
-
-  </form>
-
-  </section>
 
     <strong>
     {{#if clickCreate}}
@@ -33,12 +13,33 @@
 
     <form class="savePlay">
 
-      <input type="text" class="q" name="q" placeholder="playlist title...">
+      <input type="text" class="q" name="q" placeholder="Give Your Mix a Name...">
 
     </form>
     {{/if}}
     </strong>
 
-<button type="button" id="submitPlaylist" name="button">Submit</button>
+    <section class="search-con">
+
+    <form class="search" id="options">
+
+      <strong>
+        {{#if showLast}}
+          <input type="text" name="q" placeholder="Search For Videos to Add">
+        {{/if}}
+      </strong>
+
+
+      <ul class="subnav">
+        {{#each results}}
+          <li draggable="true" ondragstart="drag(event)" class="songClass" id="{{id}}"><img src="{{pic}}" alt="{{text}}" />{{text}}</li>
+        {{/each}}
+      </ul>
+
+
+    </form>
+
+    </section>
+<!-- <button type="button" id="submitPlaylist" name="button">Submit</button> -->
 
 </template>

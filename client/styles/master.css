@@ -21,41 +21,71 @@ body {
   align-items: center;
 }*/
 
+/*#video{position:absolute;top:100px;left:20px;}*/
+
+#player {
+  border: 10px solid #111;
+  margin: 0;
+  padding:0;
+}
+
+
+#playerBox {
+  border: 1px solid #fff;
+  width: 302px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.playerBar{
+  border: 1px solid grey;
+  border-radius: 2px;
+  display: block;
+  /*left margin: 0px;*/
+  width: inherit;
+}
+
 #parentButtons {
   display: inline-block;
-  background-color: red;
-  width: 51px;
+  background-color: #000;
+  width: 52px;
+  border-radius: 2px;
 }
 
 .escolta {
+  /*list-style-type: disc;*/
+  list-style-position: outside;
   display: inline-block;
-  font-family: Tahoma;
+  /*font-family: Tahoma;*/
   letter-spacing:1px;
-  font-size:11px;
+  font-size:14px;
   color: #666;
   width: 25px;
   text-align: center;
-  height: 20px;
+  height: 26px;
   line-height: 20px;
   background-color: #ccc;
   cursor: pointer;
   opacity: 40%;
   z-index: -1;
   border-right: 1px solid grey
+  border-radius: 2px;
 }
 
 #forward {
   float: right;
   display: inline-block;
-  font-family: Tahoma;
+  list-style-position: inside;
+  /*font-family: Tahoma;*/
   letter-spacing:1px;
-  font-size:11px;
+  font-size:14px;
   color: #666;
   width: 25px;
   text-align: center;
-  height: 20px;
+  height: 26px;
   line-height: 20px;
   background-color: #ccc;
+  border-radius: 2px;
   cursor: pointer;
   opacity: 40%;
   z-index: -1;
@@ -73,6 +103,7 @@ body {
   height: 20px;
   line-height: 20px;
   background-color: #ccc;
+  border-radius: 2px;
   cursor: pointer;
   opacity: 40%;
   z-index: -1;
@@ -81,12 +112,13 @@ body {
 .progress {
   position: relative;
   background-color:red;
-  height: 20px;
+  height: 27px;
   width: 0;
   /*pointer-events: none;*/
   opacity: .5;
   /*margin-left: 40px;*/
   border-right: 1px solid grey;
+  border-radius: 2px;
 }
 
 .progressParent{
@@ -96,8 +128,28 @@ body {
   width: 220px;
   /*float: right;*/
   /*text-align: center;*/
-  height: 20px;
+  height: 27px;
+  border-radius: 2px;
   z-index: 3;
+}
+
+
+.volumeDiv {
+  bottom: 3;
+  display: inline-block;
+  float: right;
+  width: 4px;
+  height: 12px;
+  margin-top: 5px;
+  margin-right: 2px;
+  margin-bottom: 1px;
+  background-color: rgb(143, 143, 143);
+}
+
+.volumeBar {
+  float: right;
+  height: 20px;
+  width:30px;
 }
 
 #artistName {
@@ -113,13 +165,6 @@ body {
   height: 20px;
   line-height: 20px;
   z-index: 5;
-}
-
-.playerBar{
-  border: 1px solid grey;
-  display: block;
-  /*left margin: 0px;*/
-  width: inherit;
 }
 
 .song{
@@ -151,32 +196,6 @@ body {
   height: 30px;
 }
 
-.volumeDiv {
-  bottom: 3;
-  display: inline-block;
-  float: right;
-  width: 4px;
-  height: 12px;
-  margin-top: 5px;
-  margin-right: 1px;
-  margin-bottom: 1px;
-  background-color: rgb(143, 143, 143);
-}
-
-.volumeBar {
-  float: right;
-  height: 20px;
-  width:30px;
-}
-
-.timeBar{
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 0;
-    height: 100%;
-    background-color: #ccc;
-}
 
 #songName {
   text-overflow: scroll;
@@ -185,17 +204,6 @@ body {
 .songName {
   background-color: rgb(255, 255, 255);
 }
-
-/*#mainHeading {
-  font-family: Helvetica;
-}*/
-
-/*#video{position:absolute;top:100px;left:20px;}
-
-#playerBox {
-  border: 1px solid grey;
-  width: 302px;
-}*/
 
 .songHover {
   background-color: rgb(255, 241, 154);
