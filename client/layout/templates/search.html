@@ -1,6 +1,22 @@
 <template name="searches">
 
+  <form class="search" id="options">
 
+    <strong>
+      {{#if showLast}}
+        <input type="text" name="q" placeholder="Search...">
+
+        <button type="button" id="submitPlaylist" name="button">Save Playlist</button>
+      {{/if}}
+    </strong>
+
+
+    <ul class="subnav">
+      {{#each results}}
+        <li draggable="true" ondragstart="drag(event)" class="songClass" id="{{id}}"><img src="{{pic}}" alt="{{text}}" />{{text}}</li>
+      {{/each}}
+    </ul>
+  </form>
 
     <strong>
     {{#if clickCreate}}
@@ -18,7 +34,6 @@
     </form>
     {{/if}}
     </strong>
-
     <section class="search-con">
 
     <form class="search" id="options">
@@ -41,5 +56,4 @@
 
     </section>
 <!-- <button type="button" id="submitPlaylist" name="button">Submit</button> -->
-
 </template>

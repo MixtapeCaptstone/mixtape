@@ -36,5 +36,9 @@ Meteor.methods( {
     console.log("list:", list);
     console.log("title:", title);
     Lists.insert({name: title, playlist: list});
+  },
+  delete: function (id) {
+    console.log('deleted', id);
+    Lists.remove(id);
   }
 });

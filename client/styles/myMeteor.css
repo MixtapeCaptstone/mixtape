@@ -57,15 +57,12 @@ iframe{
 }
 
 /*Playlist*/
-.playListClass{
-  border: 5px solid blue;
-  display: block;
-  float: right;
-  width: 48%;
+.playlistName {
+  cursor: pointer;
 }
 
-.playListClass li {
-  list-style-type: none;
+.playlistName:hover {
+  color: rgb(99, 236, 65);
 }
 
 /* >>>>>>>> The Search <<<<<<<<< */
@@ -87,7 +84,10 @@ iframe{
   margin-right: 5px;
 }*/
 
-/* >>>>> DEMO <<<<< */
+#submitPlaylist{
+  float: left;
+  text-align: left;
+}
 
 #options a{
     border-left: 0 none;
