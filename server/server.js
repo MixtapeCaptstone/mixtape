@@ -35,11 +35,6 @@ Meteor.methods( {
   setSong: function (list, title) {
     console.log("list:", list);
     console.log("title:", title);
-    Lists.insert({name: title.text, playlist: list});
-
-  console.log(Lists.find().fetch());
-  var tester = Lists.find({name: '1'});
-  console.log(tester);
-
+    Lists.insert({name: title, playlist: list});
   }
 });

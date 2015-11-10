@@ -13,13 +13,13 @@ Template.user.helpers({
     var y = Session.get('title');
     var x = y[0].text;
     var name = Meteor.user().username;
-    var callback = []
+    var callback = [];
     var z = Song.find({});
     console.log(name, x, y);
     z.forEach(function(tune){
       if (tune.username === name)
         callback.push(tune);
-    })
+    });
     console.log(callback);
     return callback;
   },
@@ -127,6 +127,7 @@ Template.searches.events ({
     console.log('submitting');
     // CHANGED title = Session.get('title')
     var title = Session.get('title')[0].text;
+    console.log(title);
     var list = SongClient.find().fetch();
     // CHANGED 'myPlay' >> 'title'
     var playlist = {text: title, player: list};
@@ -146,6 +147,7 @@ Template.nav.events({
     Session.set('mix', false);
     Session.set('showLast', false);
     Session.set('clickCreate', true);
+    Session.set("listName", "");
   },
   "click .myMixes": function (e) {
     e.preventDefault();
@@ -168,6 +170,25 @@ Template.listViewer.helpers({
     var listTitle = Session.get("listName"); //get the name of the current playlist
     var list = Lists.find({name: listTitle}).fetch();
     return list[0].playlist;
+  }
+});
+
+Template.listViewer.events({
+  'click .songHover': function (event) {
+    console.log('click', event.target);
+    $('#focus').removeAttr('id'); //remove previous focus
+    event.target.id = "focus"; //set focus
+
+    var songId = this.id;
+    player.loadVideoById(songId);
+  },
+  'mouseenter .songName': function(event){
+    thisDiv = event.target; //get "this"
+    $(thisDiv).attr("class", "songHover" );//set hover class
+  },
+  'mouseleave .songHover': function(event){
+    thisDiv = event.target; //get "this"
+    $(thisDiv).attr("class", "songName" ); //remove hover class
   }
 });
 
