@@ -147,6 +147,14 @@ Template.nav.events({
   }
 });
 
+Template.listViewer.helpers({
+  listTape: function(){
+    var listTitle = Session.get("listName"); //get the name of the current playlist
+    var list = Lists.find({name: listTitle}).fetch();
+    return list[0].playlist;
+  }
+});
+
 Template.playlist.helpers({
   playa: function () {
     return Session.get('playa');
@@ -156,8 +164,9 @@ Template.playlist.helpers({
   }
 });
 Template.playlist.events({
-  "click .playlistName": function(){
+  "click .playlistName": function(event){
     console.log("test");
+    Session.set("listName", event.target.id);
     SongClient.remove({}); //Remove the client's temporary playlist
     Session.set("title", ""); //Remove Session title
   }

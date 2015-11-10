@@ -33,9 +33,12 @@ Meteor.methods( {
   },
 
   setSong: function (list, title) {
-    var newList = {name: title.text, playlist: list};
-  if(title.length > 0){
-    Lists.insert(newList);
-  }
+    console.log("list:", list);
+    console.log("title:", title);
+    Lists.insert({name: title.text, playlist: list});
+
+  console.log(Lists.find().fetch());
+  var tester = Lists.find({name: '1'});
+  console.log(tester);
   }
 });
