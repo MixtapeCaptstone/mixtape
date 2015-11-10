@@ -22,13 +22,15 @@
 
   </section>
 
-  <!-- <form class="showIt">
-    <input type="submit" value="create playlist">
-  </form> -->
-
-
     <strong>
     {{#if clickCreate}}
+
+      <strong>
+      {{#if noTitle}}
+        <h5>*Please enter a title or title already exists</h5>
+      {{/if}}
+      </strong>
+
     <form class="savePlay">
 
       <input type="text" class="q" name="q" placeholder="playlist title...">

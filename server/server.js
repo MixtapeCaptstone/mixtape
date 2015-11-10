@@ -40,5 +40,6 @@ Meteor.methods( {
   console.log(Lists.find().fetch());
   var tester = Lists.find({name: '1'});
   console.log(tester);
+
   }
 });
