@@ -1,14 +1,11 @@
 SongClient = new Mongo.Collection(null);//Create collection only on the client.
 Song = new Mongo.Collection('song');
 Lists = new Mongo.Collection('lists');
-//
-// Meteor.subscribe('song');//TODO I don't think we need this.
 
 // METEOR THINGS
 Template.user.helpers({
   // This is how to call the database and pass things
   song: function () {
-    // CHANGED Testing display logic
     // console.log(Song.find({}).fetch());
     var y = Session.get('title');
     var x = y[0].text;
@@ -180,14 +177,18 @@ Template.playlist.events({
 });
 
 Template.mix.helpers({
+  // TODO: display users playlists
   mix: function () {
     return Session.get('mix');
   }
 });
 
+Template.mix.events({
+  // TODO: display users playlists
+})
+
 Template.body.helpers({
   clickCreate: function () {
-    // TODO make user give playlist title
       return Session.get('clickCreate');
     }
 });
