@@ -1,7 +1,5 @@
-<!-- CHANGED -->
-
 <template name="playlist">
-  <div class="">
+  <div class="list">
 
   <strong>
     {{#if playa}}
@@ -11,8 +9,8 @@
         <div class="playlistDiv">
 
           <div class="playlistName" id="{{name}}">{{name}}
+          <button class="delete">&times;</button>
           </div>
-
         </div>
       {{/each}}
     {{/if}}

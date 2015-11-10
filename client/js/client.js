@@ -99,7 +99,6 @@ Template.searches.events ({
     var z = Lists.find().fetch();
     // Comparing entered title against EXISTING titles
     var exist = z.map(function(e) { return e.name; }).indexOf(e.target.q.value);
-
     // Making sure there is text entered and entry doesn't already exist. '.trim()' takes away whitespace.
     if(e.target.q.value.trim() !== '' && exist  < 0) {
       //Triggers display of the search bar
@@ -148,15 +147,15 @@ Template.nav.events({
   },
   "click .myMixes": function (e) {
     e.preventDefault();
-    console.log("my mix");
     Session.set('playa', false);
+    Session.set('showLast', false);
     Session.set('clickCreate', false);
     Session.set('mix', true);
   },
   "click .playa": function (e) {
     e.preventDefault();
-    console.log("playa");
     Session.set('mix', false);
+    Session.set('showLast', false);
     Session.set('clickCreate', false);
     Session.set('playa', true);
   }
@@ -166,7 +165,11 @@ Template.listViewer.helpers({
   listTape: function(){
     var listTitle = Session.get("listName"); //get the name of the current playlist
     var list = Lists.find({name: listTitle}).fetch();
+    var name = list[0];
     return list[0].playlist;
+  },
+  tapeName: function () {
+    return [{text: Session.get('listName')}];
   }
 });
 
@@ -203,7 +206,13 @@ Template.playlist.events({
     Session.set("listName", event.target.id);
     SongClient.remove({}); //Remove the client's temporary playlist
     Session.set("title", ""); //Remove Session title
-  }
+  },
+  "click .delete": function (event){
+    console.log("༼ つ ◕_◕ ༽つ delete!");
+    // if () {
+      Meteor.call("delete", this._id);
+    // }
+    }
 });
 
 Template.mix.helpers({
