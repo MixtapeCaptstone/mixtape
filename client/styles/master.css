@@ -200,6 +200,7 @@ body {
 
 .songHover {
   background-color: rgb(255, 241, 154);
+  cursor: pointer;
 }
 
 #focus {

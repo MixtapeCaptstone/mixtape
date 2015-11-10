@@ -1,14 +1,11 @@
 SongClient = new Mongo.Collection(null);//Create collection only on the client.
 Song = new Mongo.Collection('song');
 Lists = new Mongo.Collection('lists');
-//
-// Meteor.subscribe('song');//TODO I don't think we need this.
 
 // METEOR THINGS
 Template.user.helpers({
   // This is how to call the database and pass things
   song: function () {
-    // CHANGED Testing display logic
     // console.log(Song.find({}).fetch());
     var y = Session.get('title');
     var x = y[0].text;
@@ -102,7 +99,6 @@ Template.searches.events ({
     var z = Lists.find().fetch();
     // Comparing entered title against EXISTING titles
     var exist = z.map(function(e) { return e.name; }).indexOf(e.target.q.value);
-
     // Making sure there is text entered and entry doesn't already exist. '.trim()' takes away whitespace.
     if(e.target.q.value.trim() !== '' && exist  < 0) {
       //Triggers display of the search bar
@@ -151,15 +147,15 @@ Template.nav.events({
   },
   "click .myMixes": function (e) {
     e.preventDefault();
-    console.log("my mix");
     Session.set('playa', false);
+    Session.set('showLast', false);
     Session.set('clickCreate', false);
     Session.set('mix', true);
   },
   "click .playa": function (e) {
     e.preventDefault();
-    console.log("playa");
     Session.set('mix', false);
+    Session.set('showLast', false);
     Session.set('clickCreate', false);
     Session.set('playa', true);
   }
@@ -169,7 +165,11 @@ Template.listViewer.helpers({
   listTape: function(){
     var listTitle = Session.get("listName"); //get the name of the current playlist
     var list = Lists.find({name: listTitle}).fetch();
+    var name = list[0];
     return list[0].playlist;
+  },
+  tapeName: function () {
+    return [{text: Session.get('listName')}];
   }
 });
 
@@ -206,18 +206,28 @@ Template.playlist.events({
     Session.set("listName", event.target.id);
     SongClient.remove({}); //Remove the client's temporary playlist
     Session.set("title", ""); //Remove Session title
-  }
+  },
+  "click .delete": function (event){
+    console.log("༼ つ ◕_◕ ༽つ delete!");
+    // if () {
+      Meteor.call("delete", this._id);
+    // }
+    }
 });
 
 Template.mix.helpers({
+  // TODO: display users playlists
   mix: function () {
     return Session.get('mix');
   }
 });
 
+Template.mix.events({
+  // TODO: display users playlists
+})
+
 Template.body.helpers({
   clickCreate: function () {
-    // TODO make user give playlist title
       return Session.get('clickCreate');
     }
 });
