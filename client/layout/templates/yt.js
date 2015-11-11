@@ -18,9 +18,7 @@ onYouTubeIframeAPIReady = function () {
 
 YT.load();
 
-
 function onPlayerReady(event) {
-
     //  event.target.playVideo();
     var artist = player.getVideoData();
     $('#artistName').text(artist.author + " " + artist.title);

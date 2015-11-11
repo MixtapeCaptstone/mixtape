@@ -39,6 +39,7 @@ Template.user.events({
       if(e.id === x){
         //Call addSong to save to server
         Meteor.call('addSong', e);
+        songNum = SongClient.find().fetch().length;
         // CHANGED 'e.playlist' >> 'z'
         //Save onto client
         SongClient.insert({
@@ -48,7 +49,8 @@ Template.user.events({
           pic: e.pic,
           owner: Meteor.userId(),
           username: Meteor.user().username,
-          playlist: z
+          playlist: z,
+          index: songNum
         });
       }
     });
@@ -175,12 +177,13 @@ Template.listViewer.helpers({
 
 Template.listViewer.events({
   'click .songHover': function (event) {
-    console.log('click', event.target);
+    //TODO is this redundant? Already in body event!
+    console.log('listViewer');
     $('#focus').removeAttr('id'); //remove previous focus
     event.target.id = "focus"; //set focus
-
+    var songIndex = this.name;
     var songId = this.id;
-    player.loadVideoById(songId);
+    player.playVideoAt(songIndex);
   },
   'mouseenter .songName': function(event){
     thisDiv = event.target; //get "this"
@@ -200,9 +203,25 @@ Template.playlist.helpers({
     return Lists.find({});
   }
 });
+
 Template.playlist.events({
   "click .playlistName": function(event){
+    var newList = Lists.find({name: event.target.id}).fetch();//get playlist
+    var listArray = [];
+    //push individual sing id's into an empty array
+    newList[0].playlist.forEach(function(element, index, array){
+      listArray.push(element.id);
+    });
+    //set playlist
     Session.set("listName", event.target.id);
+    player.loadPlaylist({
+        'playlist': listArray,
+        'listType': 'playlist',
+        'index': 0,
+        'startSeconds': 0,
+        'suggestedQuality': 'small'
+    });
+
     SongClient.remove({}); //Remove the client's temporary playlist
     Session.set("title", ""); //Remove Session title
   },
@@ -225,7 +244,22 @@ Template.mix.helpers({
 
 Template.mix.events({
   "click .playlistName": function(event){
+    var newList = Lists.find({name: event.target.id}).fetch();//get playlist
+    var listArray = [];
+    //push individual sing id's into an empty array
+    newList[0].playlist.forEach(function(element, index, array){
+      listArray.push(element.id);
+    });
+    //set playlist
     Session.set("listName", event.target.id);
+    player.loadPlaylist({
+        'playlist': listArray,
+        'listType': 'playlist',
+        'index': 0,
+        'startSeconds': 0,
+        'suggestedQuality': 'small'
+    });
+
     SongClient.remove({}); //Remove the client's temporary playlist
     Session.set("title", ""); //Remove Session title
   }
@@ -272,10 +306,13 @@ Template.body.events({
         $('.subnav').hide();
     }
   },
-  'click .songClass': function () {
-    console.log('click');
-    var songId = this.id;
-    player.loadVideoById(songId);
+  'click .songClass': function (event) {
+    console.log('clicked songClass');
+    var self = event.target;
+    var songIndex = $(event.currentTarget).attr("name"); //Get song index number
+    $('#focus').removeAttr('id'); //remove previous focus
+    event.target.id = "focus"; //set focus
+    player.playVideoAt(songIndex);//Play correct playlist song index
   }
 });
 
