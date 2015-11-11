@@ -2,14 +2,19 @@
   {{#each tapeName}}
     <h2>{{text}}</h2>
   {{/each}}
+<table role="grid">
+
 
   {{#each listTape}}
-  <div class="songClass" id="playListSong">
-
-    <h2>{{name}}</h2>
-
-    <div class="songName">{{text}}</div>
-
-  </div>
+  <tr>
+  <td>
+      <div class="songClass" id="playListSong">
+        <div class="songName">{{text}}</div>
+          {{name}}
+      </div>
+  </td>
+  </tr>
   {{/each}}
+
+  </table>
 </template>

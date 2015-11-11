@@ -18,11 +18,11 @@
 
 </head>
 <body>
-  <ul class="small-block-grid-10 medium-block-grid-6 large-block-grid-6" data-equalizer>
+  <!-- <ul class="small-11 medium-block-grid-6 large-block-grid-6" data-equalizer> -->
 
     <!--LEFT SIDE-->
-    <div class="large-6 medium-6 small-11 columns" id="card-section" data-equalizer-watch>
-      <div class="panel">
+    <div class="large-6 large-uncentered  medium-6 medium-uncentered small-11 small-centered columns" id="leftSide">
+      <div class="panel" id="leftPanel">
 
         {{> player}}
         {{> user}}
@@ -32,18 +32,18 @@
     </div>
 
   <!--RIGHT SIDE-->
-    <div class="large-6 medium-6 small-11 columns" data-equalizer-watch>
-      <div class="panel">
+    <div class="large-6 large-uncentered  medium-6  medium-uncentered small-11 small-centered columns" id="rightSide">
+      <div class="panel" id="rightPanel">
         <!-- {{> loginsignup}} -->
+        <!-- {{> userLogout}} -->
         {{> playlistsBrowseCreate}}
         {{> searches}}
-        {{> videoSearch}}
+        <!-- {{> videoSearch}} -->
         {{> mix}}
         {{> playlist}}
 
       </div>
     </div>
-
-  </ul>
+  <!-- </ul> -->
 {{initFoundation}}
 </body>

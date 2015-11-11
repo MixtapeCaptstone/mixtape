@@ -7,21 +7,44 @@
 
 
 /*-----------GLOBAL STYLES-----------*/
+
+html {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+*, *:before, *:after {
+  -webkit-box-sizing: inherit;
+  -moz-box-sizing: inherit;
+  box-sizing: inherit;
+  }
+
 body {
   font-family: 'Lato', sans-serif;
 }
 
-#card-section {
+.panel {
 
 }
 
-.panel {
-  /* Foundation style, will need to overwrite*/
+#leftPanel {
+
+}
+
+#rightPanel {
+  padding-top: 0.5rem;
+  padding-right: 0.75rem;
 }
 
 /*a{
 
 }*/
+
+input[type="text"], input[type="password"], input[type="email"], input[type="number"], input[type="search"] , input[type="url"], textarea {
+  width: 50%;
+  margin-left: auto;
+  margin-right: auto;
+}
 
 p {
   font-family: 'Lato', sans-serif;
@@ -30,6 +53,19 @@ p {
 form {
   text-align: center;
   font-style: italic;
+}
+
+table {
+  overflow-x: scroll;
+
+}
+
+tr {
+  background-color: pink;
+}
+
+td {
+
 }
 
 /*Playlist Name*/
@@ -62,27 +98,15 @@ h3 {
 }
 
 /*-----------(MOSTLY)GLOBAL STYLES-----------*/
-/*
-#logoCornerDiv {
-
-}*/
-
-/*#logoCorner {
-  text-align: center;
-  font-family: 'Permanent Marker', cursive;
-  font-family: 'Kalam', cursive;
-  font-size:2.5em;
-  letter-spacing: 0.0625em;
-}*/
-#userIconLogin {
-  /*align-self: center;*/
-  margin-bottom: .5em;
-  color: #33e0d6;
-}
 
 #headerUserNav {
   display: inline-block;
   float:right;
+  width: auto;
+  height: 5.5rem;
+  padding-top: 0;
+  padding-bottom: 0.5rem;
+  line-height: 1.1;
 }
 
 #userIcon {
@@ -91,7 +115,6 @@ h3 {
 }
 #userIcon:hover {
   color: #606060;
-
 }
 
 #userAreaEllipsis {
@@ -104,7 +127,9 @@ h3 {
 
 #loggedinUsernameDisplay {
   float: right;
-  margin-bottom: 50px;
+}
+#loggedinUsernameDisplay:hover {
+  /*color: ;*/
 }
 
 #primaryButtonStyle {
@@ -117,8 +142,17 @@ h3 {
 }
 
 #mixActionButtons {
-  margin-top: 50px;
+  font-family: 'Lato', sans-serif;
+  font-style: italic;
   text-align: center;
+  color: #fff;
+  padding-top: 25%;
+  padding-right: 25%;
+  padding-left: 25%;
+  padding-bottom: 10%;
+  margin-top: 4em;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 #newPlaylistButton {
@@ -126,8 +160,7 @@ h3 {
   font-family: 'Lato', sans-serif;
   /*font-family: 'Kalam', cursive;*/
   /*font-family: 'Permanent Marker', cursive;*/
-  text-align: center;
-  /*letter-spacing: 0.0625em;*/
+  letter-spacing: 0.0625em;
 }
 
 .showCreate {
@@ -149,29 +182,27 @@ h3 {
 #browseMineButton {
   background-color: #33e0d6;
   font-family: 'Lato', sans-serif;
+  letter-spacing: 0.0625em;
   /*font-family: 'Kalam', cursive;*/
   /*font-family: 'Permanent Marker', cursive;*/
-  text-align: center;
-  letter-spacing: 0.0625em;
+
 }
 
-.myMixes {
+/*.myMixes {
   text-align: center;
 }
-
+*/
 
 #browseAllButton {
   background-color: #33e0d6;
-  font-family: 'Lato', sans-serif;
   /*font-family: 'Kalam', cursive;*/
   /*font-family: 'Permanent Marker', cursive;*/
-  text-align: center;
   letter-spacing: 0.0625em;
 }
 
-.playa {
+/*.playa {
 text-align: center;
-}
+}*/
 
 
 #deleteTrack {
@@ -187,14 +218,21 @@ text-align: center;
 }
 
 
+
 /*-----------VIEW-UNIQUE STYLES-----------*/
 
-/*#logoDivCentered {
-  /*Centered. */
+
+#userIconLogin {
+  margin-bottom: .5em;
+  margin-left: 45%;
+  margin-right: 45%;
+  color: #33e0d6;
 }
 
-/*This next one may be unnecessary but just thought I'd add it for now */*/
-
 #aboutText {
+  text-align: center;
+}
+
+#signupHeader {
   text-align: center;
 }

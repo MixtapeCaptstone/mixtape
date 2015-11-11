@@ -18,22 +18,22 @@
     </ul>
   </form>
 
+  <strong>
+  {{#if clickCreate}}
+
     <strong>
-    {{#if clickCreate}}
-
-      <strong>
-      {{#if noTitle}}
-        <h5>*Please enter a title or title already exists</h5>
-      {{/if}}
-      </strong>
-
-    <form class="savePlay">
-
-      <input type="text" class="q" name="q" placeholder="Give Your Mix a Name...">
-
-    </form>
+    {{#if noTitle}}
+      <h5>*Please enter a title or title already exists</h5>
     {{/if}}
     </strong>
+
+  <form class="savePlay">
+
+    <input type="text" class="q" name="q" placeholder="Give Your Mix a Name...">
+
+  </form>
+  {{/if}}
+</strong>
     <section class="search-con">
 
     <form class="search" id="options">
