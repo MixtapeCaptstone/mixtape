@@ -21,10 +21,11 @@ html {
 
 body {
   font-family: 'Lato', sans-serif;
+
 }
 
 .panel {
-
+  background-color: #fff;
 }
 
 #leftPanel {
@@ -98,7 +99,7 @@ h3 {
 }
 
 .logoutButton {
-  
+
 }
 
 /*-----------(MOSTLY)GLOBAL STYLES-----------*/
@@ -129,20 +130,21 @@ h3 {
   color: #5fe7df;
 }
 
-#loggedinUsernameDisplay {
+#logoutButton {
   float: right;
+  margin-right: 0.7em;
 }
-#loggedinUsernameDisplay:hover {
+#logoutButton:hover {
   /*color: ;*/
 }
 
 #primaryButtonStyle {
   background-color: #33e0d6;
   font-family: 'Lato', sans-serif;
-  /*font-family: 'Kalam', cursive;*/
-  /*font-family: 'Permanent Marker', cursive;*/
   text-align: center;
   letter-spacing: 0.0625em;
+  /*font-family: 'Kalam', cursive;*/
+  /*font-family: 'Permanent Marker', cursive;*/
 }
 
 #mixActionButtons {
@@ -162,9 +164,9 @@ h3 {
 #newPlaylistButton {
   background-color: #33e0d6;
   font-family: 'Lato', sans-serif;
+  letter-spacing: 0.0625em;
   /*font-family: 'Kalam', cursive;*/
   /*font-family: 'Permanent Marker', cursive;*/
-  letter-spacing: 0.0625em;
 }
 
 .showCreate {
@@ -199,9 +201,10 @@ h3 {
 
 #browseAllButton {
   background-color: #33e0d6;
+  font-family: 'Lato', sans-serif;
+  letter-spacing: 0.0625em;
   /*font-family: 'Kalam', cursive;*/
   /*font-family: 'Permanent Marker', cursive;*/
-  letter-spacing: 0.0625em;
 }
 
 /*.playa {
@@ -220,7 +223,6 @@ text-align: center;
 #trackNames {
   /*font-family: 'Lato', sans-serif;*/
 }
-
 
 
 /*-----------VIEW-UNIQUE STYLES-----------*/

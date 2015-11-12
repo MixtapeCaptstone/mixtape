@@ -3,18 +3,19 @@
     <h2>{{text}}</h2>
   {{/each}}
 <table role="grid">
+
+  {{#each listTape}}
   <tr>
   <td>
-  {{#each listTape}}
   <div class="songClass" id="playListSong" name="{{index}}">
 
-    <h2>{{name}}</h2>
+    <div>{{name}}</div>
 
     <div class="songName">{{text}}</div>
 
   </div>
-  {{/each}}
   </td>
   </tr>
+  {{/each}}
   </table>
 </template>
