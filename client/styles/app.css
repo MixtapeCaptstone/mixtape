@@ -61,7 +61,7 @@ table {
 }
 
 tr {
-  background-color: pink;
+  background-color: #f2f2f2;
 }
 
 td {
@@ -95,6 +95,10 @@ h3 {
 
 #logoCentered:hover {
   color: #606060;
+}
+
+.logoutButton {
+  
 }
 
 /*-----------(MOSTLY)GLOBAL STYLES-----------*/
