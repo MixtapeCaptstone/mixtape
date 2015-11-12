@@ -19,7 +19,7 @@ onYouTubeIframeAPIReady = function () {
 YT.load();
 
 function onPlayerReady(event) {
-    //  event.target.playVideo();
+
     var artist = player.getVideoData();
     $('#artistName').text(artist.author + " " + artist.title);
 
@@ -27,8 +27,6 @@ function onPlayerReady(event) {
     $('.escolta').unbind("click");
 
     $('.escolta').on('click', function() {
-      // $('.escolta').removeClass("focus"); //remove previous focus
-      // $(this).addClass("focus"); //set current focus
 
         if(event.data === 1) {
             console.log('alert 1');
@@ -41,7 +39,11 @@ function onPlayerReady(event) {
         return false;
     });
 
-    // console.log("Player is ready");
+    $('#forward').on('click', function(){
+      console.log('forward has been clicked');
+      player.nextVideo();
+    });
+
     var minutes = Math.floor((player.getDuration()) / 60);
     var seconds = player.getDuration() % 60;
     $('.duration').text(minutes + ':' + seconds);
@@ -91,8 +93,6 @@ function onPlayerStateChange(event) {
   }
 
   $('.escolta').on('click', function() {
-    // $('.escolta').removeClass("focus"); //remove previous focus
-    // $(this).addClass("focus"); //set current focus
 
     clearInterval(scrubber);
       if(event.data === 1) {
