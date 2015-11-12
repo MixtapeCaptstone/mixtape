@@ -72,8 +72,14 @@ function clock(){
 
 var done = false;
 function onPlayerStateChange(event) {
-  console.log(event, "onPlayerStateChange");
 
+  //SET FOCUS
+  $('#focus').removeAttr('id'); //remove previous focus
+  playIndex = event.target.A.playlistIndex;
+  var thisDiv = $('div[name="' + playIndex + '"]');
+  var child = $(thisDiv).children('div');
+  $(child).attr("id","focus");
+//---------------------------------
   $('.escolta').unbind("click");
 
   //Change the play button text
