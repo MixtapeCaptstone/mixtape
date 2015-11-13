@@ -39,37 +39,45 @@ a {
 
 /*The Player*/
 .container {
-  border: 5px solid red;
+  /*border: 5px solid red;*/
   text-align:center;
   width:48%;
 }
 iframe{
   width: 300px;
   /*border-left: 10px solid #000;
-  border-right: 10px solid #000;*/
-  /*border-top: 10px solid #000;*/
+  border-right: 10px solid #000;
+  border-top: 10px solid #000;*/
 }
 
 
 /*Playlists*/
 
 .playlistDiv {
+  /*text-align: center;*/
   padding: 2%;
-  border: 1px solid #D8D8D8;
+  /*border: 1px solid #666;*/
   border-radius: 2px;
 }
 
 .playlistName {
-
+  color: #ddd;
   cursor: pointer;
 }
 
 .playlistName:hover {
-  color: #606060;
+  color: #eee;
+  font-weight: bolder;
 }
 
+/*trashcan icon*/
 .delete {
+  color: #ccc;
   margin-left: 0.75em;
+}
+
+.delete:hover {
+  color: red;
 }
 
 /* >>>>>>>> The Search <<<<<<<<< */

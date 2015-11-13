@@ -86,10 +86,10 @@ function onPlayerStateChange(event) {
 
   //Change the play button text
   if(event.data === 1) {
-      $('.escolta').text('||');
+      $('.escolta').html('<i class="fa fa-pause"></i>');
   }
   else {
-    $('.escolta').text('>');
+    $('.escolta').html('<i class="fa fa-play"></i>');
   }
 
   $('.escolta').on('click', function() {
