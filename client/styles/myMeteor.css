@@ -85,9 +85,9 @@ iframe{
 .search-con {
   /*border: 5px solid green;*/
   display: block;
-  float: right;
+  /*float: right;
   width: 48%;
-  overflow: hidden;
+  overflow: hidden;*/
 }
 
 
@@ -118,7 +118,7 @@ iframe{
     visibility: hidden;
     position: absolute;
     /*top: 110%;*/
-    right: 0;
+    /*right: 0;*/
     width: 40%;
     height: auto;
     opacity: 1;
