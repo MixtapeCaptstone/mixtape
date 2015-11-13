@@ -74,12 +74,13 @@ function clock(){
 var done = false;
 function onPlayerStateChange(event) {
 
+
   //SET FOCUS
-  $('#focus').removeAttr('id'); //remove previous focus
+  $('.focus').attr('class', 'songClass'); //remove previous focus
   playIndex = event.target.A.playlistIndex;
   var thisDiv = $('div[name="' + playIndex + '"]');
   var child = $(thisDiv).children('div');
-  $(child).attr("id","focus");
+  $(child).attr("class","focus");
 //---------------------------------
   $('.escolta').unbind("click");
 
