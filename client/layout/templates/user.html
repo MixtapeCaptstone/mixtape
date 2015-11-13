@@ -10,7 +10,6 @@
       {{/if}}
     </strong>
 
-
     {{#each songClient}}
       <div class="song" id="playListSong">
 
@@ -18,8 +17,10 @@
         </div>
 
       </div>
-      <button class="delete">&times;</button>
+      <a href="#"  class="delete"><i class="fa fa-trash-o"></i></a>
+      <!-- <button class="button tiny delete" id="deleteTrack">&times;</button> -->
     {{/each}}
   </div>
+
 
 </template>

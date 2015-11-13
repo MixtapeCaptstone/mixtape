@@ -135,7 +135,7 @@ Template.searches.events ({
   }
 });
 
-Template.nav.events({
+Template.playlistsBrowseCreate.events({
   "click .showCreate": function (e) {
     // Ensuring that the user creates a playlist first
     e.preventDefault();

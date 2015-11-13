@@ -1,0 +1,273 @@
+/*font-family: 'Patrick Hand SC', cursive;*/
+/*font-family: 'Permanent Marker', cursive;*/
+
+/*-----------GLOBAL STYLES-----------*/
+
+html {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+*, *:before, *:after {
+  -webkit-box-sizing: inherit;
+  -moz-box-sizing: inherit;
+  box-sizing: inherit;
+  }
+
+body {
+  font-family: 'Lato', sans-serif;
+  background-color: #000;
+}
+
+.panel {
+  background-color: #191919;
+  border-color: #333;
+  /*border: none;*/
+}
+/*TODO SET MIN-WIDTH, etc. prevent overlap*/
+#leftPanel {
+  padding-right: 2rem;
+  overflow: auto;
+}
+
+#rightPanel {
+  padding-top: 0.5rem;
+  padding-right: 0.75rem;
+}
+
+input[type="text"], input[type="password"], input[type="email"], input[type="number"], input[type="search"] , input[type="url"], textarea {
+  width: 50%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+p {
+  font-family: 'Lato', sans-serif;
+}
+
+form {
+  text-align: center;
+  font-style: italic;
+}
+
+table {
+  overflow-x: scroll;
+  border: none;
+
+}
+
+tr {
+  background-color: #222;
+}
+
+td {
+  /*background-color: #111;*/
+  background-color: #222;
+}
+
+/*Playlist Name*/
+h2 {
+  font-family: 'Kalam', cursive;
+  /*font-family: 'Permanent Marker', cursive;*/
+  padding-top: .5em;
+  color: #26d6ca;
+}
+
+/*Logo*/
+h3 {
+  font-family: 'Kalam', cursive;
+  /*font-family: 'Permanent Marker', cursive;*/
+  text-align: center;
+  letter-spacing: 0.0625em;
+  color: #26d6ca;
+}
+
+#mixesHeader {
+  font-family: 'Kalam', cursive;
+  /*font-family: 'Permanent Marker', cursive;*/
+  padding-top: .5em;
+  color: #33eade;
+}
+
+#playlistsHeader {
+  font-family: 'Kalam', cursive;
+  /*font-family: 'Permanent Marker', cursive;*/
+  padding-top: .5em;
+  color: #26d6ca;
+}
+
+/*TODO CENTER IT! */
+#logoCentered {
+  font-family: 'Kalam', cursive;
+  /*font-family: 'Permanent Marker', cursive;*/
+  float: left;
+  font-size:2.5em;
+  /*letter-spacing: 0.0625em;*/
+  /*text-shadow: 0px 0px 0px #26d6ca;*/
+  color: #33eade;
+}
+
+#logoCentered:hover {
+  color: #ccc;
+}
+
+/*-----------(MOSTLY)GLOBAL STYLES-----------*/
+
+#headerUserNav {
+  display: inline-block;
+  float:right;
+  width: auto;
+  height: 5.5rem;
+  padding-top: 0;
+  padding-bottom: 0.5rem;
+  line-height: 1.1;
+}
+
+/*the icon*/
+#logoutButton {
+  padding-left: 2em;
+  color: #ccc;
+  float: right;
+  margin-right: 0.7em;
+}
+
+#logoutButton:hover {
+  color: #8F8F8F;
+  opacity: -10%;
+}
+
+#logoutLink {
+  color: #ccc;
+  float: right;
+}
+
+#primaryButtonStyle {
+  /*font-family: 'Kalam', cursive;*/
+  /*font-family: 'Permanent Marker', cursive;*/
+  font-family: 'Lato', sans-serif;
+  text-align: center;
+  letter-spacing: 0.0625em;
+  background-color: #33eade;
+  border-bottom: 3px inset #17e4d6;
+
+}
+
+#primaryButtonStyle:hover {
+  background-color: #26d6ca;
+}
+
+#mixActionButtons {
+  font-family: 'Lato', sans-serif;
+  font-style: italic;
+  text-align: center;
+  color: #fff;
+  padding-top: 25%;
+  padding-right: 25%;
+  padding-left: 25%;
+  padding-bottom: 10%;
+  width: auto;
+  margin-top: 4em;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#newPlaylistButton {
+  /*font-family: 'Kalam', cursive;*/
+  /*font-family: 'Permanent Marker', cursive;*/
+  font-family: 'Lato', sans-serif;
+  letter-spacing: 0.0625em;
+  background-color: #33eade;
+  border-bottom: 3px inset #17e4d6;
+}
+
+#newPlaylistButton:hover{
+  background-color: #26d6ca;
+  /*border: 2px solid #16d4c8;*/
+}
+
+.showCreate {
+  text-align: center;
+}
+
+.mixNameInput {
+  font-family: 'Lato', sans-serif;
+}
+
+#submitNewMixName {
+  font-family: 'Lato', sans-serif;
+  background-color: #33eade;
+  border-bottom: 3px inset #17e4d6;
+}
+
+#submitNewMixName:hover{
+  background-color: #26d6ca;
+}
+
+.searchInput {
+  font-family: 'Lato', sans-serif;
+}
+
+#browseMineButton {
+  /*font-family: 'Kalam', cursive;*/
+  /*font-family: 'Permanent Marker', cursive;*/
+  font-family: 'Lato', sans-serif;
+  letter-spacing: 0.0625em;
+  background-color: #33eade;
+  border-bottom: 3px inset #17e4d6;
+}
+
+#browseMineButton:hover{
+  background-color: #26d6ca;
+}
+
+#browseAllButton {
+  /*font-family: 'Kalam', cursive;*/
+  /*font-family: 'Permanent Marker', cursive;*/
+  font-family: 'Lato', sans-serif;
+  letter-spacing: 0.0625em;
+  background-color: #33eade;
+  border-bottom: 3px inset #17e4d6;
+}
+
+#browseAllButton:hover {
+  background-color: #26d6ca;
+}
+
+/*-----------VIEW-UNIQUE STYLES-----------*/
+
+#userIconLogin {
+  margin-bottom: .5em;
+  margin-left: 45%;
+  margin-right: 45%;
+  color: #26d6ca;
+}
+
+#aboutText {
+  text-align: center;
+  color: #F9F9F9;
+}
+
+#signupLogo {
+  font-family: 'Kalam', cursive;
+  /*font-family: 'Permanent Marker', cursive;*/
+  text-align: center;
+  /*display: inline-block;*/
+  padding-top: .5em;
+  color: #26d6ca;
+
+}
+
+#makeAct {
+  font-family: 'Kalam', cursive;
+  /*font-family: 'Permanent Marker', cursive;*/
+  padding-bottom: .5em;
+  color: #26d6ca;
+}
+
+#alreadyUser {
+  font-family: 'Kalam', cursive;
+  /*font-family: 'Permanent Marker', cursive;*/
+  padding-bottom: .5em;
+  color: #26d6ca;
+}

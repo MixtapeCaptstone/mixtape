@@ -3,13 +3,13 @@
 
   <strong>
     {{#if playa}}
-      <h2>PLAYLISTS</h2>
+      <h2 id="playlistsHeader">All Mixes</h2>
 
       {{#each allLists}}
         <div class="playlistDiv">
 
           <div class="playlistName" id="{{name}}">{{name}}
-          <button class="delete">&times;</button>
+          <a href="#"  class="delete"><i class="fa fa-trash-o"></i></a>
           </div>
         </div>
       {{/each}}

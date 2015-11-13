@@ -1,15 +1,21 @@
 <template name="listViewer">
   {{#each tapeName}}
-    <h2>{{text}}</h2>
+    <h2 id="mixName">{{text}}</h2>
   {{/each}}
+<table role="grid">
 
   {{#each listTape}}
+  <tr>
+  <td>
   <div class="songClass" id="playListSong" name="{{index}}">
 
-    <h2>{{name}}</h2>
+    <div>{{name}}</div>
 
     <div class="songName">{{text}}</div>
 
   </div>
+  </td>
+  </tr>
   {{/each}}
+  </table>
 </template>
