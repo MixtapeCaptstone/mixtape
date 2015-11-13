@@ -37,7 +37,7 @@ Meteor.methods( {
     console.log("title:", title);
     Lists.insert({name: title, author: Meteor.user().username, playlist: list});
   },
-  delete: function (id) {
+  deleteList: function (id) {
     console.log('deleted', id);
     Lists.remove(id);
   }

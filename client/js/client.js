@@ -224,13 +224,7 @@ Template.playlist.events({
 
     SongClient.remove({}); //Remove the client's temporary playlist
     Session.set("title", ""); //Remove Session title
-  },
-  "click .delete": function (event){
-    console.log("༼ つ ◕_◕ ༽つ delete!");
-    // if () {
-      Meteor.call("delete", this._id);
-    // }
-    }
+  }
 });
 
 Template.mix.helpers({
@@ -262,7 +256,13 @@ Template.mix.events({
 
     SongClient.remove({}); //Remove the client's temporary playlist
     Session.set("title", ""); //Remove Session title
-  }
+  },
+  "click .delete": function (event){
+    console.log("༼ つ ◕_◕ ༽つ delete!");
+    // if () {
+      Meteor.call("deleteList", this._id);
+    // }
+    }
 });
 
 Template.body.helpers({
