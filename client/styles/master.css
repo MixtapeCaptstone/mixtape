@@ -242,6 +242,6 @@
 }
 
 /*selected song*/
-#focus {
+.focus {
   background-color: #33eade;
 }
