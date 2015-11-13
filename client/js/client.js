@@ -195,6 +195,14 @@ Template.listViewer.events({
   'mouseleave .songHover': function(event){
     thisDiv = event.target; //get "this"
     $(thisDiv).attr("class", "songName" ); //remove hover class
+  },
+  'click .songClass': function (event) {
+    $('.focus').attr('class', 'songClass'); //remove previous focus
+    var self = event.target;
+    $(self).attr( 'class', 'focus');//set focus
+
+    var songIndex = $(event.currentTarget).attr("name"); //Get song index number
+    player.playVideoAt(songIndex);//Play correct playlist song index
   }
 });
 
@@ -311,11 +319,12 @@ Template.body.events({
   },
   'click .songClass': function (event) {
     console.log('clicked songClass');
-    var self = event.target;
-    var songIndex = $(event.currentTarget).attr("name"); //Get song index number
-    $('#focus').removeAttr('id'); //remove previous focus
-    event.target.id = "focus"; //set focus
-    player.playVideoAt(songIndex);//Play correct playlist song index
+    // $('#focus').removeAttr('id'); //remove previous focus
+
+    // var self = event.target;
+    // var songIndex = $(event.currentTarget).attr("name"); //Get song index number
+    // event.target.id = "focus"; //set focus
+    // player.playVideoAt(songIndex);//Play correct playlist song index
   }
 });
 
