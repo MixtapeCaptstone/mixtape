@@ -1,4 +1,4 @@
- CSS declarations go here */
+ /*CSS declarations go here */
 
 /*Global*/
 h1 {
@@ -10,9 +10,9 @@ img {
   height: 50px;
 }
 
-a {
+/*a {
   text-decoration: none;
-}
+}*/
 
 /*form {
   text-align: center;

@@ -37,9 +37,11 @@ body {
 }
 
 input[type="text"], input[type="password"], input[type="email"], input[type="number"], input[type="search"] , input[type="url"], textarea {
-  width: 50%;
+  width: 40%;
   margin-left: auto;
   margin-right: auto;
+  margin-bottom: 1rem;
+  font-size:1em;
 }
 
 p {
@@ -97,7 +99,7 @@ h3 {
   color: #26d6ca;
 }
 
-/*TODO CENTER IT! */
+/*TODO actually CENTER IT! */
 #logoCentered {
   font-family: 'Kalam', cursive;
   /*font-family: 'Permanent Marker', cursive;*/
@@ -124,23 +126,7 @@ h3 {
   line-height: 1.1;
 }
 
-/*the icon*/
-#logoutButton {
-  padding-left: 2em;
-  color: #ccc;
-  float: right;
-  margin-right: 0.7em;
-}
 
-#logoutButton:hover {
-  color: #8F8F8F;
-  opacity: -10%;
-}
-
-#logoutLink {
-  color: #ccc;
-  float: right;
-}
 
 #primaryButtonStyle {
   /*font-family: 'Kalam', cursive;*/
@@ -236,38 +222,277 @@ h3 {
 
 /*-----------VIEW-UNIQUE STYLES-----------*/
 
-#userIconLogin {
-  margin-bottom: .5em;
-  margin-left: 45%;
-  margin-right: 45%;
-  color: #26d6ca;
-}
+
 
 #aboutText {
   text-align: center;
   color: #F9F9F9;
 }
 
+/*----------- LOGIN STYLES-----------*/
+  /*TODO CENTER!!*/
+.login-close-text {
+  text-align: center;
+  letter-spacing: 0.0625em;
+  color: #33eade;
+}
+
+.login-close-text:hover {
+  text-align: center;
+  letter-spacing: 0.0625em;
+  color: #33eade;
+}
+
+label {
+  text-align: center;
+  color: #F9F9F9;
+  /*font size: 0.9rem;*/
+  letter-spacing: 0.0625em;
+  margin-bottom: 0.3rem;
+}
+
+
+.login-button-form-submit{
+  text-align: center;
+  letter-spacing: 0.0625em;
+  color: #26d6ca;
+  cursor: auto;
+}
+  /*TODO CENTER!!*/
+.additional-link{
+  text-align: center;
+  letter-spacing: 0.0625em;
+  color: #26d6ca;
+  cursor: auto;
+}
+
+.additional-link:hover{
+  text-align: center;
+  letter-spacing: 0.0625em;
+  color: #26d6ca;
+
+}
+
+/* contains the ENTIRE SHEBANG auto height, auto width (spans across panel)*/
+#login-buttons {}
+
+  /*contains EVERYTHING that will show in the drop downs when you click sign in, as well as the log-in form that first appears*/
+  .login-link-and-dropdown-list {}
+
+    /* additional class of above div. contains everything to do with sign in but doesnt hold the log in form itself*/
+    .login-form-sign-in {}
+
+  /*TODO CENTER!!*/
+      /* "sign in" link that triggers entire drop down */
+      .login-link-text {
+      }
+      #login-sign-in-link {
+        font-family: 'Lato', sans-serif;
+        font-size: 1.25em;
+        color: #33eade;
+      }
+
+/* div that countains "Close" button to collapse sign in form. it also spans the height/width of the form for some reason.*/
+.accounts-dialog {}
+#login-dropdown-list{
+
+}
+
+/* Login div that contains input fields, labels, and link to sign in has two id's*/
+.login-password-form {}
+.login-form {
+
+}
+  /*Login div containing USERNAME label and input field*/
+  #login-username-label-and-input {}
+
+    /*label above input. "username"*/
+    #login-username-label {}
+
+      /*input field for username (empty by default)*/
+      #login-username {}
+
+  /*Login div containing PASSWORDlabel and input field*/
+  #login-password-label-and-input {}
+
+    /*label above input. "password"*/
+    #login-password-label{}
+
+      /*input field for password (empty by default)*/
+      #login-password {}
+
+  /*div containing "SIGN IN" link to submit form*/
+  #login-buttons-password {}
+  .login-button {}
+  .login-form-submit {
+
+      }
+
+/* ERROR MESSAGES
+username must be at least 3 characters long etc*/
+.messsage{}
+.error-message{
+  color: red;
+}
+
+/*----------- When logged in -----------*/
+
+/*logged in user's username, is a dropdown link*/
+.login-link-text {}
+#login-name-link {}
+
+/*div holding all account dropdownmenu options  */
+.login-dropdown-list {}
+#accounts-dialog {}
+
+/* "Close" text which closes account options form*/
+.login-close-text {}
+
+  /*?*/
+  .login-close-text-clear {}
+
+
+/*"Sign Out" goes back to original Sign In thing*/
+.login-button {}
+#login-buttons-logout {
+
+}
+
+/*div containing "CREATE ACCOUNT" link*/
+.additional-link-container {}
+
+  /*within above div, contains ACTUAL signup link, which has the following id and class*/
+  .additional-link {}
+  #signup-link {
+
+  }
+
+/*----------- When click "Create Account" -----------*/
+/*div containing it all*/
+#login-dropdown-list {}
+.accounts-dialog {}
+
+/*again it has the "Close" (.login-close-text)*/
+
+/*div containing the form*/
+.login-form {}
+.login-password-form {}
+
+#login-username-label-and-input {}
+/*"Sign In" below form. basically a nevermind link*/
+#back-to-login-link {}
+
+  /*Login div containing USERNAME label and input field*/
+  #login-username-label-and-input {}
+
+    /*label above input. "username"*/
+    #login-username-label {}
+
+      /*input field for username (empty by default)*/
+      #login-username {}
+
+/*Login div containing PASSWORDlabel and input field*/
+#login-password-label-and-input {}
+
+  /*label above input. "password"*/
+  #login-password-label{}
+
+    /*input field for password (empty by default)*/
+    #login-password {}
+
+/*div containing repeat the new password label and input  */
+#login-password-again-label-and-input {}
+
+  /*"New Password (Again)"  */
+  #login-password-again-label {}
+    /*input*/
+    #login-password-again {}
+
+/*"Create Account" text andbutton to submit form */
+.login-button {}
+.login-button-form-submit {}
+#login-buttons-password {}
+
+/*----------- When click "Change Password" -----------*/
+
+/*"Change Password" opens password change form*/
+.login-button {}
+#login-buttons-open-change-password {
+
+}
+
+/*div containing current password label and input  */
+#login-old-password-label-and-input {}
+/*
+  "Current password"*/
+  #login-old-password-label {}
+
+  /*input*/
+  #login-old-password {}
+
+/*div containing new password label and input  */
+#login-password-label-and-input {}
+
+  /*"New Password"  */
+  #login-password-label {}
+  /*input*/
+  #login-password {}
+
+/*div containing repeat the new password label and input  */
+#login-password-again-label-and-input {}
+
+  /*"New Password (Again)"  */
+  #login-password-again-label {}
+  /*input*/
+  #login-password-again {}
+
+/*"Change Password" button to submit form */
+.login-button {}
+.login-button-form {}
+#login-buttons-do-change-password {
+
+}
+
+/*----------- OLDER LOGIN STYLES TO INCORPORATE -----------*/
+
+/* LOGOUT ICON*/
+#logoutButton {
+  padding-left: 2em;
+  color: #ccc;
+  float: right;
+  margin-right: 0.7em;
+}
+
+#logoutButton:hover {
+  color: #8F8F8F;
+  opacity: -10%;
+}
+
+
 #signupLogo {
   font-family: 'Kalam', cursive;
-  /*font-family: 'Permanent Marker', cursive;*/
   text-align: center;
-  /*display: inline-block;*/
   padding-top: .5em;
   color: #26d6ca;
 
 }
 
-#makeAct {
+/*
+#userIconLogin {
+  margin-bottom: .5em;
+  margin-left: 45%;
+  margin-right: 45%;
+  color: #26d6ca;
+}*/
+
+/*#makeAct {
   font-family: 'Kalam', cursive;
-  /*font-family: 'Permanent Marker', cursive;*/
   padding-bottom: .5em;
   color: #26d6ca;
 }
 
 #alreadyUser {
   font-family: 'Kalam', cursive;
-  /*font-family: 'Permanent Marker', cursive;*/
   padding-bottom: .5em;
   color: #26d6ca;
-}
+}*/
