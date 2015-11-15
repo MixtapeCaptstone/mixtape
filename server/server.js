@@ -33,12 +33,44 @@ Meteor.methods( {
   },
 
   setSong: function (list, title) {
-    console.log("list:", list);
-    console.log("title:", title);
-    Lists.insert({name: title, author: Meteor.user().username, playlist: list});
+    Lists.insert({name: title, author: Meteor.user().username, upvotes: 0, upvoters: ['jim'], playlist: list});
   },
   deleteList: function (id) {
     console.log('deleted', id);
     Lists.remove(id);
+  },
+  upvote: function(title){
+    var user = Meteor.user().username;
+    var thisList = Lists.find({name: title}).fetch();
+    var thisId = thisList[0]._id;
+    var upvoters = thisList[0].upvoters;
+    var contains;
+    for(var i = 0; i < upvoters.length; i++){
+      if(upvoters[i] == user){
+        contains = true;
+      }
+    }
+    if(contains !== true){
+      Lists.update(thisId, {$addToSet: {upvoters: user}, $inc: {upvotes: 1} });
+    }
+    console.log('title:', title);
+    console.log('thisList:', thisList);
+  },
+  downvote: function(title){
+    var user = Meteor.user().username;
+    var thisList = Lists.find({name: title}).fetch();
+    var thisId = thisList[0]._id;
+    var upvoters = thisList[0].upvoters;
+    var contains;
+    for(var i = 0; i < upvoters.length; i++){
+      if(upvoters[i] == user){
+        contains = true;
+      }
+    }
+    if(contains === true){
+      Lists.update(thisId, {$pull: {upvoters: user}, $inc: {upvotes: -1} });
+    }
+    console.log('title:', title);
+    console.log('thisList:', thisList);
   }
 });
