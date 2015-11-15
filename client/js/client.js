@@ -146,6 +146,7 @@ Template.playlistsBrowseCreate.events({
     Session.set('showLast', false);
     Session.set('clickCreate', true);
     Session.set("listName", "");
+    console.log('select');
   },
   "click .myMixes": function (e) {
     e.preventDefault();
@@ -153,8 +154,10 @@ Template.playlistsBrowseCreate.events({
     Session.set('showLast', false);
     Session.set('clickCreate', false);
     Session.set('mix', true);
+    console.log('select');
   },
   "click .playa": function (e) {
+    console.log('select');
     e.preventDefault();
     Session.set('mix', false);
     Session.set('showLast', false);

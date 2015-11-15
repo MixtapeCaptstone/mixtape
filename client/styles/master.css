@@ -1,26 +1,3 @@
-/*#leftDiv {
-  display: inline-block;
-  float: left;
-  width: 49.5%;
-  height: 800px;
-  border: solid 1px grey;
-  margin: 0;
-}
-
-#rightDiv {
-  display: inline-block;
-  float: right;
-  width: 50%;
-  height: 800px;
-  border: solid 1px grey;
-  margin: 0;
-  align-items: center;
-}*/
-
-/*#video{position:absolute;top:100px;left:20px;}*/
-
-
-
 #player {
   /*padding: .5%;*/
   margin-left: .5%;
@@ -29,19 +6,13 @@
 }
 
 #playerBox {
-  /*border: 1px solid #000;*/
   width: 302px;
   margin-left: auto;
   margin-right: auto;
-  /*border-right: 10px solid #000;
-  border-left: 10px solid #000;*/
 }
 
 .playerBar{
-  /*border: 1px solid grey;
-  border-radius: 2px;*/
   display: block;
-  /*left margin: 0px;*/
   width: inherit;
 }
 
