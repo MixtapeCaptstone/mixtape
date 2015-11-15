@@ -23,13 +23,13 @@
 
     <strong>
     {{#if noTitle}}
-      <h5>*Please enter a title or title already exists</h5>
+      <h5 id="nameMixError">*Please enter a title or title already exists</h5>
     {{/if}}
     </strong>
 
   <form class="savePlay">
 
-    <input type="text" class="q" name="q" placeholder="Give Your Mix a Name...">
+    <input type="text" class="q" id="mixNameinput" name="q" placeholder="Give Your Mix a Name...">
 
   </form>
   {{/if}}
