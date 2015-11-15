@@ -276,6 +276,51 @@ Template.mix.events({
     }
 });
 
+Template.upvote.helpers({
+  upvotes: function(){
+    var user = Meteor.user().username;
+    var title = Session.get('listName');
+    var thisList = Lists.find({name: title}).fetch();
+    var thisId = thisList[0]._id;
+    var upvoters = thisList[0].upvoters;
+    for(var i = 0; i < upvoters.length; i++){
+      if(upvoters[i] == user){
+        return false;
+      }
+    }
+    return true;
+  },
+  downvotes: function(){
+    var user = Meteor.user().username;
+    var title = Session.get('listName');
+    var thisList = Lists.find({name: title}).fetch();
+    var thisId = thisList[0]._id;
+    var upvoters = thisList[0].upvoters;
+    for(var i = 0; i < upvoters.length; i++){
+      if(upvoters[i] == user){
+        return true;
+      }
+    }
+    return false;
+  }
+  
+});
+
+Template.upvote.events({
+  'click .upvoteDiv': function(){
+    console.log('upvote div clicked');
+    var title = Session.get('listName');
+    console.log(title);
+    Meteor.call('upvote', title);
+  },
+  'click .downvoteDiv': function(){
+    console.log('downvote div clicked');
+    var title = Session.get('listName');
+    console.log(title);
+    Meteor.call('downvote', title);
+  }
+});
+
 Template.body.helpers({
   clickCreate: function () {
       return Session.get('clickCreate');

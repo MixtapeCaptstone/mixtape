@@ -216,3 +216,12 @@
 .focus {
   background-color: #33eade;
 }
+.downvoteDiv {
+  float: right;
+  margin: 0;
+}
+.upvoteDiv {
+  color: red;
+  float: right;
+  margin: 0;
+}
