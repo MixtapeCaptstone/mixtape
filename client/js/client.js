@@ -30,7 +30,6 @@ Template.user.helpers({
 
 Template.user.events({
   "drop .userDis": function (event) {
-    console.log("Drop event");
     var x = Session.get('tempSave');
     var y = Session.get('results');
     var z = Session.get('title')[0].text;
@@ -56,7 +55,6 @@ Template.user.events({
     });
   },
   'click .songHover': function (event) {
-    console.log('click', event.target);
     $('#focus').removeAttr('id'); //remove previous focus
     event.target.id = "focus"; //set focus
 
@@ -116,16 +114,13 @@ Template.searches.events ({
       // Clear the form
       e.target.q.value = '';
     } else {
-      console.log('no title');
       Session.set('noTitle', true);
     }
   },
   //Submits newly created playlist to server
   'click #submitPlaylist': function(){
-    console.log('submitting');
     // CHANGED title = Session.get('title')
     var title = Session.get('title')[0].text;
-    console.log(title);
     var list = SongClient.find().fetch();
     // CHANGED 'myPlay' >> 'title'
     var playlist = {text: title, player: list};
@@ -146,7 +141,6 @@ Template.playlistsBrowseCreate.events({
     Session.set('showLast', false);
     Session.set('clickCreate', true);
     Session.set("listName", "");
-    console.log('select');
   },
   "click .myMixes": function (e) {
     e.preventDefault();
@@ -154,10 +148,8 @@ Template.playlistsBrowseCreate.events({
     Session.set('showLast', false);
     Session.set('clickCreate', false);
     Session.set('mix', true);
-    console.log('select');
   },
   "click .playa": function (e) {
-    console.log('select');
     e.preventDefault();
     Session.set('mix', false);
     Session.set('showLast', false);
@@ -181,7 +173,6 @@ Template.listViewer.helpers({
 Template.listViewer.events({
   'click .songHover': function (event) {
     //TODO is this redundant? Already in body event!
-    console.log('listViewer');
     $('#focus').removeAttr('id'); //remove previous focus
     event.target.id = "focus"; //set focus
     var songIndex = this.name;
@@ -211,7 +202,7 @@ Template.playlist.helpers({
     return Session.get('playa');
   },
   allLists: function(){
-    return Lists.find({});
+    return Lists.find({}, {sort: {upvotes: -1}});
   }
 });
 
@@ -302,21 +293,22 @@ Template.upvote.helpers({
       }
     }
     return false;
+  },
+  number: function () {
+    var title = Session.get('listName');
+    var thisList = Lists.find({name: title}).fetch();
+    var upvotes = thisList[0].upvotes;
+    return [{text: upvotes}];
   }
-  
 });
 
 Template.upvote.events({
   'click .upvoteDiv': function(){
-    console.log('upvote div clicked');
     var title = Session.get('listName');
-    console.log(title);
     Meteor.call('upvote', title);
   },
   'click .downvoteDiv': function(){
-    console.log('downvote div clicked');
     var title = Session.get('listName');
-    console.log(title);
     Meteor.call('downvote', title);
   }
 });
@@ -337,14 +329,12 @@ Template.body.events({
     Meteor.call('checkYT', text, function(error, results) {
       var yt = JSON.parse(results.content);
       var x = [];
-      // console.log('JSON', yt.items);
       yt.items.forEach(function(e){
         x.push({text: e.snippet.title,
                 id: e.id.videoId,
                 pic: e.snippet.thumbnails.default.url
         });
       });
-      // console.log('X',x);
       Session.set('results', x);
     });
     // Display the search results drop-down
@@ -361,15 +351,6 @@ Template.body.events({
     }else if ( ! $(e.target).closest('.subnav').length ) {
         $('.subnav').hide();
     }
-  },
-  'click .songClass': function (event) {
-    console.log('clicked songClass');
-    // $('#focus').removeAttr('id'); //remove previous focus
-
-    // var self = event.target;
-    // var songIndex = $(event.currentTarget).attr("name"); //Get song index number
-    // event.target.id = "focus"; //set focus
-    // player.playVideoAt(songIndex);//Play correct playlist song index
   }
 });
 

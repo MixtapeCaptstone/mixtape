@@ -1,10 +1,6 @@
 Song = new Mongo.Collection('song');
 Lists = new Mongo.Collection('lists');
 
-// Meteor.publish('song', function() {
-//   return Song.find({});
-// });
-
 Meteor.methods( {
   checkYT : function (search) {
     var url = "https://www.googleapis.com/youtube/v3/search";
