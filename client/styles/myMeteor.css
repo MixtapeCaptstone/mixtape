@@ -10,53 +10,20 @@ img {
   height: 50px;
 }
 
-/*a {
-  text-decoration: none;
-}*/
-
-/*form {
-  text-align: center;
-}*/
-
-/*The User*/
-/*.userDis{
-  border: 1px solid grey;
-  text-align: center;
-  width: 300px;
-  float: right;
-  list-style-type: none;
-}
-
-.userDis li {
-  font-size: .8em;
-  list-style-type: none;
-}
-
-.userDis button {
-  float: right;
-}
-*/
-
 /*The Player*/
 .container {
-  /*border: 5px solid red;*/
   text-align:center;
   width:48%;
 }
 iframe{
   width: 300px;
-  /*border-left: 10px solid #000;
-  border-right: 10px solid #000;
-  border-top: 10px solid #000;*/
 }
 
 
 /*Playlists*/
 
 .playlistDiv {
-  /*text-align: center;*/
   padding: 2%;
-  /*border: 1px solid #666;*/
   border-radius: 2px;
 }
 
@@ -83,21 +50,8 @@ iframe{
 /* >>>>>>>> The Search <<<<<<<<< */
 
 .search-con {
-  /*border: 5px solid green;*/
   display: block;
-  /*float: right;
-  width: 48%;
-  overflow: hidden;*/
 }
-
-
-/*.search-con li {
-  border: 1px solid gray;
-  font-size: .8em;
-  list-style-type: none;
-  padding: 1em;
-  margin-right: 5px;
-}*/
 
 #submitPlaylist{
   float: left;
@@ -109,7 +63,6 @@ iframe{
     text-decoration: none;
 }
 #options>a {
-    /*background-image: url(triangle.png);*/
     background-position: 85% center;
     background-repeat: no-repeat;
     padding-right: 42px;
@@ -117,13 +70,10 @@ iframe{
 .subnav {
     visibility: hidden;
     position: absolute;
-    /*top: 110%;*/
-    /*right: 0;*/
     width: 40%;
     height: auto;
     opacity: 1;
     transition: all 0.1s;
-    /*background: rgb(72, 230, 140);*/
     background: rgba(0, 0, 0, 0.5);
 }
 .subnav li {
@@ -143,9 +93,3 @@ iframe{
   border: 2px solid rgba(81, 203, 238, 1);
   z-index: 10px
 }
-/*#options:hover .subnav {
-    visibility: visible;
-    top: 100%;
-    opacity: 1;
-}
-*/
