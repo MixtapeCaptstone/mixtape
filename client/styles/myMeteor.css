@@ -3,6 +3,9 @@
 /*Global*/
 h1 {
   text-align: center;
+  margin-left: 50%;
+  margin-right: 40%;
+  position: static;
 }
 
 img {
@@ -53,10 +56,10 @@ iframe{
   display: block;
 }
 
-#submitPlaylist{
+/*#submitPlaylist{
   float: left;
   text-align: left;
-}
+}*/
 
 #options a{
     border-left: 0 none;
