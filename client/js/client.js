@@ -119,6 +119,7 @@ Template.searches.events ({
   },
   //Submits newly created playlist to server
   'click #submitPlaylist': function(){
+    console.log('being clicked');
     // CHANGED title = Session.get('title')
     var title = Session.get('title')[0].text;
     var list = SongClient.find().fetch();
