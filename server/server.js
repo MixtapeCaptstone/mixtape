@@ -29,7 +29,9 @@ Meteor.methods( {
   },
 
   setSong: function (list, title) {
-    Lists.insert({name: title, author: Meteor.user().username, upvotes: 0, upvoters: ['jim'], playlist: list});
+    if(list.length > 0){
+      Lists.insert({name: title, author: Meteor.user().username, upvotes: 0, upvoters: ['jim'], playlist: list});
+    }
   },
   deleteList: function (id) {
     console.log('deleted', id);
@@ -49,8 +51,6 @@ Meteor.methods( {
     if(contains !== true){
       Lists.update(thisId, {$addToSet: {upvoters: user}, $inc: {upvotes: 1} });
     }
-    console.log('title:', title);
-    console.log('thisList:', thisList);
   },
   downvote: function(title){
     var user = Meteor.user().username;
@@ -66,7 +66,5 @@ Meteor.methods( {
     if(contains === true){
       Lists.update(thisId, {$pull: {upvoters: user}, $inc: {upvotes: -1} });
     }
-    console.log('title:', title);
-    console.log('thisList:', thisList);
   }
 });
