@@ -2,13 +2,13 @@
 
   <!-- <form class="search" id="options">
 
-    <strong>
+    <div id="searchnsave">
       {{#if showLast}}
         <input type="text" name="q" placeholder="Search...">
 
         <button type="button" id="submitPlaylist" name="button">Save Playlist</button>
       {{/if}}
-    </strong>
+    </div>
 
 
     <ul class="subnav">
@@ -18,44 +18,44 @@
     </ul>
   </form> -->
 
-  <strong>
+<strong>
   {{#if clickCreate}}
 
     <strong>
     {{#if noTitle}}
-      <h5>*Please enter a title or title already exists</h5>
+      <h5 id="nameMixError">*Please enter a title or title already exists</h5>
     {{/if}}
     </strong>
 
-  <form class="savePlay">
+    <form class="savePlay">
 
-    <input type="text" class="q" name="q" placeholder="Give Your Mix a Name...">
-
-  </form>
-  {{/if}}
-</strong>
-    <section class="search-con">
-
-    <form class="search" id="options">
-
-      <strong>
-        {{#if showLast}}
-          <button type="button" id="submitPlaylist" name="button">Save Playlist</button>
-
-          <input type="text" name="q" placeholder="Search For Videos to Add">
-        {{/if}}
-      </strong>
-
-
-      <ul class="subnav">
-        {{#each results}}
-          <li draggable="true" ondragstart="drag(event)" class="songClass" id="{{id}}"><img src="{{pic}}" alt="{{text}}" />{{text}}</li>
-        {{/each}}
-      </ul>
-
+      <input type="text" class="q" id="mixNameinput" name="q" placeholder="Give Your Mix a Name...">
 
     </form>
+  {{/if}}
+</strong>
 
-    </section>
-<!-- <button type="button" id="submitPlaylist" name="button">Submit</button> -->
+<section class="search-con">
+
+  <form class="search" id="options">
+  <strong>
+    {{#if showLast}}
+      <input id="vidSearchInput" type="text" name="q" placeholder="Search For Some VIdeos...">
+      <button id="submitPlaylist" name="button">Save Playlist</button>
+
+    {{/if}}
+  </strong>
+
+
+  <ul class="subnav">
+    {{#each results}}
+      <li draggable="true" ondragstart="drag(event)" class="songClass" id="{{id}}"><img src="{{pic}}" alt="{{text}}" />{{text}}</li>
+    {{/each}}
+  </ul>
+
+
+  </form>
+
+</section>
+
 </template>

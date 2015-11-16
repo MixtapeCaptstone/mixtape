@@ -7,6 +7,9 @@ html {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
+  font-size: 1em; /* 1 */
+   -webkit-text-size-adjust: 1em; /* 2 */ -ms-text-size-adjust: 1em; /* 2 */
+  cursor: auto;
 }
 
 *, *:before, *:after {
@@ -23,6 +26,7 @@ body {
 .panel {
   background-color: #191919;
   border-color: #333;
+  margin-top: 1rem;
   /*border: none;*/
 }
 /*TODO SET MIN-WIDTH, etc. prevent overlap*/
@@ -32,25 +36,61 @@ body {
 }
 
 #rightPanel {
-  padding-top: 0.5rem;
+  padding-top: 0.25rem;
   padding-right: 0.75rem;
+  overflow: auto;
 }
 
-input[type="text"], input[type="password"], input[type="email"], input[type="number"], input[type="search"] , input[type="url"], textarea {
-  width: 40%;
+
+input[type="text"], input[type="password"], input[type="email"], input[type="number"], input[type="url"], textarea {
+  width: 160px;
   margin-left: auto;
   margin-right: auto;
   margin-bottom: 1rem;
-  font-size:1em;
+  /*font-size:1em;*/
+  font-size: 0.875em;
+  border-radius: 2px;
 }
+
+input[type="search"] {
+  width: 200px;
+  font-size: 0.875em;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 2px;
+}
+
 
 p {
   font-family: 'Lato', sans-serif;
+  font-size: 14px;
+}
+
+/*"Mixtapez"*/
+#logoCentered {
+  font-family: 'Kalam', serif;
+  /*font-family: 'Permanent Marker', cursive;*/
+  /*float: right;*/
+  font-size:2.5em;
+  /*position: static;*/
+  margin-right: 60%;
+
+  /*letter-spacing: 0.0625em;*/
+  color: #33eade;
+}
+
+#logoCentered:hover {
+  color: #8ff4ed;
 }
 
 form {
   text-align: center;
-  font-style: italic;
+  /*font-style: italic;*/
+}
+
+/*div containing meteor login and logo*/
+#usercontrolsandheader {
+  /*display: inline-block;*/
 }
 
 table {
@@ -68,100 +108,59 @@ td {
   background-color: #222;
 }
 
-/*Playlist Name*/
+/*Playlist Name, "My Mixes", "All Playlists"*/
 h2 {
-  font-family: 'Kalam', cursive;
-  /*font-family: 'Permanent Marker', cursive;*/
-  padding-top: .5em;
-  color: #26d6ca;
+  font-family: 'Kalam', serif;
+  color: #33eade;
 }
 
-/*Logo*/
-h3 {
-  font-family: 'Kalam', cursive;
-  /*font-family: 'Permanent Marker', cursive;*/
-  text-align: center;
-  letter-spacing: 0.0625em;
-  color: #26d6ca;
+.panel h2 {
+  color: #33eade;
 }
 
+/* h2, "My Mixes"*/
 #mixesHeader {
-  font-family: 'Kalam', cursive;
-  /*font-family: 'Permanent Marker', cursive;*/
   padding-top: .5em;
   color: #33eade;
 }
 
+/*"All Playlists"*/
 #playlistsHeader {
-  font-family: 'Kalam', cursive;
-  /*font-family: 'Permanent Marker', cursive;*/
   padding-top: .5em;
-  color: #26d6ca;
-}
-
-/*TODO actually CENTER IT! */
-#logoCentered {
-  font-family: 'Kalam', cursive;
-  /*font-family: 'Permanent Marker', cursive;*/
-  float: left;
-  font-size:2.5em;
-  /*letter-spacing: 0.0625em;*/
-  /*text-shadow: 0px 0px 0px #26d6ca;*/
   color: #33eade;
 }
 
-#logoCentered:hover {
-  color: #ccc;
-}
 
-/*-----------(MOSTLY)GLOBAL STYLES-----------*/
-
-#headerUserNav {
-  display: inline-block;
-  float:right;
-  width: auto;
-  height: 5.5rem;
-  padding-top: 0;
-  padding-bottom: 0.5rem;
-  line-height: 1.1;
-}
-
-
-
-#primaryButtonStyle {
-  /*font-family: 'Kalam', cursive;*/
-  /*font-family: 'Permanent Marker', cursive;*/
+button {
   font-family: 'Lato', sans-serif;
   text-align: center;
   letter-spacing: 0.0625em;
   background-color: #33eade;
   border-bottom: 3px inset #17e4d6;
-
 }
 
-#primaryButtonStyle:hover {
-  background-color: #26d6ca;
+.button {
+  padding: 10px 5px;
 }
 
+/*div containing buttons (JUST buttons, not search or anything)*/
 #mixActionButtons {
   font-family: 'Lato', sans-serif;
   font-style: italic;
   text-align: center;
-  color: #fff;
-  padding-top: 25%;
-  padding-right: 25%;
-  padding-left: 25%;
-  padding-bottom: 10%;
-  width: auto;
-  margin-top: 4em;
+  position: static;
+  /*width: 180px;*/
+  margin-top: 5em;
   margin-left: auto;
   margin-right: auto;
 }
 
 #newPlaylistButton {
-  /*font-family: 'Kalam', cursive;*/
-  /*font-family: 'Permanent Marker', cursive;*/
   font-family: 'Lato', sans-serif;
+  color: #fff;
+  /*font-weight: bold;*/
+  width: 160px;
+  padding: none;
   letter-spacing: 0.0625em;
   background-color: #33eade;
   border-bottom: 3px inset #17e4d6;
@@ -172,33 +171,38 @@ h3 {
   /*border: 2px solid #16d4c8;*/
 }
 
-.showCreate {
-  text-align: center;
-}
-
-.mixNameInput {
+#submitPlaylist {
   font-family: 'Lato', sans-serif;
-}
-
-#submitNewMixName {
-  font-family: 'Lato', sans-serif;
+  color: #fff;
+  width: 120px;
+  font-weight: normal;
+  padding: 7px 5px;
+  letter-spacing: 0.0625em;
   background-color: #33eade;
   border-bottom: 3px inset #17e4d6;
+  border-radius: 3px;
 }
-
-#submitNewMixName:hover{
+#submitPlaylist:hover{
   background-color: #26d6ca;
+  /*border: 2px solid #16d4c8;*/
+}
+/*div containing give your mix a name...*/
+#savePlay {
+
 }
 
-.searchInput {
-  font-family: 'Lato', sans-serif;
+.search-con {
+  display: inline-block;
+}
+/*div containing search form and save button*/
+#search {
+  display: inline-block;
 }
 
 #browseMineButton {
-  /*font-family: 'Kalam', cursive;*/
-  /*font-family: 'Permanent Marker', cursive;*/
   font-family: 'Lato', sans-serif;
   letter-spacing: 0.0625em;
+  width: 160px;
   background-color: #33eade;
   border-bottom: 3px inset #17e4d6;
 }
@@ -207,10 +211,13 @@ h3 {
   background-color: #26d6ca;
 }
 
+.mixlist {
+  margin-left: auto;
+  margin-right: auto;
+}
 #browseAllButton {
-  /*font-family: 'Kalam', cursive;*/
-  /*font-family: 'Permanent Marker', cursive;*/
   font-family: 'Lato', sans-serif;
+  width: 160px;
   letter-spacing: 0.0625em;
   background-color: #33eade;
   border-bottom: 3px inset #17e4d6;
@@ -220,152 +227,305 @@ h3 {
   background-color: #26d6ca;
 }
 
+/*div containing h2 "all mixes", and displays all mixes*/
+.list {
+  /*margin-left: auto;
+  margin-right: auto;*/
+}
+
+.showCreate {
+  text-align: center;
+}
+
+#mixNameInput {
+  font-size: 12px;
+  width: 150px;
+}
+
+#mixNameInput:focus {
+  color: #ccc;
+}
+
+#submitNewMixName {
+  font-family: 'Lato', sans-serif;
+  background-color: #33eade;
+  text-align: center;
+  border-bottom: 3px inset #17e4d6;
+}
+
+#submitNewMixName:hover{
+  background-color: #26d6ca;
+}
+
+#submitNewMixName:focus {
+  color: #ccc;
+}
+
+#vidSearchInput {
+  /*font size: 12px;*/
+  padding: 0 0;
+}
+
+#vidSearchInput:focus {
+  color: #ccc;
+}
+#nameMixError {
+  color: red;
+  font-family: 'Lato', sans-serif;
+  font-size: 0.875em;
+  text-align: center;
+}
+
+
+
 /*-----------VIEW-UNIQUE STYLES-----------*/
 
+/*----------- METEOR'S LOGIN STYLES-----------*/
 
-
-#aboutText {
-  text-align: center;
-  color: #F9F9F9;
+/* contains the ENTIRE SHEBANG auto height, auto width (spans across panel)*/
+#login-buttons {
+  /*position: relative;*/
+  z-index: 10;
+  line-height: 1.5;
+  /*border: 2px solid red;*/
+  padding: 1%;
 }
 
-/*----------- LOGIN STYLES-----------*/
-  /*TODO CENTER!!*/
-.login-close-text {
+/* "SIGN IN" link that triggers entire drop down */
+  .login-link-text {}
+  #login-sign-in-link {
+    font-family: 'Lato', sans-serif;
+    font-size: 1.25em;
+    color: #33eade;
+    cursor: auto;
+    /*border: 2px solid #17e4d6;
+    border-radius: 10%;*/
+    }
+
+    #login-sign-in-link:hover {
+    color: #8ff4ed;
+    cursor: auto;
+    }
+
+    /*TODO CENTER!!*/
+  .login-close-text {
+    letter-spacing: 0.0625em;
+    color: #33eade;
+  }
+
+  .login-close-text:hover {
+    text-align: center;
+    letter-spacing: 0.0625em;
+    color: #8ff4ed;
+  }
+/*div containing "SIGN IN" link to submit form*/
+#login-buttons-password {}
+  .login-button {
+    /*text-align: center;*/
+    letter-spacing: 0.0625em;
+    color: #33eade;
+    cursor: auto;
+  }
+  .login-form-submit {}
+  .login-button:hover {
+    color: #8ff4ed;
+    cursor: auto;
+    }
+
+  .login-button-form-submit{
+    text-align: center;
+    font-size: 1.10em;
+    letter-spacing: 0.0625em;
+    color: #26d6ca;
+    cursor: auto;
+  }
+
+
+.additional-link{
+  letter-spacing: 0.0625em;
+  color: #33eade;
+  cursor: auto;
+}
+
+.additional-link:hover{
+  letter-spacing: 0.0625em;
+  color: #8ff4ed;
+}
+
+/*"Create Account" text and button to submit form */
+.login-button {}
+.login-button-form-submit {
   text-align: center;
+  padding-bottom: 2%;
   letter-spacing: 0.0625em;
   color: #33eade;
 }
-
-.login-close-text:hover {
-  text-align: center;
-  letter-spacing: 0.0625em;
-  color: #33eade;
+.login-button-form-submit:hover {
+  color: #8ff4ed;
 }
 
 label {
   text-align: center;
   color: #F9F9F9;
+  font-size: 1em;
   /*font size: 0.9rem;*/
   letter-spacing: 0.0625em;
   margin-bottom: 0.3rem;
 }
 
-
-.login-button-form-submit{
-  text-align: center;
-  letter-spacing: 0.0625em;
-  color: #26d6ca;
-  cursor: auto;
-}
-  /*TODO CENTER!!*/
-.additional-link{
-  text-align: center;
-  letter-spacing: 0.0625em;
-  color: #26d6ca;
-  cursor: auto;
-}
-
-.additional-link:hover{
-  text-align: center;
-  letter-spacing: 0.0625em;
-  color: #26d6ca;
-
-}
-
-/* contains the ENTIRE SHEBANG auto height, auto width (spans across panel)*/
-#login-buttons {}
-
-  /*contains EVERYTHING that will show in the drop downs when you click sign in, as well as the log-in form that first appears*/
-  .login-link-and-dropdown-list {}
-
-    /* additional class of above div. contains everything to do with sign in but doesnt hold the log in form itself*/
-    .login-form-sign-in {}
-
-  /*TODO CENTER!!*/
-      /* "sign in" link that triggers entire drop down */
-      .login-link-text {
-      }
-      #login-sign-in-link {
-        font-family: 'Lato', sans-serif;
-        font-size: 1.25em;
-        color: #33eade;
-      }
-
-/* div that countains "Close" button to collapse sign in form. it also spans the height/width of the form for some reason.*/
-.accounts-dialog {}
-#login-dropdown-list{
-
-}
-
-/* Login div that contains input fields, labels, and link to sign in has two id's*/
-.login-password-form {}
-.login-form {
-
-}
-  /*Login div containing USERNAME label and input field*/
-  #login-username-label-and-input {}
-
-    /*label above input. "username"*/
-    #login-username-label {}
-
-      /*input field for username (empty by default)*/
-      #login-username {}
-
-  /*Login div containing PASSWORDlabel and input field*/
-  #login-password-label-and-input {}
-
-    /*label above input. "password"*/
-    #login-password-label{}
-
-      /*input field for password (empty by default)*/
-      #login-password {}
-
-  /*div containing "SIGN IN" link to submit form*/
-  #login-buttons-password {}
-  .login-button {}
-  .login-form-submit {
-
-      }
-
-/* ERROR MESSAGES
-username must be at least 3 characters long etc*/
+/* ERROR MESSAGES  username must be at least 3 characters long etc*/
 .messsage{}
 .error-message{
   color: red;
 }
 
-/*----------- When logged in -----------*/
-
 /*logged in user's username, is a dropdown link*/
 .login-link-text {}
-#login-name-link {}
+#login-name-link {
+  font-family: 'Lato', sans-serif;
+  font-size: 1.1em;
+  color: #33eade;
+}
+
+#login-name-link:hover {
+  color: #8ff4ed;
+}
+
+
+/*within above div, contains ACTUAL signup link, which has the following id and class*/
+  .additional-link {
+    /*margin-top: 20px;*/
+  }
+  #signup-link {
+    font-family: 'Lato', sans-serif;
+    font-size: 1.10em;
+    color: #33eade;
+    /*border: 2px solid #17e4d6;
+    border-radius: 10%;*/
+  }
+
+  #signup-link:hover {
+    color: #8ff4ed;
+  }
+
+
+  /*"SIGN OUT" goes back to original Sign In thing*/
+  .login-button {}
+  #login-buttons-logout {
+    font-family: 'Lato', sans-serif;
+    font-size: 1.10em;
+    color: #33eade;
+    /*border: 2px solid #17e4d6;
+    border-radius: 10%;*/
+    /*padding: 2%;*/
+  }
+
+  #login-buttons-logout:hover {
+    color: #8ff4ed;
+  }
+
+/* "Close" text which closes account options form*/
+    .login-close-text {
+      color: #33eade;
+      cursor: auto;
+      margin-top: 5px;
+    }
+
+    .login-close-text:hover {
+      color: #8ff4ed;
+      cursor: auto;
+    }
+
+  /*input field for password (empty by default)*/
+  #login-password {
+    text-align: center;
+  }
+  /*input*/
+  #login-password {
+    text-align: center;
+  }
+  /*input*/
+  #login-old-password {
+    text-align: center;
+  }
+  /*input field for username (empty by default)*/
+  #login-username {
+    text-align: center;
+  }
+  /*input*/
+  #login-password-again {
+    text-align: center;
+  }
+
+
+/*----------- OLDER LOGIN STYLES TO INCORPORATE -----------*/
+
+/* LOGOUT ICON*/
+/*#logoutButton {
+  padding-left: 2em;
+  color: #ccc;
+  float: right;
+  margin-right: 0.7em;
+}
+
+#logoutButton:hover {
+  color: #8F8F8F;
+  opacity: -10%;
+}
+
+
+#signupLogo {
+  font-family: 'Kalam', serif;
+  text-align: center;
+  padding-top: .5em;
+  color: #26d6ca;
+}*/
+
+/*----------- Extras from Meteor template  -----------*/
+
+/*contains EVERYTHING that will show in the drop downs when you click sign in, as well as the log-in form that first appears*/
+.login-link-and-dropdown-list {
+  /*height: 300px;*/
+}
+
+  /* additional class of above div. contains everything to do with sign in but doesnt hold the log in form itself*/
+  .login-form-sign-in {}
+
+/* div that countains "Close" button to collapse sign in form. it also spans the height/width of the form for some reason.*/
+.accounts-dialog {}
+#login-dropdown-list{}
+
+/* Login div that contains input fields, labels, and link to sign in has two id's*/
+.login-password-form {}
+.login-form {}
+/*Login div containing USERNAME label and input field*/
+#login-username-label-and-input {}
+
+  /*label above input. "username"*/
+  #login-username-label {}
+
+    /*input field for username (empty by default)*/
+    #login-username {}
+
+/*Login div containing PASSWORDlabel and input field*/
+#login-password-label-and-input {}
+
+  /*label above input. "password"*/
+  #login-password-label{}
+
+    /*input field for password (empty by default)*/
+    #login-password {}
+/*----------- When logged in -----------*/
 
 /*div holding all account dropdownmenu options  */
 .login-dropdown-list {}
 #accounts-dialog {}
 
-/* "Close" text which closes account options form*/
-.login-close-text {}
-
-  /*?*/
-  .login-close-text-clear {}
-
-
-/*"Sign Out" goes back to original Sign In thing*/
-.login-button {}
-#login-buttons-logout {
-
-}
+/*?*/
+.login-close-text-clear {}
 
 /*div containing "CREATE ACCOUNT" link*/
 .additional-link-container {}
-
-  /*within above div, contains ACTUAL signup link, which has the following id and class*/
-  .additional-link {}
-  #signup-link {
-
-  }
 
 /*----------- When click "Create Account" -----------*/
 /*div containing it all*/
@@ -382,69 +542,51 @@ username must be at least 3 characters long etc*/
 /*"Sign In" below form. basically a nevermind link*/
 #back-to-login-link {}
 
-  /*Login div containing USERNAME label and input field*/
-  #login-username-label-and-input {}
+/*Login div containing USERNAME label and input field*/
+#login-username-label-and-input {}
 
-    /*label above input. "username"*/
-    #login-username-label {}
-
-      /*input field for username (empty by default)*/
-      #login-username {}
+  /*label above input. "username"*/
+  #login-username-label {}
 
 /*Login div containing PASSWORDlabel and input field*/
 #login-password-label-and-input {}
 
-  /*label above input. "password"*/
-  #login-password-label{}
-
-    /*input field for password (empty by default)*/
-    #login-password {}
+/*label "password"*/
+#login-password-label{}
 
 /*div containing repeat the new password label and input  */
 #login-password-again-label-and-input {}
 
-  /*"New Password (Again)"  */
-  #login-password-again-label {}
-    /*input*/
-    #login-password-again {}
+/*"New Password (Again)"  */
+#login-password-again-label {}
+  /*input*/
+  #login-password-again {}
 
-/*"Create Account" text andbutton to submit form */
-.login-button {}
-.login-button-form-submit {}
 #login-buttons-password {}
 
 /*----------- When click "Change Password" -----------*/
 
 /*"Change Password" opens password change form*/
 .login-button {}
-#login-buttons-open-change-password {
-
-}
+#login-buttons-open-change-password {}
 
 /*div containing current password label and input  */
 #login-old-password-label-and-input {}
 /*
-  "Current password"*/
-  #login-old-password-label {}
-
-  /*input*/
-  #login-old-password {}
+"Current password"*/
+#login-old-password-label {}
 
 /*div containing new password label and input  */
 #login-password-label-and-input {}
 
-  /*"New Password"  */
-  #login-password-label {}
-  /*input*/
-  #login-password {}
+/*"New Password"  */
+#login-password-label {}
 
 /*div containing repeat the new password label and input  */
 #login-password-again-label-and-input {}
 
-  /*"New Password (Again)"  */
-  #login-password-again-label {}
-  /*input*/
-  #login-password-again {}
+/*"New Password (Again)"  */
+#login-password-again-label {}
 
 /*"Change Password" button to submit form */
 .login-button {}
@@ -452,47 +594,3 @@ username must be at least 3 characters long etc*/
 #login-buttons-do-change-password {
 
 }
-
-/*----------- OLDER LOGIN STYLES TO INCORPORATE -----------*/
-
-/* LOGOUT ICON*/
-#logoutButton {
-  padding-left: 2em;
-  color: #ccc;
-  float: right;
-  margin-right: 0.7em;
-}
-
-#logoutButton:hover {
-  color: #8F8F8F;
-  opacity: -10%;
-}
-
-
-#signupLogo {
-  font-family: 'Kalam', cursive;
-  text-align: center;
-  padding-top: .5em;
-  color: #26d6ca;
-
-}
-
-/*
-#userIconLogin {
-  margin-bottom: .5em;
-  margin-left: 45%;
-  margin-right: 45%;
-  color: #26d6ca;
-}*/
-
-/*#makeAct {
-  font-family: 'Kalam', cursive;
-  padding-bottom: .5em;
-  color: #26d6ca;
-}
-
-#alreadyUser {
-  font-family: 'Kalam', cursive;
-  padding-bottom: .5em;
-  color: #26d6ca;
-}*/
