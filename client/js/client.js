@@ -303,15 +303,11 @@ Template.upvote.helpers({
 });
 
 Template.upvote.events({
-  'click .upvoteDiv': function(event){
-    thisDiv = event.target; //get "this"
-    $(thisDiv).attr('class', 'downvoteDiv');
+  'click .upvoteDiv': function(){
     var title = Session.get('listName');
     Meteor.call('upvote', title);
   },
   'click .downvoteDiv': function(){
-    thisDiv = event.target; //get "this"
-    $(thisDiv).attr('class', 'upvoteDiv');
     var title = Session.get('listName');
     Meteor.call('downvote', title);
   }
