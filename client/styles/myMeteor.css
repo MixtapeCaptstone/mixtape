@@ -42,57 +42,10 @@ iframe{
 
 /*trashcan icon*/
 .delete {
-  color: #ccc;
+  color: #bbb;
   margin-left: 0.75em;
 }
 
 .delete:hover {
-  color: red;
-}
-
-/* >>>>>>>> The Search <<<<<<<<< */
-
-.search-con {
-  display: block;
-}
-
-/*#submitPlaylist{
-  float: left;
-  text-align: left;
-}*/
-
-#options a{
-    border-left: 0 none;
-    text-decoration: none;
-}
-#options>a {
-    background-position: 85% center;
-    background-repeat: no-repeat;
-    padding-right: 42px;
-}
-.subnav {
-    visibility: hidden;
-    position: absolute;
-    width: 40%;
-    height: auto;
-    opacity: 1;
-    transition: all 0.1s;
-    background: rgba(0, 0, 0, 0.5);
-}
-.subnav li {
-    float: none;
-    list-style-type: none;
-    text-align: left;
-}
-.subnav li a {
-  border-bottom: 1px;
-}
-
-.subnav .songClass:hover {
-  background-color: rgb(68, 138, 201);
-  box-shadow: 0 0 5px rgba(81, 203, 238, 1);
-  padding: 3px 0px 3px 3px;
-  margin: 5px 1px 3px 0px;
-  border: 2px solid rgba(81, 203, 238, 1);
-  z-index: 10px
+  color: #fc442f;
 }

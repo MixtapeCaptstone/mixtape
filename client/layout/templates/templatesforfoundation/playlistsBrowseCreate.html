@@ -1,13 +1,14 @@
 <template name="playlistsBrowseCreate">
-  {{> headerNav}}
-      <p></p>
 
-  <nav id="mixActionButtons">
+  <!-- {{> headerNav}} -->
+
+  <span id="mixActionButtons">
     <a href="#" class="showCreate button radius" id="newPlaylistButton">Start A New Mix</a>
-      {{> searches}}
-    <br>
     <a href="#" class="myMixes button radius" id="browseMineButton">Browse My Mixes</a>
     <a href="#" class="playa button radius" id="browseAllButton">Browse All Mixes</a>
-  </nav>
+  </span>
 
+  {{> searches}}
+  {{> mix}}
+  {{> playlist}}
 </template>

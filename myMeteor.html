@@ -1,6 +1,5 @@
 <head>
   <title>Mixtapez</title>
-  <!-- FONTS TODO (Will choose between l8er) -->
   <link href='https://fonts.googleapis.com/css?family=Kalam:700' rel='stylesheet' type='text/css'>
   <link href='https://fonts.googleapis.com/css?family=Lato:400,700,700italic,400italic' rel='stylesheet' type='text/css'>
 
@@ -16,7 +15,7 @@
   <!-- <ul class="small-11 medium-block-grid-6 large-block-grid-6" data-equalizer> -->
   <div id="container" data-equalizer>
     <!--LEFT SIDE-->
-    <div class="large-6 large-uncentered  medium-6 medium-uncentered small-11 small-centered columns" id="leftSide" data-equalizer-watch>
+    <div class="large-5 large-uncentered  medium-5 medium-uncentered small-11 small-centered columns" id="leftSide" data-equalizer-watch>
       <div class="panel" id="leftPanel" data-equalizer-watch>
 
         {{> player}}
@@ -26,13 +25,11 @@
     </div>
 
   <!--RIGHT SIDE-->
-    <div class="large-6 large-uncentered  medium-6  medium-uncentered small-11 small-centered columns" id="rightSide" data-equalizer-watch>
+    <div class="large-6 large-uncentered  medium-7 medium-uncentered small-12 small-centered columns" id="rightSide" data-equalizer-watch>
       <div class="panel" id="rightPanel" data-equalizer-watch>
-        <!-- {{> headerNav}} -->
-        <!-- {{> loginButtons}} -->
+        {{> headerNav}}
         {{> playlistsBrowseCreate}}
-        {{> mix}}
-        {{> playlist}}
+
 
       </div>
     </div>
