@@ -1,0 +1,17 @@
+<template name='upvote'>
+  {{#if upvotes}}
+    <div class="upvoteDiv">
+      ♡
+    </div>
+  {{/if}}
+  {{#if downvotes}}
+    <div class="downvoteDiv">
+      ♡
+    </div>
+  {{/if}}
+  {{#each number}}
+    <div class="upvoteNumber">
+      {{text}}
+    </div>
+  {{/each}}
+</template>

@@ -284,4 +284,18 @@
   border: none;
   box-shadow: none;
 }
-*/
+
+.downvoteDiv {
+  color: red;
+  float: right;
+  margin: 0;
+}
+.upvoteDiv {
+  float: right;
+  margin: 0;
+}
+
+.upvoteNumber {
+  float: right;
+  margin-right: 1px;
+}
