@@ -30,7 +30,9 @@
 #playerBox {
   width: 302px;
   margin-left: auto;
-  margin-right: auto;
+margin-right: auto;
+  /*display: inline-block;*/
+  /*justify-content:center;*/
 }
 
 .playerBar{
@@ -166,7 +168,7 @@
 
 #mixName{
   font-family: 'Kalam', cursive;
-  /*padding-top: .5em;*/
+  margin-top: 5%;
   color: #33eade;
 }
 

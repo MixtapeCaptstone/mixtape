@@ -9,6 +9,10 @@ html {
   cursor: pointer;
 }
 
+html::-webkit-scrollbar {
+    display: none;
+}
+
 *, *:before, *:after {
   -webkit-box-sizing: inherit;
   -moz-box-sizing: inherit;
@@ -22,7 +26,7 @@ body {
 
 .panel {
   background-color: #191919;
-  border-color: #333;
+  border-color: #2a2a2a;
   /*border: none;*/
   margin-top: 1rem;
 
@@ -30,10 +34,14 @@ body {
 /*TODO SET MIN-WIDTH, etc. prevent overlap*/
 #leftPanel {
   overflow: auto;
+  padding-left: 2%;
+  padding-right: 2%;
 }
 
 #rightPanel {
   padding-top: 0.25rem;
+  padding-left: 2%;
+  padding-right: 2%;
   /*padding-right: 0.75rem;*/
   overflow: scroll;
 }
@@ -65,12 +73,10 @@ p {
 /*"Mixtapez"*/
 #logoCentered {
   font-family: 'Kalam', serif;
-  /*font-family: 'Permanent Marker', cursive;*/
   /*float: right;*/
+  text-align: center;
   font-size:2.5em;
   /*position: static;*/
-  margin-right: 60%;
-
   /*letter-spacing: 0.0625em;*/
   color: #33eade;
 }
@@ -92,6 +98,7 @@ form {
 table {
   overflow-x: scroll;
   border: none;
+  display: inline-block;
 
 }
 
@@ -154,17 +161,20 @@ button {
   font-style: italic;
   /*margin-top: 5em;*/
   /*position: static;*/
-  /*width: 180px;*/
   display: inline-block;
-  margin-left: auto;
-  margin-right: auto;
+  margin-top: 10px;
+  /*margin-left: auto;
+  margin-right: auto;*/
+  display: flex;
+  justify-content:center;
 }
 
 #newPlaylistButton {
   font-family: 'Lato', sans-serif;
   color: #fff;
-  width: 140px;
+  width: 130px;
   padding: none;
+  margin-right: 1%;
   /*background-color: #33eade;
   border-bottom: 3px inset #16d4c8;*/
   background-color: #f41c03;
@@ -181,6 +191,7 @@ button {
   font-family: 'Lato', sans-serif;
   /*letter-spacing: 0.0625em;*/
   width: 130px;
+  margin-right: 1%;
   background-color: #f41c03;
   border-bottom: 3px inset #c21603;
   box-shadow: 0 4px 2px -2px rgba(0,0,0,0.4);
@@ -196,7 +207,7 @@ button {
 }
 #browseAllButton {
   font-family: 'Lato', sans-serif;
-  width: 140px;
+  width: 130px;
   /*letter-spacing: 0.0625em;*/
   background-color: #f41c03;
   border-bottom: 3px inset #c21603;
