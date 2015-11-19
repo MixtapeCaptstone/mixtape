@@ -5,19 +5,19 @@ html {
   -moz-box-sizing: border-box;
   box-sizing: border-box;
   font-size: 1em; /* 1 */
-   -webkit-text-size-adjust: 1em; /* 2 */ -ms-text-size-adjust: 1em; /* 2 */
+  -webkit-text-size-adjust: 1em; /* 2 */ -ms-text-size-adjust: 1em; /* 2 */
   cursor: pointer;
 }
 
 html::-webkit-scrollbar {
-    display: none;
+  display: none;
 }
 
 *, *:before, *:after {
   -webkit-box-sizing: inherit;
   -moz-box-sizing: inherit;
   box-sizing: inherit;
-  }
+}
 
 body {
   font-family: 'Lato', sans-serif;
@@ -27,11 +27,9 @@ body {
 .panel {
   background-color: #191919;
   border-color: #2a2a2a;
-  /*border: none;*/
   margin-top: 1rem;
-
 }
-/*TODO SET MIN-WIDTH, etc. prevent overlap*/
+
 #leftPanel {
   overflow: auto;
   display:block;
@@ -46,12 +44,30 @@ body {
   overflow: scroll;
 }
 
-input[type="text"], input[type="password"], input[type="email"], input[type="number"], input[type="url"], textarea {
+/*Logo and form styles */
+#logoCentered {
+  font-family: 'Kalam', serif;
+  text-align: center;
+  font-size:2.5em;
+  color: #33eade;
+}
+
+  #logoCentered:hover,
+  #logoCentered:focus,
+  #logoCentered:active {
+    color: #8ff4ed;
+  }
+
+form {
+  text-align: center;
+}
+
+input[type="text"],
+input[type="password"] {
   width: 160px;
   margin-left: auto;
   margin-right: auto;
   margin-bottom: 1rem;
-  /*font-size:1em;*/
   font-size: 0.875em;
   border-radius: 2px;
 }
@@ -64,51 +80,17 @@ input[type="search"] {
   border-radius: 2px;
 }
 
-
-p {
-  font-family: 'Lato', sans-serif;
-  font-size: 14px;
-}
-
-/*"Mixtapez"*/
-#logoCentered {
-  font-family: 'Kalam', serif;
-  /*float: right;*/
-  text-align: center;
-  font-size:2.5em;
-  /*position: static;*/
-  /*letter-spacing: 0.0625em;*/
-  color: #33eade;
-}
-
-#logoCentered:hover,
-#logoCentered:focus,
-#logoCentered:active {
-  color: #8ff4ed;
-}
-
-form {
-  text-align: center;
-  /*font-style: italic;*/
-}
-
-/*div containing meteor login and logo*/
-#usercontrolsandheader {
-  /*display: inline-block;*/
-}
-
+/*Table styles, applies to track list*/
 table {
   overflow-x: scroll;
   border: none;
   display: inline-block;
-
 }
 
 tr {
   background-color: #222;
   cursor: pointer;
 }
-
 
 td {
   background-color: #222;
@@ -117,40 +99,70 @@ td {
   padding: 0%;
 }
 
-/*Playlist Name, "My Mixes", "All Playlists"*/
+/*-----------TEXT--------------*/
+
+p {
+  font-family: 'Lato', sans-serif;
+  font-size: 14px;
+}
+
+h1 {
+  text-align: center;
+  margin-left: 50%;
+  margin-right: 40%;
+  position: static;
+}
+
 h2 {
   font-family: 'Kalam', serif;
   color: #33eade;
 }
 
-.panel h2 {
-  color: #33eade;
-}
+.panel h2 { color: #33eade; }
 
-.mixlist {
-  margin-left: 30%;
-}
-/* h2, "My Mixes"*/
-#mixesHeader {
-  /*padding-top: .5em;*/
-  color: #33eade;
-}
-
-.list {
-  margin-left: 30%;
-}
-
-/*"All Playlists"*/
+/* "My Mixes" & "All Mixes"*/
+#mixesHeader,
 #playlistsHeader {
-  /*padding-top: .5em;*/
   color: #33eade;
 }
 
+/*lists of mixes*/
+.list,
+.mixlist { margin-left: 30%; }
 
+
+.playlistDiv {
+  padding: 2%;
+  border-radius: 2px;
+}
+
+.playlistName {
+  color: #ddd;
+  cursor: pointer;
+  /*display: flex;
+  justify-content:flex-end;*/
+}
+
+  .playlistName:hover {
+    color: #eee;
+    font-weight: bolder;
+  }
+
+/*trashcan icon*/
+.delete {
+  color: #c21603;
+  float: right;
+}
+
+  .delete:hover,
+  .delete:focus,
+  .delete:active {
+  	color: #f41c03;
+  }
+
+/*-------------BUTTONS------------*/
 button {
   font-family: 'Lato', sans-serif;
-  /*text-align: center;*/
-  /*letter-spacing: 0.0625em;*/
   background-color: #33eade;
   border-bottom: 3px inset #17e4d6;
 }
@@ -159,16 +171,12 @@ button {
   padding: 5px 5px;
 }
 
-/*span containing buttons (JUST buttons, not search or anything)*/
+/* (<span> holding the buttons) */
 #mixActionButtons {
   font-family: 'Lato', sans-serif;
   font-style: italic;
-  /*margin-top: 5em;*/
-  /*position: static;*/
   display: inline-block;
   margin-top: 10px;
-  /*margin-left: auto;
-  margin-right: auto;*/
   display: flex;
   justify-content:center;
 }
@@ -179,24 +187,19 @@ button {
   width: 130px;
   padding: none;
   margin-right: 1%;
-  /*background-color: #33eade;
-  border-bottom: 3px inset #16d4c8;*/
   background-color: #f41c03;
   border-bottom: 3px inset #c21603;
   box-shadow: 0 4px 2px -2px rgba(0,0,0,0.4);
 }
 
-#newPlaylistButton:hover,
-#newPlaylistButton:focus,
-#newPlaylistButton:active {
-  /*background-color: #26d6ca;*/
-  background-color: #e41a03;
-}
-
+  #newPlaylistButton:hover,
+  #newPlaylistButton:focus,
+  #newPlaylistButton:active {
+    background-color: #e41a03;
+  }
 
 #browseMineButton {
   font-family: 'Lato', sans-serif;
-  /*letter-spacing: 0.0625em;*/
   width: 130px;
   margin-right: 1%;
   background-color: #f41c03;
@@ -204,36 +207,25 @@ button {
   box-shadow: 0 4px 2px -2px rgba(0,0,0,0.4);
 }
 
-#browseMineButton:hover,
-#browseMineButton:focus,
-#browseMineButton:active {
-  /*background-color: #26d6ca;*/
-  background-color: #e41a03;
-}
+  #browseMineButton:hover,
+  #browseMineButton:focus,
+  #browseMineButton:active {
+    background-color: #e41a03;
+  }
 
-.mixlist {
-  margin-left: 30%;
-}
 #browseAllButton {
   font-family: 'Lato', sans-serif;
   width: 130px;
-  /*letter-spacing: 0.0625em;*/
   background-color: #f41c03;
   border-bottom: 3px inset #c21603;
   box-shadow: 0 4px 2px -2px rgba(0,0,0,0.4);
 }
 
-#browseAllButton:hover,
-#browseAllButton:focus,
-#browseAllButton:active {
-  /*background-color: #26d6ca;*/
-  background-color: #e41a03;
-}
-
-/*div containing h2 "all mixes", and displays all mixes*/
-.list {
-  margin-left: 30%;
-}
+  #browseAllButton:hover,
+  #browseAllButton:focus,
+  #browseAllButton:active {
+    background-color: #e41a03;
+  }
 
 .showCreate {
   text-align: center;
@@ -254,20 +246,19 @@ button {
 /*div containing give your mix a name...*/
 .savePlay {
   margin-top: 10px;
-  /*border: 1px solid green;*/
 }
 
+/* see input */
 #mixNameInput {
   font-size: 12px;
   width: 150px;
 }
 
-#mixNameInput:hover,
-#mixNameInput:focus,
-#mixNameInput:active {
-color: #ccc;
-}
-
+  #mixNameInput:hover,
+  #mixNameInput:focus,
+  #mixNameInput:active {
+  color: #ccc;
+  }
 
 #nameMixError {
   color: red;
@@ -276,22 +267,20 @@ color: #ccc;
   text-align: center;
 }
 
-/*div containing everything search-related*/
+/* THE SEARCH */
 section {
   padding: 5%;
   width: auto;
   margin-left: auto;
   margin-right: auto;
-  /*display: block;*/
 }
 
 #vidSearchInput {
-  /*font size: 12px;*/
-  /*padding: 0 0;*/
   padding: 1%;
   width: 175px;
 }
-/* this doesn't seem to have any effect but ideally it would change the inputs color of the search from user agent stylesheet's yellow to white*/
+
+/* sadly,this doesn't seem to have any effect but ideally it would change the input's color of the search from user agent stylesheet's yellow to white*/
 input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
   background-color: #ccc;
   background-image: none;
@@ -304,23 +293,25 @@ input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
   width: 70%;
   height: auto;
   margin-left: auto;
-  margin-right:auto;
+  margin-right: auto;
   opacity: 1;
   z-index: 1;
   transition: all 0.1s;
   background: rgba(0, 0, 0, 0.5);
   cursor: pointer;
 }
-.subnav li {
-  float: none;
-  list-style-type: none;
-  text-align: left;
-  color: #eee;
-  border-radius: 2px;
-}
-.subnav li a {
-  border-bottom: 1px;
-}
+
+  .subnav li {
+    float: none;
+    list-style-type: none;
+    text-align: left;
+    color: #eee;
+    border-radius: 2px;
+  }
+
+    .subnav li a {
+      border-bottom: 1px;
+    }
 
 .songClass {
   text-overflow: ellipsis;
@@ -330,59 +321,11 @@ input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
   color: #ddd;
   height:auto;
   border: none;
-  /*box-shadow: 0 4px 2px -2px rgba(0,0,0,0.4);*/
-}
-
-.songName {
-  color: #ddd;
-  text-align: center;
-  /*height: auto;
-  width: inherit;*/
-  font-size: 13px;
-  /*margin-top: 10px;
-  margin-bottom: 10px;*/
-}
-.songName:hover {
-  color: #fff;
-  font-size: 13px;
-  /*height: auto;
-  width: inherit;*/
-  margin-top: 10px;
-  margin-bottom: 10px;
-}
-
-.songName::after {
-  color: #ddd;
-  /*height: auto;
-  width: inherit;*/
-  font-size: 13px;
-  /*margin-top: 10px;
-  margin-bottom: 10px;*/
-}
-
-#nope {
-  color: #c21603;
-  float: right;
-  margin-left: 5px;
-}
-
-#nope:hover,
-#nope:focus,
-#nope:active {
-  color: #f41c03;
-  float: right;
-  margin-left: 5px;
 }
 
 .subnav .songClass:hover {
   color: #fff;
   background-color: #222;
-  /*font-size: 14px;*/
-  /*border-color: #222;
-  border-radius: 2px;*/
-  /*padding: 3px 0px 3px 3px;*/
-  /*margin: 5px 1px 3px 0px;*/
-
 }
 
 .songClass img {
@@ -392,24 +335,54 @@ input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
   border-radius: 1px;
 }
 
-.songClass:visited{
-  font-size:13px;
+  .songClass:visited,
+  .songClass:focus,
+  .songClass:active{
+    font-size: 13px;
+  }
+
+.songName {
+  color: #ddd;
+  text-align: center;
+  font-size: 13px;
 }
-.songClass:focus,
-.songClass:active{
-  font-size:13px;
+
+  .songName:hover {
+    color: #fff;
+    font-size: 13px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+
+  .songName::after {
+    color: #ddd;
+    font-size: 13px;
+  }
+
+/* trash icon while creating a mix */
+#nope {
+  color: #c21603;
+  float: right;
+  margin-left: 5px;
 }
 
+  #nope:hover,
+  #nope:focus,
+  #nope:active {
+    color: #f41c03;
+    float: right;
+    margin-left: 5px;
+  }
 
-
+/*??*/
 #options a{
   border-left: 0 none;
   text-decoration: none;
 }
+
 #options>a {
   background-position: 85% center;
   background-repeat: no-repeat;
-  /*padding-right: 42px;*/
 }
 
 
@@ -427,13 +400,225 @@ input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
   border-radius: 3px;
 }
 
-#submitPlaylist:hover,
-#submitPlaylist:focus,
-#submitPlaylist:active {
-  background-color: #26d6ca
-}
+  #submitPlaylist:hover,
+  #submitPlaylist:focus,
+  #submitPlaylist:active {
+    background-color: #26d6ca
+  }
 
-/*----------- METEOR'S LOGIN STYLES-----------*/
+  /*----PLAYER AND TRACK LIST STYLES----*/
+
+ #player {
+   width: 291px;
+   margin-left: .10%;
+   margin-right: .5%;
+ }
+
+ /*iframe{
+   width: 300px;
+ }*/
+
+ #playerBox {
+   width: 291px;
+   margin-left: auto;
+   margin-right: auto;
+ }
+
+ .playerBar {
+   display: block;
+   width: inherit;
+   cursor: pointer;
+ }
+
+ #parentButtons {
+   display: inline-block;
+   font-size:14px;
+   text-align: center;
+   width: 52px;
+   height: 27px;
+   border-radius: 2px;
+   box-sizing: border-box;
+ }
+
+ .escolta {
+   list-style-position: outside;
+   display: inline-block;
+   float: left;
+   width: 25px;
+   height: 25px;
+   line-height: 20px;
+   background-color: #333;
+   color: #71f0e8;
+   border: 1px solid #555;
+   border-radius: 3px;
+   cursor: pointer;
+   opacity: 40%;
+   z-index: -1;
+ }
+
+   .escolta:hover {
+     background-color: #444;
+     border-color: #4c4c4c;
+   }
+
+ #forward {
+   float: right;
+   display: inline-block;
+   width: 25px;
+   height: 25px;
+   background-color: #333;
+   color: #71f0e8;
+   border: 1px solid #555;
+   border-radius: 3px;
+   line-height: 20px;
+   list-style-position: inside;
+   cursor: pointer;
+   opacity: 40%;
+   z-index: -1;
+ }
+
+   #forward:hover {
+     background-color: #444;
+     border-color: #4c4c4c;
+   }
+
+ #stopVideo {
+   display: inline-block;
+   width: 40px;
+   height: 20px;
+   font-size:11px;
+   text-align: center;
+   letter-spacing:1px;
+   line-height: 20px;
+   color: #71f0e8;
+   background-color: #333;
+   border-radius: 3px;
+   opacity: 40%;
+   z-index: -1;
+   cursor: pointer;
+ }
+
+ .progressParent {
+   display: inline;
+   margin-left: 2px;
+   position: absolute;
+   width: 195px;
+   height: 25px;
+   border-radius: 2px;
+   border: 1px solid #555;
+   z-index: 1;
+ }
+
+ .progress {
+   border: 1px solid #555;
+   border-radius: 2px;
+   height: 25px;
+   width: 0;
+   position: relative;
+   background-color: #33e0d6;
+ }
+
+ .volumeDiv {
+   bottom: 3;
+   display: inline-block;
+   float: right;
+   width: 4px;
+   height: 12px;
+   margin-top: 5px;
+   margin-right: 2px;
+   margin-bottom: 1px;
+   background-color: rgb(0, 209, 197);
+ }
+
+ .volumeBar {
+   float: right;
+   height: 20px;
+   width: 30px;
+   margin-right: 5px;
+ }
+
+ .downvoteDiv {
+   color: red;
+   float: right;
+   margin: 0;
+   cursor: pointer;
+ }
+ .upvoteDiv {
+   float: right;
+   margin: 0;
+   cursor: pointer;
+ }
+
+ .upvoteNumber {
+   float: right;
+   margin-right: 3px;
+ }
+
+ /*--TRACK LIST. See also: table, tr, td-*/
+ .userDis {
+   width: inherit;
+   height: inherit;
+   cursor: pointer;
+ }
+
+ #mixName {
+   font-family: 'Kalam', cursive;
+   color: #33eade;
+   margin-top: 5%;
+ }
+
+ #artistName {
+   display:inline-block;
+   white-space: nowrap;
+   overflow: hidden;
+   text-overflow: ellipsis;
+   letter-spacing:1px;
+   width: 200px;
+   float: right;
+   text-align: center;
+   height: 20px;
+   line-height: 20px;
+   z-index: 5;
+ }
+
+ .song {
+   width: inherit;
+   height: auto;
+   letter-spacing:1px;
+   font-size: 12px;
+   text-align: center;
+   background-color: #222;
+   color: #ddd;
+   border: none;
+   box-shadow: none;
+ }
+
+   .song:hover {
+     background-color: #2a2a2a;
+     color: #fff;
+     box-shadow: none;
+   }
+
+   .songHover {
+     background-color: #2a2a2a;
+     color: #fff;
+     font-size: 13px;
+     box-shadow: none;
+   }
+
+ #playListSong {
+   display: inline-block;
+   font-size: 12px;
+   color: #ddd;
+   text-align: center;
+   box-shadow: none;
+ }
+
+ #focus {
+   font-size:12px;
+ }
+
+/*----- METEOR'S USER CTRL STYLES -----*/
 
 /* contains the ENTIRE SHEBANG auto height, auto width (spans across panel)*/
 #login-buttons {
@@ -442,73 +627,68 @@ input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
   padding: 1%;
   cursor: pointer;
   display: flex;
-  justify-content:center;
+  justify-content: center;
 }
 
 /* "SIGN IN" link that triggers entire drop down */
-.login-link-text {}
 #login-sign-in-link {
   font-family: 'Lato', sans-serif;
   font-size: 1.25em;
   color: #33eade;
 }
 
-#login-sign-in-link:hover,
-#login-sign-in-link:focus,
-#login-sign-in-link:active {
-  color: #8ff4ed;
-}
-
+  #login-sign-in-link:hover,
+  #login-sign-in-link:focus,
+  #login-sign-in-link:active {
+    color: #8ff4ed;
+  }
 
 .login-close-text {
   letter-spacing: 0.0625em;
   color: #8ff4ed;
 }
 
-.login-close-text:hover,
-.login-close-text:focus,
-.login-close-text:active {
-  text-align: center;
-  letter-spacing: 0.0625em;
-  color: #aef7f2;
-}
+  .login-close-text:hover,
+  .login-close-text:focus,
+  .login-close-text:active {
+    text-align: center;
+    letter-spacing: 0.0625em;
+    color: #aef7f2;
+  }
 
 /*div containing "SIGN IN" link to submit form*/
-#login-buttons-password {}
 .login-button {
   letter-spacing: 0.0625em;
   color: #33eade;
-  }
-.login-form-submit {}
+}
 
-.login-button:hover,
-.login-button:focus,
-.login-button:active {
-  color: #8ff4ed;
+  .login-button:hover,
+  .login-button:focus,
+  .login-button:active {
+    color: #8ff4ed;
   }
 
-.login-button-form-submit{
+.login-button-form-submit {
   text-align: center;
   font-size: 1.10em;
   letter-spacing: 0.0625em;
   color: #26d6ca;
-  }
+}
 
 
-.additional-link{
+.additional-link {
   letter-spacing: 0.0625em;
   color: #33eade;
 }
 
-.additional-link:hover,
-.additional-link:focus,
-.additional-link:active {
-  letter-spacing: 0.0625em;
-  color: #8ff4ed;
+  .additional-link:hover,
+  .additional-link:focus,
+  .additional-link:active {
+    letter-spacing: 0.0625em;
+    color: #8ff4ed;
   }
 
 /*"Create Account" text and button to submit form */
-.login-button {}
 .login-button-form-submit {
   text-align: center;
   padding-bottom: 2%;
@@ -516,10 +696,10 @@ input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
   color: #33eade;
 }
 
-.login-button-form-submit:hover,
-.login-button-form-submit:focus,
-.login-button-form-submit:active {
-  color: #8ff4ed;
+  .login-button-form-submit:hover,
+  .login-button-form-submit:focus,
+  .login-button-form-submit:active {
+    color: #8ff4ed;
   }
 
 label {
@@ -530,103 +710,67 @@ label {
   margin-bottom: 0.3rem;
 }
 
-/* ERROR MESSAGES  username must be at least 3 characters long etc*/
-.messsage{}
+/* ERROR MESSAGES must be at least 3 characters long, etc.*/
 .error-message{
   color: red;
   text-align:center;
 }
 
-/*logged in user's username, is a dropdown link*/
-.login-link-text {}
+/*logged in user's username, a dropdown link*/
 #login-name-link {
   font-family: 'Lato', sans-serif;
   font-size: 1.1em;
   color: #33eade;
 }
 
-#login-name-link:hover,
-#login-name-link:focus,
-#login-name-link:active {
-  color: #8ff4ed;
-}
+  #login-name-link:hover,
+  #login-name-link:focus,
+  #login-name-link:active {
+    color: #8ff4ed;
+  }
 
-/*within above div, contains ACTUAL signup link, which has the following id and class*/
-.additional-link {}
+/* within above div, contains ACTUAL signup link */
 #signup-link {
   font-family: 'Lato', sans-serif;
   font-size: 1.10em;
   color: #33eade;
   }
 
-#signup-link:hover,
-#signup-link:focus,
-#signup-link:active {
-  color: #8ff4ed;
-}
+  #signup-link:hover,
+  #signup-link:focus,
+  #signup-link:active {
+    color: #8ff4ed;
+  }
 
-/*"SIGN OUT" goes back to original Sign In thing*/
-.login-button {}
+/*"SIGN OUT" goes back to original Sign In */
 #login-buttons-logout {
   font-family: 'Lato', sans-serif;
   font-size: 1.10em;
   color: #8ff4ed;
-  /*padding: 2%;*/
 }
 
-#login-buttons-logout:hover,
-#login-buttons-logout:focus,
-#login-buttons-logout:active {
+  #login-buttons-logout:hover,
+  #login-buttons-logout:focus,
+  #login-buttons-logout:active {
     color: #aef7f2;
   }
-
 
 /* "Close" text which closes account options form*/
 .login-close-text {
   color: #8ff4ed;
   margin-top: 5px;
-  }
-
-.login-close-text:hover,
-.login-close-text:focus,
-.login-close-text:active {
-      color: #aef7f2;
-  }
-
-/*input field for password (empty by default)*/
-  #login-password {
-    text-align: center;
-  }
-  /*input*/
-  #login-password {
-    text-align: center;
-  }
-  /*input*/
-  #login-old-password {
-    text-align: center;
-  }
-  /*input field for username (empty by default)*/
-  #login-username {
-    text-align: center;
-  }
-  /*input*/
-  #login-password-again {
-    text-align: center;
-  }
-
-/*----------- Extras from Meteor template  -----------*/
-
-/*contains EVERYTHING that will show in the drop downs when you click sign in, as well as the log-in form that first appears*/
-.login-link-and-dropdown-list {
-  /*height: 300px;*/
 }
-/*div holding all account dropdownmenu options  */
-.login-dropdown-list {}
-#accounts-dialog {}
 
-/*div containing the form*/
-.login-form {}
-.login-password-form {}
+  .login-close-text:hover,
+  .login-close-text:focus,
+  .login-close-text:active {
+    color: #aef7f2;
+  }
 
-/*"Sign In" below form. basically a nevermind link*/
-#back-to-login-link {}
+/* input */
+#login-password,
+#login-old-password,
+#login-username,
+#login-password-again {
+  text-align: center;
+}
