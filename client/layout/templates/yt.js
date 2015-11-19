@@ -69,13 +69,11 @@ function clock(){
 }
 
 
-
-
 var done = false;
 function onPlayerStateChange(event) {
 
 
-  //SET FOCUS
+//SET FOCUS
   $('.focus').attr('class', 'songClass'); //remove previous focus
   playIndex = event.target.A.playlistIndex;
   var thisDiv = $('div[name="' + playIndex + '"]');
@@ -111,7 +109,6 @@ function onPlayerStateChange(event) {
   setTimer(event);
 //
 }
-
 
 $(document).ready(function(){
 
@@ -158,6 +155,7 @@ var updatebar = function(x) {
     $('.progress').css('width', percentage + '%');
     player.seekTo(maxduration * percentage / 100);
 };
+
 
 //Volume DIVS
 $('.volumeDiv').hover(

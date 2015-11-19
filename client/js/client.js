@@ -3,6 +3,8 @@ Song = new Mongo.Collection('song');
 Lists = new Mongo.Collection('lists');
 
 // METEOR THINGS
+
+////////// User
 Template.user.helpers({
   // This is how to call the database and pass things
   song: function () {
@@ -71,6 +73,7 @@ Template.user.events({
   }
 });
 
+////////// Searches
 Template.searches.helpers({
   results: function () {
     return Session.get('results');
@@ -130,6 +133,7 @@ Template.searches.events ({
   }
 });
 
+////////// playlistsBrowseCreate
 Template.playlistsBrowseCreate.events({
   "click .showCreate": function (e) {
     // Ensuring that the user creates a playlist first
@@ -158,6 +162,7 @@ Template.playlistsBrowseCreate.events({
   }
 });
 
+////////// Listviewer
 Template.listViewer.helpers({
   listTape: function(){
     var listTitle = Session.get("listName"); //get the name of the current playlist
@@ -197,6 +202,7 @@ Template.listViewer.events({
   }
 });
 
+////////// Playlist
 Template.playlist.helpers({
   playa: function () {
     return Session.get('playa');
@@ -229,6 +235,7 @@ Template.playlist.events({
   }
 });
 
+////////// Mix
 Template.mix.helpers({
   mix: function () {
     return Session.get('mix');

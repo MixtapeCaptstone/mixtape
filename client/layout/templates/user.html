@@ -4,24 +4,20 @@
 
     <strong>
       {{#if title}}
-      {{#each title}}
-    <h2>{{text}}</h2>
-      {{/each}}
+        {{#each title}}
+          <h2>{{text}}</h2>
+          {{/each}}
       {{/if}}
     </strong>
 
     {{#each songClient}}
       <div class="song" id="playListSong">
-
         <div class="songName">{{text}}
         <a href="#" id="nope" class="delete"><i class="fa fa-trash-o"></i></a>
         </div>
-
       </div>
-
-      <!-- <button class="button tiny delete" id="deleteTrack">&times;</button> -->
     {{/each}}
+    
   </div>
-
 
 </template>

@@ -4,20 +4,17 @@
       <h2 id="mixName">{{text}}</h2>
     </div>
   {{/each}}
-<table role="grid">
 
-  {{#each listTape}}
-  <tr>
-  <td>
-  <div class="songClass" id="playListSong" name="{{index}}">
-
-    <div>{{name}}</div>
-
-    <div class="songName">{{text}}</div>
-
-  </div>
-  </td>
-  </tr>
-  {{/each}}
+  <table role="grid">
+    {{#each listTape}}
+      <tr>
+      <td>
+        <div class="songClass" id="playListSong" name="{{index}}">
+          <div>{{name}}</div>
+          <div class="songName">{{text}}</div>
+        </div>
+      </td>
+    </tr>
+    {{/each}}
   </table>
 </template>

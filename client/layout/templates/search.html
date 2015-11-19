@@ -1,63 +1,36 @@
 <template name="searches">
-
-  <!-- <form class="search" id="options">
-
-    <div id="searchnsave">
-      {{#if showLast}}
-        <input type="text" name="q" placeholder="Search...">
-
-        <button type="button" id="submitPlaylist" name="button">Save Playlist</button>
-      {{/if}}
-    </div>
-
-
-    <ul class="subnav">
-      {{#each results}}
-        <li draggable="true" ondragstart="drag(event)" class="songClass" id="{{id}}"><img src="{{pic}}" alt="{{text}}" />{{text}}</li>
-      {{/each}}
-    </ul>
-  </form> -->
-
-<strong>
-  {{#if clickCreate}}
-
-    <strong>
-    {{#if noTitle}}
-      <h5 id="nameMixError">*Please enter a title or title already exists</h5>
-    {{/if}}
-    </strong>
-
-    <form class="savePlay">
-
-      <input type="text" class="q" id="mixNameinput" name="q" placeholder="Give Your Mix a Name">
-
-    </form>
-  {{/if}}
-</strong>
-
-<section class="search-con">
-
-  <form class="search" id="options">
-
-
-
-  <ul class="subnav">
-    {{#each results}}
-      <li draggable="true" ondragstart="drag(event)" class="songClass" id="{{id}}"><img src="{{pic}}" alt="{{text}}" />{{text}}</li>
-    {{/each}}
-  </ul>
-
   <strong>
-    {{#if showLast}}
-      <input id="vidSearchInput" type="text" name="q" placeholder="Search For Some Videos...">
+    {{#if clickCreate}}
+      <strong>
+      {{#if noTitle}}
+        <h5 id="nameMixError">*Please enter a title or title already exists</h5>
+      {{/if}}
+      </strong>
 
-      <button class="button small" id="submitPlaylist" type="button">Done!</button>
-
+      <form class="savePlay">
+        <input type="text" class="q" id="mixNameinput" name="q" placeholder="Give Your Mix a Name">
+      </form>
     {{/if}}
   </strong>
 
-  </form>
+  <section class="search-con">
+    <form class="search" id="options">
 
-</section>
+      <ul class="subnav">
+        {{#each results}}
+          <li draggable="true" ondragstart="drag(event)" class="songClass" id="{{id}}"><img src="{{pic}}" alt="{{text}}" />{{text}}</li>
+        {{/each}}
+      </ul>
 
+      <strong>
+        {{#if showLast}}
+          <input id="vidSearchInput" type="text" name="q" placeholder="Search For Some Videos...">
+
+          <button class="button small" id="submitPlaylist" type="button">Done!</button>
+
+        {{/if}}
+      </strong>
+
+    </form>
+  </section>
 </template>
