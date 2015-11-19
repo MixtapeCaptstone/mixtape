@@ -8,10 +8,10 @@ h1 {
   position: static;
 }
 
-img {
+/*img {
   width: 50px;
   height: 50px;
-}
+}*/
 
 /*The Player*/
 .container {
@@ -33,6 +33,8 @@ iframe{
 .playlistName {
   color: #ddd;
   cursor: pointer;
+  /*display: flex;
+  justify-content:flex-end;*/
 }
 
 .playlistName:hover {
@@ -42,10 +44,12 @@ iframe{
 
 /*trashcan icon*/
 .delete {
-  color: #bbb;
-  margin-left: 0.75em;
+  color: #c21603;
+  float: right;
 }
 
-.delete:hover {
-  color: #fc442f;
+.delete:hover,
+.delete:focus,
+.delete:active {
+	color: #f41c03;
 }

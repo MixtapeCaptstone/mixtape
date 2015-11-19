@@ -22,15 +22,19 @@
 
 #player {
   /*padding: .5%;*/
-  margin-left: .5%;
+  width: 291px;
+  margin-left: .10%;
   margin-right: .5%;
 
 }
 
 #playerBox {
-  width: 302px;
+  width: 291px;
   margin-left: auto;
   margin-right: auto;
+  /*display: flex;*/
+  /*justify-content:center;*/
+  /*display: inline-block;*/
 }
 
 .playerBar{
@@ -131,7 +135,7 @@
   display: inline;
   margin-left: 2px;
   position: absolute;
-  width: 205px;
+  width: 195px;
   height: 25px;
   border-radius: 2px;
   border: 1px solid #555;
@@ -159,112 +163,6 @@
   margin-right: 5px;
 }
 
-.userDis {
-  width: inherit;
-  cursor: pointer;
-}
-
-#mixName{
-  font-family: 'Kalam', cursive;
-  /*padding-top: .5em;*/
-  color: #33eade;
-}
-
-#artistName {
-  display:inline-block;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  letter-spacing:1px;
-  /*font-size:11px;*/
-  width: 200px;
-  float: right;
-  text-align: center;
-  height: 20px;
-  line-height: 20px;
-  z-index: 5;
-}
-
-.song{
-  /*border-top: 1px solid grey;*/
-  border-left: 0;
-  border-right: 0;
-  /*display: block;*/
-  text-overflow: ellipsis;
-  /*left margin: 0px;*/
-  width: inherit;
-  letter-spacing:1px;
-  font-size: 12px;
-  text-align: center;
-  height: 30px;
-  border: none;
-}
-
-/*.song:visited{
-  border:none;
-  font-size:12;
-}*/
-
-#playListSong{
-  display: inline-block;
-  /*letter-spacing: 1px;*/
-  font-size: 12px;
-  color: #eee;
-  text-align: center;
-  height: 20px;
-  border: none;
-}
-
-.songClass {
-  text-overflow: ellipsis;
-  text-align: center;
-  background-color: #222;
-  font-size: 12px;
-  border: none;
-}
-
-.songClass:visited {
-  border: none;
-  box-shadow: none;
-}
-/*.songName:hover {
-  background-color: #777;
-}*/
-
-/*.songName:focus {
-  background-color: #666;
-}*/
-
-.songName {
-  text-overflow: ellipsis;
-  text-align: center;
-  background-color: #222;
-  border: none;
-  font-size: 12px;
-}
-
-#songName {
-  /*text-overflow: ellipsis;*/
-  display: block;
-  text-align: center;
-  border: none;
-}
-
-.songHover {
-  background-color: #2a2a2a;
-  font-weight: bolder;
-  /*border-radius: 1px;*/
-  /*font-size: 12px;*/
-  /*border: 1px solid #333;*/
-}
-
-/*selected song*/
-.focus {
-  background-color: #333;
-  border: none;
-  border-radius: 1px;
-}
-
 
 .downvoteDiv {
   color: red;
@@ -280,5 +178,82 @@
 
 .upvoteNumber {
   float: right;
-  margin-right: 1px;
+  margin-right: 3px;
+}
+
+
+.userDis {
+  width: inherit;
+  height: inherit;
+  cursor: pointer;
+}
+
+
+#mixName{
+  font-family: 'Kalam', cursive;
+  margin-top: 5%;
+  color: #33eade;
+}
+
+#artistName {
+  display:inline-block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  letter-spacing:1px;
+  width: 200px;
+  float: right;
+  text-align: center;
+  height: 20px;
+  line-height: 20px;
+  z-index: 5;
+}
+
+.song {
+  width: inherit;
+  /*height: 30px;*/
+  height: auto;
+  /*text-overflow: ellipsis;*/
+  letter-spacing:1px;
+  font-size: 12px;
+  text-align: center;
+  background-color: #222;
+  color: #ddd;
+  border: none;
+  box-shadow: none;
+}
+
+.song:hover {
+  /*height: auto;*/
+  background-color: #2a2a2a;
+  color: #fff;
+  box-shadow: none;
+}
+
+#playListSong{
+  display: inline-block;
+  font-size: 12px;
+  color: #ddd;
+  text-align: center;
+  /*height: 20px;*/
+  box-shadow: none;
+}
+.songHover {
+  background-color: #2a2a2a;
+  color: #fff;
+  font-size: 13px;
+  /*height: inherit;*/
+  /*font-weight: bolder;*/
+  /*border-radius: 1px;
+  /*font-size: 12px;
+  border: 1px solid #333;*/
+  box-shadow: none;
+}
+
+#focus {
+  /*font-style: italic;*/
+  font-size:12px;
+  /*background-color: #2a2a2a;
+  color: #f6f6f6;
+  border-radius: 1px;*/
 }

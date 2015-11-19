@@ -3,8 +3,8 @@
 onYouTubeIframeAPIReady = function () {
 
     player = new YT.Player("player", {
-      height: '220',
-      width: '320',
+      height: '191',
+      width: '291',
       playerVars: { 'autoplay': 0, 'controls': 0, 'showinfo': 0 },
       allowfullscreen: '0',
       videoId: 'FMBchZmPlXA',
