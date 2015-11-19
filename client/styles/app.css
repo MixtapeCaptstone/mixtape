@@ -34,15 +34,15 @@ body {
 /*TODO SET MIN-WIDTH, etc. prevent overlap*/
 #leftPanel {
   overflow: auto;
-  padding-left: 2%;
-  padding-right: 2%;
+  display:block;
+  padding-left: 1%;
+  padding-right: 1%;
 }
 
 #rightPanel {
   padding-top: 0.25rem;
-  padding-left: 2%;
-  padding-right: 2%;
-  /*padding-right: 0.75rem;*/
+  padding-left: 1%;
+  padding-right: 1%;
   overflow: scroll;
 }
 
@@ -81,7 +81,9 @@ p {
   color: #33eade;
 }
 
-#logoCentered:hover {
+#logoCentered:hover,
+#logoCentered:focus,
+#logoCentered:active {
   color: #8ff4ed;
 }
 
@@ -107,18 +109,13 @@ tr {
   cursor: pointer;
 }
 
+
 td {
-  /*background-color: #111;*/
   background-color: #222;
   font-size: 12px;
   border:none;
-  padding: none;
-  /*border-color: #222;*/
+  padding: 0%;
 }
-
-/*td:hover {
-  font-weight: bolder;
-}*/
 
 /*Playlist Name, "My Mixes", "All Playlists"*/
 h2 {
@@ -130,10 +127,17 @@ h2 {
   color: #33eade;
 }
 
+.mixlist {
+  margin-left: 30%;
+}
 /* h2, "My Mixes"*/
 #mixesHeader {
   /*padding-top: .5em;*/
   color: #33eade;
+}
+
+.list {
+  margin-left: 30%;
 }
 
 /*"All Playlists"*/
@@ -182,10 +186,13 @@ button {
   box-shadow: 0 4px 2px -2px rgba(0,0,0,0.4);
 }
 
-#newPlaylistButton:hover{
+#newPlaylistButton:hover,
+#newPlaylistButton:focus,
+#newPlaylistButton:active {
   /*background-color: #26d6ca;*/
   background-color: #e41a03;
 }
+
 
 #browseMineButton {
   font-family: 'Lato', sans-serif;
@@ -197,13 +204,15 @@ button {
   box-shadow: 0 4px 2px -2px rgba(0,0,0,0.4);
 }
 
-#browseMineButton:hover{
+#browseMineButton:hover,
+#browseMineButton:focus,
+#browseMineButton:active {
+  /*background-color: #26d6ca;*/
   background-color: #e41a03;
 }
 
 .mixlist {
-  margin-left: auto;
-  margin-right: auto;
+  margin-left: 30%;
 }
 #browseAllButton {
   font-family: 'Lato', sans-serif;
@@ -214,14 +223,16 @@ button {
   box-shadow: 0 4px 2px -2px rgba(0,0,0,0.4);
 }
 
-#browseAllButton:hover {
+#browseAllButton:hover,
+#browseAllButton:focus,
+#browseAllButton:active {
+  /*background-color: #26d6ca;*/
   background-color: #e41a03;
 }
 
 /*div containing h2 "all mixes", and displays all mixes*/
 .list {
-  /*margin-left: auto;
-  margin-right: auto;*/
+  margin-left: 30%;
 }
 
 .showCreate {
@@ -234,6 +245,7 @@ button {
   display: block;
   padding: 2%;
 }
+
 /*div containing search form and save button*/
 #search {
   display: inline-block;
@@ -250,9 +262,12 @@ button {
   width: 150px;
 }
 
-#mixNameInput:focus {
-  color: #ccc;
+#mixNameInput:hover,
+#mixNameInput:focus,
+#mixNameInput:active {
+color: #ccc;
 }
+
 
 #nameMixError {
   color: red;
@@ -307,21 +322,67 @@ input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
   border-bottom: 1px;
 }
 
+.songClass {
+  text-overflow: ellipsis;
+  text-align: center;
+  background-color: #222;
+  font-size: 12px;
+  color: #ddd;
+  height:auto;
+  border: none;
+  /*box-shadow: 0 4px 2px -2px rgba(0,0,0,0.4);*/
+}
+
+.songName {
+  color: #ddd;
+  text-align: center;
+  /*height: auto;
+  width: inherit;*/
+  font-size: 13px;
+  /*margin-top: 10px;
+  margin-bottom: 10px;*/
+}
+.songName:hover {
+  color: #fff;
+  font-size: 13px;
+  /*height: auto;
+  width: inherit;*/
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.songName::after {
+  color: #ddd;
+  /*height: auto;
+  width: inherit;*/
+  font-size: 13px;
+  /*margin-top: 10px;
+  margin-bottom: 10px;*/
+}
+
+#nope {
+  color: #c21603;
+  float: right;
+  margin-left: 5px;
+}
+
+#nope:hover,
+#nope:focus,
+#nope:active {
+  color: #f41c03;
+  float: right;
+  margin-left: 5px;
+}
 
 .subnav .songClass:hover {
-  /*background-color: rgb(68, 138, 201);*/
-  background-color: #2a2a2a;
-  /*box-shadow: 0 0 5px rgba(81, 203, 238, 1);*/
-  box-shadow: 0 4px 2px -2px rgba(0,0,0,0.4);
+  color: #fff;
+  background-color: #222;
+  /*font-size: 14px;*/
+  /*border-color: #222;
+  border-radius: 2px;*/
   /*padding: 3px 0px 3px 3px;*/
   /*margin: 5px 1px 3px 0px;*/
 
-}
-
-.songClass {
-  font-size: 14px;
-  border: 1px inset #2a2a2a;
-    box-shadow: 0 4px 2px -2px rgba(0,0,0,0.4);
 }
 
 .songClass img {
@@ -330,6 +391,15 @@ input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
   margin-right: 5px;
   border-radius: 1px;
 }
+
+.songClass:visited{
+  font-size:13px;
+}
+.songClass:focus,
+.songClass:active{
+  font-size:13px;
+}
+
 
 
 #options a{
@@ -356,13 +426,12 @@ input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
   box-shadow: 0 4px 2px -2px rgba(0,0,0,0.4);
   border-radius: 3px;
 }
-#submitPlaylist:hover{
-  background-color: #26d6ca;
-}
 
-/*#submitPlaylist:focus{
-  background-color: #ccc;
-}*/
+#submitPlaylist:hover,
+#submitPlaylist:focus,
+#submitPlaylist:active {
+  background-color: #26d6ca
+}
 
 /*----------- METEOR'S LOGIN STYLES-----------*/
 
@@ -372,6 +441,8 @@ input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
   line-height: 1.5;
   padding: 1%;
   cursor: pointer;
+  display: flex;
+  justify-content:center;
 }
 
 /* "SIGN IN" link that triggers entire drop down */
@@ -382,16 +453,21 @@ input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
   color: #33eade;
 }
 
-#login-sign-in-link:hover {
+#login-sign-in-link:hover,
+#login-sign-in-link:focus,
+#login-sign-in-link:active {
   color: #8ff4ed;
 }
+
 
 .login-close-text {
   letter-spacing: 0.0625em;
   color: #8ff4ed;
 }
 
-.login-close-text:hover {
+.login-close-text:hover,
+.login-close-text:focus,
+.login-close-text:active {
   text-align: center;
   letter-spacing: 0.0625em;
   color: #aef7f2;
@@ -403,11 +479,13 @@ input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
   letter-spacing: 0.0625em;
   color: #33eade;
   }
-
 .login-form-submit {}
-.login-button:hover {
+
+.login-button:hover,
+.login-button:focus,
+.login-button:active {
   color: #8ff4ed;
-}
+  }
 
 .login-button-form-submit{
   text-align: center;
@@ -422,10 +500,12 @@ input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
   color: #33eade;
 }
 
-.additional-link:hover{
+.additional-link:hover,
+.additional-link:focus,
+.additional-link:active {
   letter-spacing: 0.0625em;
   color: #8ff4ed;
-}
+  }
 
 /*"Create Account" text and button to submit form */
 .login-button {}
@@ -435,9 +515,12 @@ input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
   letter-spacing: 0.0625em;
   color: #33eade;
 }
-.login-button-form-submit:hover {
+
+.login-button-form-submit:hover,
+.login-button-form-submit:focus,
+.login-button-form-submit:active {
   color: #8ff4ed;
-}
+  }
 
 label {
   text-align: center;
@@ -451,6 +534,7 @@ label {
 .messsage{}
 .error-message{
   color: red;
+  text-align:center;
 }
 
 /*logged in user's username, is a dropdown link*/
@@ -461,10 +545,11 @@ label {
   color: #33eade;
 }
 
-#login-name-link:hover {
+#login-name-link:hover,
+#login-name-link:focus,
+#login-name-link:active {
   color: #8ff4ed;
 }
-
 
 /*within above div, contains ACTUAL signup link, which has the following id and class*/
 .additional-link {}
@@ -474,10 +559,11 @@ label {
   color: #33eade;
   }
 
-#signup-link:hover {
+#signup-link:hover,
+#signup-link:focus,
+#signup-link:active {
   color: #8ff4ed;
 }
-
 
 /*"SIGN OUT" goes back to original Sign In thing*/
 .login-button {}
@@ -488,9 +574,12 @@ label {
   /*padding: 2%;*/
 }
 
-  #login-buttons-logout:hover {
+#login-buttons-logout:hover,
+#login-buttons-logout:focus,
+#login-buttons-logout:active {
     color: #aef7f2;
   }
+
 
 /* "Close" text which closes account options form*/
 .login-close-text {
@@ -498,8 +587,10 @@ label {
   margin-top: 5px;
   }
 
-  .login-close-text:hover {
-    color: #aef7f2;
+.login-close-text:hover,
+.login-close-text:focus,
+.login-close-text:active {
+      color: #aef7f2;
   }
 
 /*input field for password (empty by default)*/
