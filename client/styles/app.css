@@ -20,7 +20,7 @@ html::-webkit-scrollbar {
   }
 
 body {
-  font-family: 'Lato', sans-serif;
+  font-family: 'helvetica', sans-serif;
   background-color: #000;
 }
 
@@ -66,19 +66,19 @@ input[type="search"] {
 
 
 p {
-  font-family: 'Lato', sans-serif;
+  font-family: 'helvetica', sans-serif;
   font-size: 14px;
 }
 
 /*"Mixtapez"*/
 #logoCentered {
-  font-family: 'Kalam', serif;
+  font-family: 'helvetica', serif;
   /*float: right;*/
   text-align: center;
   font-size:2.5em;
   /*position: static;*/
   /*letter-spacing: 0.0625em;*/
-  color: #33eade;
+  color: white;
 }
 
 #logoCentered:hover,
@@ -119,8 +119,8 @@ td {
 
 /*Playlist Name, "My Mixes", "All Playlists"*/
 h2 {
-  font-family: 'Kalam', serif;
-  color: #33eade;
+  font-family: 'helvetica', serif;
+  color: white;
 }
 
 .panel h2 {
@@ -128,27 +128,31 @@ h2 {
 }
 
 .mixlist {
-  margin-left: 30%;
+  /*margin-left: 30%;*/
 }
 /* h2, "My Mixes"*/
 #mixesHeader {
   /*padding-top: .5em;*/
-  color: #33eade;
+  text-align: center;
+  color: white;
 }
 
 .list {
-  margin-left: 30%;
 }
 
 /*"All Playlists"*/
 #playlistsHeader {
+  float: left;
+  width: 100%;
   /*padding-top: .5em;*/
-  color: #33eade;
+  text-align: center;
+
+  color: white;
 }
 
 
 button {
-  font-family: 'Lato', sans-serif;
+  font-family: 'helvetica', sans-serif;
   /*text-align: center;*/
   /*letter-spacing: 0.0625em;*/
   background-color: #33eade;
@@ -161,10 +165,8 @@ button {
 
 /*span containing buttons (JUST buttons, not search or anything)*/
 #mixActionButtons {
-  font-family: 'Lato', sans-serif;
-  font-style: italic;
-  /*margin-top: 5em;*/
-  /*position: static;*/
+  font-family: 'helvetica', sans-serif;
+
   display: inline-block;
   margin-top: 10px;
   /*margin-left: auto;
@@ -174,16 +176,16 @@ button {
 }
 
 #newPlaylistButton {
-  font-family: 'Lato', sans-serif;
+  font-family: 'helvetica', sans-serif;
   color: #fff;
-  width: 130px;
+  width: 100px;
   padding: none;
   margin-right: 1%;
   /*background-color: #33eade;
   border-bottom: 3px inset #16d4c8;*/
   background-color: #f41c03;
-  border-bottom: 3px inset #c21603;
-  box-shadow: 0 4px 2px -2px rgba(0,0,0,0.4);
+  /*border-bottom: 3px inset #c21603;*/
+  /*box-shadow: 0 4px 2px -2px rgba(0,0,0,0.4);*/
 }
 
 #newPlaylistButton:hover,
@@ -195,28 +197,23 @@ button {
 
 
 #browseMineButton {
-  font-family: 'Lato', sans-serif;
+  font-family: 'helvetica', sans-serif;
   /*letter-spacing: 0.0625em;*/
-  width: 130px;
+  width: 100px;
   margin-right: 1%;
   background-color: #f41c03;
-  border-bottom: 3px inset #c21603;
-  box-shadow: 0 4px 2px -2px rgba(0,0,0,0.4);
 }
 
 #browseMineButton:hover,
 #browseMineButton:focus,
 #browseMineButton:active {
   /*background-color: #26d6ca;*/
-  background-color: #e41a03;
+  background-color: #039ae4;
 }
 
-.mixlist {
-  margin-left: 30%;
-}
 #browseAllButton {
-  font-family: 'Lato', sans-serif;
-  width: 130px;
+  font-family: 'helvetica', sans-serif;
+  width: 100px;
   /*letter-spacing: 0.0625em;*/
   background-color: #f41c03;
   border-bottom: 3px inset #c21603;
@@ -232,7 +229,7 @@ button {
 
 /*div containing h2 "all mixes", and displays all mixes*/
 .list {
-  margin-left: 30%;
+  width: 100%;
 }
 
 .showCreate {
@@ -271,7 +268,7 @@ color: #ccc;
 
 #nameMixError {
   color: red;
-  font-family: 'Lato', sans-serif;
+  font-family: 'helvetica', sans-serif;
   font-size: 0.875em;
   text-align: center;
 }
@@ -415,7 +412,7 @@ input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
 
 /*"Done!" button*/
 #submitPlaylist {
-  font-family: 'Lato', sans-serif;
+  font-family: 'helvetica', sans-serif;
   color: #fff;
   width: 100px;
   font-weight: normal;
@@ -448,7 +445,7 @@ input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
 /* "SIGN IN" link that triggers entire drop down */
 .login-link-text {}
 #login-sign-in-link {
-  font-family: 'Lato', sans-serif;
+  font-family: 'helvetica', sans-serif;
   font-size: 1.25em;
   color: #33eade;
 }
@@ -540,7 +537,7 @@ label {
 /*logged in user's username, is a dropdown link*/
 .login-link-text {}
 #login-name-link {
-  font-family: 'Lato', sans-serif;
+  font-family: 'helvetica', sans-serif;
   font-size: 1.1em;
   color: #33eade;
 }
@@ -554,7 +551,7 @@ label {
 /*within above div, contains ACTUAL signup link, which has the following id and class*/
 .additional-link {}
 #signup-link {
-  font-family: 'Lato', sans-serif;
+  font-family: 'helvetica', sans-serif;
   font-size: 1.10em;
   color: #33eade;
   }
@@ -568,7 +565,7 @@ label {
 /*"SIGN OUT" goes back to original Sign In thing*/
 .login-button {}
 #login-buttons-logout {
-  font-family: 'Lato', sans-serif;
+  font-family: 'helvetica', sans-serif;
   font-size: 1.10em;
   color: #8ff4ed;
   /*padding: 2%;*/

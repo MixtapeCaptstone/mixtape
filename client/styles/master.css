@@ -48,7 +48,7 @@
   /*background-color: #000;*/
   /*color: #666;*/
   font-size:14px;
-  /*font-family: Tahoma;*/
+  font-family: helvetica;
   /*letter-spacing:1px;*/
   text-align: center;
   width: 52px;
@@ -69,7 +69,6 @@
   background-color: #333;
   color: #71f0e8;
   border: 1px solid #555;
-  border-radius: 3px;
   cursor: pointer;
   opacity: 40%;
   z-index: -1;
@@ -90,7 +89,6 @@
   background-color: #333;
   color: #71f0e8;
   border: 1px solid #555;
-  border-radius: 3px;
   line-height: 20px;
   list-style-position: inside;
   cursor: pointer;
@@ -120,9 +118,9 @@
 }
 
 .progress {
-  border: 1px solid #555;
-  border-radius: 2px;
-  height: 25px;
+  /*border: 1px solid #555;*/
+  height: 23px;
+
   width: 0;
   position: relative;
   background-color: #33e0d6;
@@ -137,7 +135,6 @@
   position: absolute;
   width: 195px;
   height: 25px;
-  border-radius: 2px;
   border: 1px solid #555;
   z-index: 1;
   /*float: right;*/
@@ -163,6 +160,11 @@
   margin-right: 5px;
 }
 
+.upvoteContainer {
+  float: right;
+  width: 40px;
+  height: 38px;
+}
 
 .downvoteDiv {
   color: red;
@@ -188,11 +190,16 @@
   cursor: pointer;
 }
 
+.mixesHeader {
+  width: 100%;
+}
 
-#mixName{
-  font-family: 'Kalam', cursive;
+#mixName {
+  font-family: 'helvetica', cursive;
+  display: inline;
   margin-top: 5%;
-  color: #33eade;
+  color: white;
+  width: 100px;;
 }
 
 #artistName {

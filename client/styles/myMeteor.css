@@ -3,8 +3,8 @@
 /*Global*/
 h1 {
   text-align: center;
-  margin-left: 50%;
-  margin-right: 40%;
+  /*margin-left: 50%;
+  margin-right: 40%;*/
   position: static;
 }
 
@@ -38,7 +38,7 @@ iframe{
 }
 
 .playlistName:hover {
-  color: #eee;
+  color: #f98686;
   font-weight: bolder;
 }
 
