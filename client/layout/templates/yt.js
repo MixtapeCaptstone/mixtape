@@ -39,7 +39,6 @@ function onPlayerReady(event) {
     });
 
     $('#forward').on('click', function(){
-      console.log('forward has been clicked');
       player.nextVideo();
     });
 
@@ -86,10 +85,10 @@ function onPlayerStateChange(event) {
 
   //Change the play button text
   if(event.data === 1) {
-      $('.escolta').html('<i class="fa fa-pause"></i>');
+      $('.escolta').html('<svg class="icon-pause2"><use xlink:href="#icon-pause2"></use></svg>');
   }
   else {
-    $('.escolta').html('<i class="fa fa-play"></i>');
+    $('.escolta').html('<svg class="icon-play3"><use xlink:href="#icon-play3"></use>');
   }
 
   $('.escolta').on('click', function() {
@@ -180,7 +179,7 @@ $('.volumeDiv').click(
     console.log(counter);
     for(var i =0; i <= counter; i++){
       var divID = "#" + i;
-      $(divID).css('background-color', "rgb(0, 209, 197)");
+      $(divID).css('background-color', "rgb(255, 255, 255)");
     }
   }
 );

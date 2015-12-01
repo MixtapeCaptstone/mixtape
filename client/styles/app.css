@@ -53,7 +53,6 @@ input[type="text"], input[type="password"], input[type="email"], input[type="num
   margin-bottom: 1rem;
   /*font-size:1em;*/
   font-size: 0.875em;
-  border-radius: 2px;
 }
 
 input[type="search"] {
@@ -61,7 +60,6 @@ input[type="search"] {
   font-size: 0.875em;
   margin-left: auto;
   margin-right: auto;
-  border-radius: 2px;
 }
 
 
@@ -124,7 +122,7 @@ h2 {
 }
 
 .panel h2 {
-  color: #33eade;
+  color: white;
 }
 
 .mixlist {
@@ -153,9 +151,6 @@ h2 {
 
 button {
   font-family: 'helvetica', sans-serif;
-  /*text-align: center;*/
-  /*letter-spacing: 0.0625em;*/
-  background-color: #33eade;
   border-bottom: 3px inset #17e4d6;
 }
 
@@ -181,8 +176,6 @@ button {
   width: 100px;
   padding: none;
   margin-right: 1%;
-  /*background-color: #33eade;
-  border-bottom: 3px inset #16d4c8;*/
   background-color: #f41c03;
   /*border-bottom: 3px inset #c21603;*/
   /*box-shadow: 0 4px 2px -2px rgba(0,0,0,0.4);*/
@@ -214,10 +207,7 @@ button {
 #browseAllButton {
   font-family: 'helvetica', sans-serif;
   width: 100px;
-  /*letter-spacing: 0.0625em;*/
   background-color: #f41c03;
-  border-bottom: 3px inset #c21603;
-  box-shadow: 0 4px 2px -2px rgba(0,0,0,0.4);
 }
 
 #browseAllButton:hover,
@@ -313,49 +303,69 @@ input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
   list-style-type: none;
   text-align: left;
   color: #eee;
-  border-radius: 2px;
 }
 .subnav li a {
   border-bottom: 1px;
 }
 
 .songClass {
-  text-overflow: ellipsis;
-  text-align: center;
-  background-color: #222;
-  font-size: 12px;
   color: #ddd;
-  height:auto;
-  border: none;
+  width: 250px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-align: left;
+  /*height: auto;
+  width: inherit;*/
+  font-size: 13px;
   /*box-shadow: 0 4px 2px -2px rgba(0,0,0,0.4);*/
+}
+
+.songHover {
+  color: #9a0000;
+  width: 250px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-align: left;
+  /*height: auto;
+  width: inherit;*/
+  font-size: 13px;
 }
 
 .songName {
   color: #ddd;
-  text-align: center;
+  width: 250px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-align: left;
+  font-size: 13px;
+}
+
+.focus {
+  color: rgb(188, 252, 189);
+  width: 250px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-align: left;
   /*height: auto;
   width: inherit;*/
   font-size: 13px;
-  /*margin-top: 10px;
-  margin-bottom: 10px;*/
 }
-.songName:hover {
+
+/*.songName:hover {
   color: #fff;
   font-size: 13px;
-  /*height: auto;
-  width: inherit;*/
   margin-top: 10px;
   margin-bottom: 10px;
 }
 
 .songName::after {
   color: #ddd;
-  /*height: auto;
-  width: inherit;*/
   font-size: 13px;
-  /*margin-top: 10px;
-  margin-bottom: 10px;*/
-}
+}*/
 
 #nope {
   color: #c21603;
@@ -374,30 +384,13 @@ input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
 .subnav .songClass:hover {
   color: #fff;
   background-color: #222;
-  /*font-size: 14px;*/
-  /*border-color: #222;
-  border-radius: 2px;*/
-  /*padding: 3px 0px 3px 3px;*/
-  /*margin: 5px 1px 3px 0px;*/
-
 }
 
 .songClass img {
   width: 67px;
   height: 50px;
   margin-right: 5px;
-  border-radius: 1px;
 }
-
-.songClass:visited{
-  font-size:13px;
-}
-.songClass:focus,
-.songClass:active{
-  font-size:13px;
-}
-
-
 
 #options a{
   border-left: 0 none;
@@ -418,10 +411,8 @@ input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
   font-weight: normal;
   padding: 7px 5px;
   letter-spacing: 0.0625em;
-  background-color: #33eade;
   border-bottom: 3px inset #16d4c8;
   box-shadow: 0 4px 2px -2px rgba(0,0,0,0.4);
-  border-radius: 3px;
 }
 
 #submitPlaylist:hover,
@@ -447,19 +438,19 @@ input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
 #login-sign-in-link {
   font-family: 'helvetica', sans-serif;
   font-size: 1.25em;
-  color: #33eade;
+  color: white;
 }
 
 #login-sign-in-link:hover,
 #login-sign-in-link:focus,
 #login-sign-in-link:active {
-  color: #8ff4ed;
+  color: white;
 }
 
 
 .login-close-text {
   letter-spacing: 0.0625em;
-  color: #8ff4ed;
+  color: white;
 }
 
 .login-close-text:hover,
@@ -467,21 +458,21 @@ input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
 .login-close-text:active {
   text-align: center;
   letter-spacing: 0.0625em;
-  color: #aef7f2;
+  color: white;
 }
 
 /*div containing "SIGN IN" link to submit form*/
 #login-buttons-password {}
 .login-button {
   letter-spacing: 0.0625em;
-  color: #33eade;
+  color: white;
   }
 .login-form-submit {}
 
 .login-button:hover,
 .login-button:focus,
 .login-button:active {
-  color: #8ff4ed;
+  color: white;
   }
 
 .login-button-form-submit{
@@ -494,7 +485,7 @@ input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
 
 .additional-link{
   letter-spacing: 0.0625em;
-  color: #33eade;
+  color: white;
 }
 
 .additional-link:hover,
@@ -510,7 +501,7 @@ input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
   text-align: center;
   padding-bottom: 2%;
   letter-spacing: 0.0625em;
-  color: #33eade;
+  color: white;
 }
 
 .login-button-form-submit:hover,
@@ -539,7 +530,7 @@ label {
 #login-name-link {
   font-family: 'helvetica', sans-serif;
   font-size: 1.1em;
-  color: #33eade;
+  color: white;
 }
 
 #login-name-link:hover,
@@ -553,7 +544,7 @@ label {
 #signup-link {
   font-family: 'helvetica', sans-serif;
   font-size: 1.10em;
-  color: #33eade;
+  color: white;
   }
 
 #signup-link:hover,
@@ -574,20 +565,20 @@ label {
 #login-buttons-logout:hover,
 #login-buttons-logout:focus,
 #login-buttons-logout:active {
-    color: #aef7f2;
+    color: white;
   }
 
 
 /* "Close" text which closes account options form*/
 .login-close-text {
-  color: #8ff4ed;
+  color: white;
   margin-top: 5px;
   }
 
 .login-close-text:hover,
 .login-close-text:focus,
 .login-close-text:active {
-      color: #aef7f2;
+      color: white;
   }
 
 /*input field for password (empty by default)*/
@@ -627,3 +618,7 @@ label {
 
 /*"Sign In" below form. basically a nevermind link*/
 #back-to-login-link {}
+
+.songTable{
+  width: 291px;
+}
