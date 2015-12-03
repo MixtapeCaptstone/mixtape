@@ -265,7 +265,6 @@
   box-shadow: none;
 }
 .songHover {
-  background-color: #2a2a2a;
   color: #fff;
   font-size: 13px;
   box-shadow: none;
@@ -273,4 +272,10 @@
 
 .songBlock {
   width: 291px;
+}
+
+.songBlock:hover,
+.songBlock:focus,
+.songBlock:active {
+  background-color: grey;
 }

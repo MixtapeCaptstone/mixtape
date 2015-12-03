@@ -28,6 +28,8 @@ iframe{
 .playlistDiv {
   padding: 2%;
   border-radius: 2px;
+  margin-left: 20%;
+  margin-right: 20%;
 }
 
 .playlistName {
@@ -42,10 +44,19 @@ iframe{
   font-weight: bolder;
 }
 
+.upvoteMix {
+  width: 30px;
+  float: right;
+  color: rgba(92, 92, 92, 0.38);
+  font-size: .85em;
+  margin-top: 1px;
+}
+
 /*trashcan icon*/
 .delete {
   color: #c21603;
   float: right;
+  margin-right: 5px;
 }
 
 .delete:hover,

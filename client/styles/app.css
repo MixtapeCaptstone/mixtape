@@ -24,7 +24,7 @@ body {
   background-color: #000;
 }
 
-.panel {
+  .panel {
   background-color: #191919;
   border-color: #2a2a2a;
   /*border: none;*/
@@ -44,6 +44,13 @@ body {
   padding-left: 1%;
   padding-right: 1%;
   overflow: scroll;
+  min-height: 343px;
+}
+
+#rightSide {
+}
+
+#leftSide {
 }
 
 input[type="text"], input[type="password"], input[type="email"], input[type="number"], input[type="url"], textarea {
