@@ -1,23 +1,5 @@
 <template name="searches">
 
-  <!-- <form class="search" id="options">
-
-    <div id="searchnsave">
-      {{#if showLast}}
-        <input type="text" name="q" placeholder="Search...">
-
-        <button type="button" id="submitPlaylist" name="button">Save Playlist</button>
-      {{/if}}
-    </div>
-
-
-    <ul class="subnav">
-      {{#each results}}
-        <li draggable="true" ondragstart="drag(event)" class="songClass" id="{{id}}"><img src="{{pic}}" alt="{{text}}" />{{text}}</li>
-      {{/each}}
-    </ul>
-  </form> -->
-
 <strong>
   {{#if clickCreate}}
 
@@ -43,13 +25,15 @@
 
   <ul class="subnav">
     {{#each results}}
-      <li draggable="true" ondragstart="drag(event)" class="songClass" id="{{id}}"><img src="{{pic}}" alt="{{text}}" />{{text}}</li>
+      <li draggable="true" ondragstart="drag(event)" class="songClass" id="{{id}}"><img id="searchImage" src="{{pic}}" alt="{{text}}"/>
+        {{text}}
+      </li>
     {{/each}}
   </ul>
 
   <strong>
     {{#if showLast}}
-      <input id="vidSearchInput" type="text" name="q" placeholder="Search For Some Videos...">
+      <input id="vidSearchInput" type="text" name="q" placeholder="Search Videos...">
 
       <button class="button small" id="submitPlaylist" type="button">Done!</button>
 

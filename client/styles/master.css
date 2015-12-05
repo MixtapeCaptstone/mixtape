@@ -32,9 +32,9 @@
   width: 291px;
   margin-left: auto;
   margin-right: auto;
-  /*display: flex;*/
   /*justify-content:center;*/
   /*display: inline-block;*/
+  display: block;
 }
 
 .playerBar{

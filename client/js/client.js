@@ -127,6 +127,32 @@ Template.searches.events ({
     Meteor.call('setSong', list, title);//Add to MongoDB on the server
     SongClient.remove({}); //Remove the client's temporary playlist
     Session.set("title", ""); //Remove Session title
+  },
+
+  'click .songClass': function(ev){
+    var x = ev.target.id;
+    var y = Session.get('results');
+    var z = Session.get('title')[0].text;
+    // if results.text === li#songID.title
+    y.forEach(function(e) {
+      if(e.id === x){
+        //Call addSong to save to server
+        Meteor.call('addSong', e);
+        songNum = SongClient.find().fetch().length;
+        // CHANGED 'e.playlist' >> 'z'
+        //Save onto client
+        SongClient.insert({
+          text: e.text,
+          createdAt: new Date(),
+          id: e.id,
+          pic: e.pic,
+          owner: Meteor.userId(),
+          username: Meteor.user().username,
+          playlist: z,
+          index: songNum
+        });
+      }
+    });
   }
 });
 
@@ -134,6 +160,9 @@ Template.playlistsBrowseCreate.events({
   "click .showCreate": function (e) {
     // Ensuring that the user creates a playlist first
     e.preventDefault();
+
+    //show playerBox
+    $('#playerBox').css('display', 'block');
 
     var playlist = ({playlist: name});
     Session.set('playa', false);
@@ -148,6 +177,7 @@ Template.playlistsBrowseCreate.events({
     Session.set('showLast', false);
     Session.set('clickCreate', false);
     Session.set('mix', true);
+    $('#playerBox').css('display', 'none');
   },
   "click .playa": function (e) {
     e.preventDefault();
@@ -155,6 +185,7 @@ Template.playlistsBrowseCreate.events({
     Session.set('showLast', false);
     Session.set('clickCreate', false);
     Session.set('playa', true);
+    $('#playerBox').css('display', 'none');
   }
 });
 
@@ -214,6 +245,15 @@ Template.playlist.events({
     newList[0].playlist.forEach(function(element, index, array){
       listArray.push(element.id);
     });
+
+    //set state
+    // e.preventDefault();
+    Session.set('playa', false);
+    Session.set('YT', true);
+
+    //show playerBox
+    $('#playerBox').css('display', 'block');
+
     //set playlist
     Session.set("listName", event.target.id);
     player.loadPlaylist({
@@ -371,6 +411,7 @@ Meteor.startup(function () {
 
   // This event gets triggered when dropped. Puts the dragged item into the new div.
   drop = function (ev) {
+    console.log('dropevent');
     ev.preventDefault();
     var data = ev.dataTransfer.getData("text");
   };

@@ -45,13 +45,15 @@ body {
   padding-right: 1%;
   overflow: scroll;
   min-height: 343px;
+  min-width: 300px;
+  max-width: 40%;
+  margin: 0 auto;
 }
 
 #rightSide {
+  width: 100%;
 }
 
-#leftSide {
-}
 
 input[type="text"], input[type="password"], input[type="email"], input[type="number"], input[type="url"], textarea {
   width: 160px;
@@ -317,7 +319,7 @@ input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
 
 .songClass {
   color: #ddd;
-  width: 250px;
+  width: 100%;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -326,6 +328,31 @@ input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
   width: inherit;*/
   font-size: 13px;
   /*box-shadow: 0 4px 2px -2px rgba(0,0,0,0.4);*/
+  min-width: 291px;
+  float: left;
+  margin: 0;
+}
+
+ul.subnav {
+  min-width: 291px;
+}
+
+#searchImage {
+  width: 67px;
+  height: 50px;
+  margin-right: 5px;
+  float: left;
+}
+
+#addThisSongText {
+  color: #ddd;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-align: left;
+  font-size: 13px;
+  float: left;
+  max-width: 70%;
 }
 
 .songHover {
@@ -393,11 +420,10 @@ input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
   background-color: #222;
 }
 
-.songClass img {
-  width: 67px;
-  height: 50px;
-  margin-right: 5px;
-}
+/*.playlistDiv:hover {
+  color: #fff;
+  background-color: #222;
+}*/
 
 #options a{
   border-left: 0 none;
@@ -628,4 +654,10 @@ label {
 
 .songTable{
   width: 291px;
+}
+
+#addThisSong {
+  float: right;
+  display: inline;
+  width: 20px;
 }
