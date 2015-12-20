@@ -17,11 +17,17 @@
   {{/if}}
 </strong>
 
+{{#if songCreate}}
+
 <section class="search-con">
 
   <form class="search" id="options">
 
-
+    <strong>
+      {{#if showLast}}
+        <input id="vidSearchInput" type="text" name="q" placeholder="Search Videos...">
+      {{/if}}
+    </strong>
 
   <ul class="subnav">
     {{#each results}}
@@ -33,15 +39,14 @@
 
   <strong>
     {{#if showLast}}
-      <input id="vidSearchInput" type="text" name="q" placeholder="Search Videos...">
-
       <button class="button small" id="submitPlaylist" type="button">Done!</button>
-
     {{/if}}
   </strong>
 
   </form>
 
 </section>
+{{/if}}
+
 
 </template>

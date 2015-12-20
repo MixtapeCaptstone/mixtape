@@ -271,11 +271,11 @@
 }
 
 .songBlock {
-  width: 291px;
+  width: 280px;
 }
 
 .songBlock:hover,
 .songBlock:focus,
 .songBlock:active {
-  background-color: grey;
+  background-color: #282828;
 }

@@ -44,10 +44,11 @@ body {
   padding-left: 1%;
   padding-right: 1%;
   overflow: scroll;
-  min-height: 343px;
+  height: 90%;
   min-width: 300px;
   max-width: 40%;
   margin: 0 auto;
+  margin-top: 4px;
 }
 
 #rightSide {
@@ -79,19 +80,14 @@ p {
 
 /*"Mixtapez"*/
 #logoCentered {
+  display: inline-block;
   font-family: 'helvetica', serif;
-  /*float: right;*/
-  text-align: center;
-  font-size:2.5em;
-  /*position: static;*/
-  /*letter-spacing: 0.0625em;*/
+  float: left;
+  text-align: left;
+  font-size:1.10em;
   color: white;
-}
-
-#logoCentered:hover,
-#logoCentered:focus,
-#logoCentered:active {
-  color: #8ff4ed;
+  font-size: 18px;
+  margin-top: 2px;
 }
 
 form {
@@ -101,7 +97,13 @@ form {
 
 /*div containing meteor login and logo*/
 #usercontrolsandheader {
-  /*display: inline-block;*/
+  margin: 0 auto;
+  width: 291px;
+}
+
+#parentUserControls {
+  width: 100%;
+  margin-bottom: 5px;
 }
 
 table {
@@ -135,16 +137,16 @@ h2 {
 }
 
 .mixlist {
-  /*margin-left: 30%;*/
+  width: 100%;
+  max-height: 300px;
+  overflow: auto;
 }
+
 /* h2, "My Mixes"*/
 #mixesHeader {
   /*padding-top: .5em;*/
   text-align: center;
   color: white;
-}
-
-.list {
 }
 
 /*"All Playlists"*/
@@ -170,65 +172,73 @@ button {
 /*span containing buttons (JUST buttons, not search or anything)*/
 #mixActionButtons {
   font-family: 'helvetica', sans-serif;
-
   display: inline-block;
-  margin-top: 10px;
-  /*margin-left: auto;
-  margin-right: auto;*/
-  display: flex;
   justify-content:center;
+  margin: 0 auto;
+  width: 100%;
+  margin-top: 12px;
+  margin-right: 1px;
+  margin-left: 1px;
+}
+
+#parentMixActionButtons {
+  margin-bottom: 5px;
+  text-align: center;
 }
 
 #newPlaylistButton {
   font-family: 'helvetica', sans-serif;
   color: #fff;
-  width: 100px;
+  width: 65px;
   padding: none;
   margin-right: 1%;
-  background-color: #f41c03;
-  /*border-bottom: 3px inset #c21603;*/
-  /*box-shadow: 0 4px 2px -2px rgba(0,0,0,0.4);*/
+  background-color: #CC181E;
 }
 
 #newPlaylistButton:hover,
 #newPlaylistButton:focus,
 #newPlaylistButton:active {
-  /*background-color: #26d6ca;*/
   background-color: #e41a03;
 }
 
 
 #browseMineButton {
   font-family: 'helvetica', sans-serif;
-  /*letter-spacing: 0.0625em;*/
-  width: 100px;
+  width: 65px;
   margin-right: 1%;
-  background-color: #f41c03;
+  background-color: #CC181E;
 }
 
 #browseMineButton:hover,
 #browseMineButton:focus,
 #browseMineButton:active {
-  /*background-color: #26d6ca;*/
   background-color: #039ae4;
 }
 
 #browseAllButton {
   font-family: 'helvetica', sans-serif;
-  width: 100px;
-  background-color: #f41c03;
+  width: 65px;
+  background-color: #CC181E;
+  margin-right: 1%;
 }
 
 #browseAllButton:hover,
 #browseAllButton:focus,
 #browseAllButton:active {
-  /*background-color: #26d6ca;*/
   background-color: #e41a03;
+}
+
+#YTplayerButton {
+  font-family: 'helvetica', sans-serif;
+  width: 65px;
+  background-color: #CC181E;
 }
 
 /*div containing h2 "all mixes", and displays all mixes*/
 .list {
   width: 100%;
+  max-height: 300px;
+  overflow: auto;
 }
 
 .showCreate {
@@ -319,7 +329,7 @@ input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
 
 .songClass {
   color: #ddd;
-  width: 100%;
+  width: 280px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -378,7 +388,7 @@ ul.subnav {
 }
 
 .focus {
-  color: rgb(188, 252, 189);
+  color: #167AC6;
   width: 250px;
   white-space: nowrap;
   overflow: hidden;
@@ -410,7 +420,7 @@ ul.subnav {
 #nope:hover,
 #nope:focus,
 #nope:active {
-  color: #f41c03;
+  color: #CC181E;
   float: right;
   margin-left: 5px;
 }
@@ -444,8 +454,6 @@ ul.subnav {
   font-weight: normal;
   padding: 7px 5px;
   letter-spacing: 0.0625em;
-  border-bottom: 3px inset #16d4c8;
-  box-shadow: 0 4px 2px -2px rgba(0,0,0,0.4);
 }
 
 #submitPlaylist:hover,
@@ -462,15 +470,16 @@ ul.subnav {
   line-height: 1.5;
   padding: 1%;
   cursor: pointer;
-  display: flex;
+  display: inline-block;
   justify-content:center;
+  float: right;
+  font-size: 18px;
 }
 
 /* "SIGN IN" link that triggers entire drop down */
 .login-link-text {}
 #login-sign-in-link {
   font-family: 'helvetica', sans-serif;
-  font-size: 1.25em;
   color: white;
 }
 
@@ -512,7 +521,7 @@ ul.subnav {
   text-align: center;
   font-size: 1.10em;
   letter-spacing: 0.0625em;
-  color: #26d6ca;
+  color: #ffffff;
   }
 
 
@@ -525,7 +534,7 @@ ul.subnav {
 .additional-link:focus,
 .additional-link:active {
   letter-spacing: 0.0625em;
-  color: #8ff4ed;
+  color: #ffffff;
   }
 
 /*"Create Account" text and button to submit form */
@@ -540,7 +549,7 @@ ul.subnav {
 .login-button-form-submit:hover,
 .login-button-form-submit:focus,
 .login-button-form-submit:active {
-  color: #8ff4ed;
+  color: #ffffff;
   }
 
 label {
@@ -562,14 +571,14 @@ label {
 .login-link-text {}
 #login-name-link {
   font-family: 'helvetica', sans-serif;
-  font-size: 1.1em;
+  font-size: 18px;
   color: white;
 }
 
 #login-name-link:hover,
 #login-name-link:focus,
 #login-name-link:active {
-  color: #8ff4ed;
+  color: #ffffff;
 }
 
 /*within above div, contains ACTUAL signup link, which has the following id and class*/
@@ -583,7 +592,7 @@ label {
 #signup-link:hover,
 #signup-link:focus,
 #signup-link:active {
-  color: #8ff4ed;
+  color: #ffffff;
 }
 
 /*"SIGN OUT" goes back to original Sign In thing*/
@@ -591,7 +600,7 @@ label {
 #login-buttons-logout {
   font-family: 'helvetica', sans-serif;
   font-size: 1.10em;
-  color: #8ff4ed;
+  color: #ffffff;
   /*padding: 2%;*/
 }
 
@@ -639,7 +648,7 @@ label {
 
 /*contains EVERYTHING that will show in the drop downs when you click sign in, as well as the log-in form that first appears*/
 .login-link-and-dropdown-list {
-  /*height: 300px;*/
+  display: inline-block;
 }
 /*div holding all account dropdownmenu options  */
 .login-dropdown-list {}

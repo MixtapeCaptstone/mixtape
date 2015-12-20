@@ -2,6 +2,15 @@ SongClient = new Mongo.Collection(null);//Create collection only on the client.
 Song = new Mongo.Collection('song');
 Lists = new Mongo.Collection('lists');
 
+// Iron Router
+// given a url like "/post/5"
+Router.route('/test/:_id', function () {
+  var params = this.params; // { _id: "5" }
+  var id = params._id; // "5"
+  console.log(id);
+  Session.set('listName', id);
+});
+
 // METEOR THINGS
 Template.user.helpers({
   // This is how to call the database and pass things
@@ -79,6 +88,9 @@ Template.searches.helpers({
     //Ensures user enters a title first.
       return Session.get('clickCreate');
   },
+  songCreate: function () {
+      return Session.get('songCreate');
+  },
   showLast: function () {
     // Displays the search bar
     return Session.get('showLast');
@@ -108,7 +120,7 @@ Template.searches.events ({
 
       //Hide the input field
       Session.set('clickCreate', false);
-
+      Session.set('songCreate', true);
       Session.set('noTitle', false);
 
       // Clear the form
@@ -157,7 +169,7 @@ Template.searches.events ({
 });
 
 Template.playlistsBrowseCreate.events({
-  "click .showCreate": function (e) {
+  "click .YTplayer": function (e) {
     // Ensuring that the user creates a playlist first
     e.preventDefault();
 
@@ -168,7 +180,23 @@ Template.playlistsBrowseCreate.events({
     Session.set('playa', false);
     Session.set('mix', false);
     Session.set('showLast', false);
+    Session.set('clickCreate', false);
+    Session.set('songCreate', false);
+  },
+  "click .showCreate": function (e) {
+    // Ensuring that the user creates a playlist first
+    e.preventDefault();
+    player.pauseVideo();
+
+    //show playerBox
+    $('#playerBox').css('display', 'block');
+
+    var playlist = ({playlist: name});
+    Session.set('playa', false);
+    Session.set('mix', false);
+    Session.set('showLast', false);
     Session.set('clickCreate', true);
+    Session.set('songCreate', false);
     Session.set("listName", "");
   },
   "click .myMixes": function (e) {
@@ -176,6 +204,7 @@ Template.playlistsBrowseCreate.events({
     Session.set('playa', false);
     Session.set('showLast', false);
     Session.set('clickCreate', false);
+    Session.set('songCreate', false);
     Session.set('mix', true);
     $('#playerBox').css('display', 'none');
   },
@@ -184,6 +213,7 @@ Template.playlistsBrowseCreate.events({
     Session.set('mix', false);
     Session.set('showLast', false);
     Session.set('clickCreate', false);
+    Session.set('songCreate', false);
     Session.set('playa', true);
     $('#playerBox').css('display', 'none');
   }
@@ -295,6 +325,12 @@ Template.mix.events({
         'startSeconds': 0,
         'suggestedQuality': 'small'
     });
+
+    Session.set('mix', false);
+    Session.set('YT', true);
+
+    //show player
+    $('#playerBox').css('display', 'block');
 
     SongClient.remove({}); //Remove the client's temporary playlist
     Session.set("title", ""); //Remove Session title
