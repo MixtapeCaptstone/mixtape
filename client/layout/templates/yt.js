@@ -1,5 +1,9 @@
 // YouTube API will call onYouTubeIframeAPIReady() when API ready.
 // Make sure it's a global variable.
+function testThisShit(){
+  console.log('testing this shit out');
+}
+
 onYouTubeIframeAPIReady = function () {
 
     player = new YT.Player("player", {
@@ -14,11 +18,16 @@ onYouTubeIframeAPIReady = function () {
         }
 
     });
+
+  testThisShit();
+
 };
 
 YT.load();
 
 function onPlayerReady(event) {
+  testThisShit();
+
     var artist = player.getVideoData();
     $('#artistName').text(artist.author + " " + artist.title);
 
@@ -45,6 +54,75 @@ function onPlayerReady(event) {
     var minutes = Math.floor((player.getDuration()) / 60);
     var seconds = player.getDuration() % 60;
     $('.duration').text(minutes + ':' + seconds);
+
+//SCRUBBER
+
+    var timeDrag = false;   /* Drag status */
+    $('.progressParent').mousedown(function(e) {
+        console.log('mousedown');
+        timeDrag = true;
+        updatebar(e.pageX);
+    });
+
+    $('.progressParent').mouseup(function(e) {
+        console.log('mouseup');
+        if(timeDrag) {
+            timeDrag = false;
+            updatebar(e.pageX);
+        }
+    });
+    $('.progressParent').mousemove(function(e) {
+      console.log('mouseMove');
+        if(timeDrag) {
+            updatebar(e.pageX);
+        }
+    });
+
+    //update Progress Bar control
+    var updatebar = function(x) {
+        var progress = $('.progressParent');
+        var maxduration = player.getDuration(); //Video duraiton
+        var position = x - progress.offset().left; //Click pos
+        var percentage = 100 * position / progress.width();
+
+        //Check within range
+        if(percentage > 100) {
+            percentage = 100;
+        }
+        if(percentage < 0) {
+            percentage = 0;
+        }
+
+        //Update progress bar and video currenttime
+        $('.progress').css('width', percentage + '%');
+        player.seekTo(maxduration * percentage / 100);
+    };
+
+    //Volume DIVS
+    $('.volumeDiv').hover(
+      function(){
+        console.log('hover');
+        $(this).animate({'margin-top': '2px'});
+      },
+      function(){
+        $(this).animate({"margin-top": "5px"});
+      }
+    );
+
+    $('.volumeDiv').click(
+      function(){
+        var counter = parseInt($(this).attr('id'));
+
+        player.setVolume(counter);
+
+        $('.volumeDiv').css('background-color', 'rgb(143, 143, 143)');
+        console.log(counter);
+        for(var i =0; i <= counter; i++){
+          var divID = "#" + i;
+          $(divID).css('background-color', "rgb(255, 255, 255)");
+        }
+      }
+    );
 }
 
 var scrubber;

@@ -1,14 +1,37 @@
 SongClient = new Mongo.Collection(null);//Create collection only on the client.
 Song = new Mongo.Collection('song');
 Lists = new Mongo.Collection('lists');
-
+function testThisShit(){
+  console.log('testing this shit out');
+}
 // Iron Router
 // given a url like "/post/5"
-Router.route('/test/:_id', function () {
-  var params = this.params; // { _id: "5" }
-  var id = params._id; // "5"
-  console.log(id);
-  Session.set('listName', id);
+Router.route('/', function(){
+    this.render('home');
+});
+
+Router.route('/test/:_id', {
+  action: function () {
+     // render all templates and regions for this route
+     this.render('test');
+   },
+   onAfterAction: function () {
+     var params = this.params; // { _id: "5" }
+     var id = params._id; // "5"
+     Session.set('listName', id);
+     console.log("onAfter & id:", id);
+   }
+
+
+  // // Session.set('playa', false);
+  // Session.set('YT', true);
+});
+
+Template.test.onRendered(function () {
+  // Use the Packery jQuery plugin
+  console.log('rendered');
+  // Session.set('playa', false);
+  // Session.set('YT', true);
 });
 
 // METEOR THINGS
@@ -389,13 +412,13 @@ Template.upvote.events({
   }
 });
 
-Template.body.helpers({
+Template.home.helpers({
   clickCreate: function () {
       return Session.get('clickCreate');
     }
 });
 
-Template.body.events({
+Template.home.events({
   "submit .search": function (event) {
     // Prevent default browser form submit
     event.preventDefault();
