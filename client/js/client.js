@@ -1,11 +1,58 @@
 SongClient = new Mongo.Collection(null);//Create collection only on the client.
+ThisPlaylist = new Mongo.Collection(null); //current playlist only on client
 Song = new Mongo.Collection('song');
 Lists = new Mongo.Collection('lists');
-function testThisShit(){
-  console.log('testing this shit out');
+
+
+//Player functions
+
+
+function playSongFocus(){
+  var currentFocus = getSongFocus();
+  var list = ThisPlaylist.find().fetch();
+  console.log("Running playSongFocus");
+  var songId = list[0].listName[0].playlist[currentFocus].id;
+  console.log("var Song:", songId);
 }
+
+function setSongFocus(index){
+  console.log('Setting song focus');
+  console.log('index:', index);
+
+  // remove previous focus
+  var currentFocus = getSongFocus();
+  console.log("currentFocus", currentFocus);
+  var removeModifier = { $set: {} };
+  removeModifier.$set["listName.0.playlist." + currentFocus + ".focus"] = false;
+  ThisPlaylist.update({name: 'current'}, removeModifier);
+
+  //set new focus
+  var setModifier = { $set: {} };
+  setModifier.$set["listName.0.playlist." + index + ".focus"] = true;
+  ThisPlaylist.update({name: 'current'}, setModifier);
+  getSongFocus();
+  // ThisPlaylist.update ({name: 'current'}, { '$set': {"listName.0.playlist.1.focus" : true} });
+}
+
+function getSongFocus(){
+  var list = ThisPlaylist.find().fetch();
+  console.log("Running getSongFocus");
+  console.log("getSongFocus list is:", list);
+  var playlist = list[0].listName[0].playlist;
+  var indexValue;
+  console.log("getSongFocus playlist is:", playlist);
+  playlist.forEach(function(element, index, array){
+    var thisFocus = element.focus;
+    console.log("forEach loop:", thisFocus);
+    if(thisFocus === true){
+      console.log("returning index of true", index);
+      indexValue = index;
+    }
+  });
+  return indexValue;
+}
+
 // Iron Router
-// given a url like "/post/5"
 Router.route('/', function(){
     this.render('home');
 });
@@ -14,12 +61,29 @@ Router.route('/test/:_id', {
   action: function () {
      // render all templates and regions for this route
      this.render('test');
+
+
    },
    onAfterAction: function () {
-     var params = this.params; // { _id: "5" }
-     var id = params._id; // "5"
+     var params = this.params; // { _id: "List Name" }
+     var id = params._id; // "List Name"
      Session.set('listName', id);
-     console.log("onAfter & id:", id);
+     //find playlist object
+     var findSong = function(){
+      return this;
+     };
+     var reqList = Lists.find({ name: id }).fetch();
+     console.log("reqlist", reqList);
+     ThisPlaylist.update(
+        { name: "current" },
+        {
+           name: "current",
+           listName: reqList,
+           findSong: findSong
+        },
+        { upsert: true }
+     );
+     ThisPlaylist.update ({name: 'current'}, { '$set': {"listName.0.playlist.0.focus" : true} });
    }
 
 
@@ -184,7 +248,8 @@ Template.searches.events ({
           owner: Meteor.userId(),
           username: Meteor.user().username,
           playlist: z,
-          index: songNum
+          index: songNum,
+          focus: false
         });
       }
     });
@@ -277,7 +342,9 @@ Template.listViewer.events({
     $(self).attr( 'class', 'focus');//set focus
 
     var songIndex = $(event.currentTarget).attr("name"); //Get song index number
-    player.playVideoAt(songIndex);//Play correct playlist song index
+    setSongFocus(songIndex);
+    playSongFocus();
+    // player.playVideoAt(songIndex);//Play correct playlist song index
   }
 });
 
@@ -451,6 +518,13 @@ Template.home.events({
         $('.subnav').hide();
     }
   }
+});
+
+Template.player.events({
+  "click #escolta": function(){
+    console.log('escolta clicked');
+  }
+
 });
 
 

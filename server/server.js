@@ -24,7 +24,7 @@ Meteor.methods( {
       pic: text.pic,
       owner: Meteor.userId(),
       username: Meteor.user().username,
-      playlist: text.playlist
+      playlist: text.playlist,
     });
   },
 

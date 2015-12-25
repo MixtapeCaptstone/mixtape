@@ -1,7 +1,35 @@
 // YouTube API will call onYouTubeIframeAPIReady() when API ready.
 // Make sure it's a global variable.
-function testThisShit(){
-  console.log('testing this shit out');
+function setSongFocus(index){
+  console.log('Setting song focus');
+
+  //remove previous focus
+  var currentFocus = getSongFocus();
+  var removeModifier = { $set: {} };
+  removeModifier.$set["listName.0.playlist." + currentFocus + ".focus"] = false;
+  ThisPlaylist.update({name: 'current'}, removeModifier);
+
+  //set new focus
+  var setModifier = { $set: {} };
+  setModifier.$set["listName.0.playlist." + index + ".focus"] = true;
+  ThisPlaylist.update({name: 'current'}, setModifier);
+
+  // ThisPlaylist.update ({name: 'current'}, { '$set': {"listName.0.playlist.1.focus" : true} });
+}
+
+function getSongFocus(){
+  var list = ThisPlaylist.find().fetch();
+  var playlist = list[0].listName[0].playlist;
+
+  console.log("getSongFocus", playlist);
+  playlist.forEach(function(element, index, array){
+    var thisFocus = element.focus;
+    console.log("forEach loop:", thisFocus);
+    if(thisFocus === true){
+      console.log("returning index of true", index);
+      return index;
+    }
+  });
 }
 
 onYouTubeIframeAPIReady = function () {
@@ -16,17 +44,13 @@ onYouTubeIframeAPIReady = function () {
           'onReady': onPlayerReady,
           'onStateChange': onPlayerStateChange
         }
-
     });
-
-  testThisShit();
 
 };
 
 YT.load();
 
 function onPlayerReady(event) {
-  testThisShit();
 
     var artist = player.getVideoData();
     $('#artistName').text(artist.author + " " + artist.title);
@@ -42,7 +66,10 @@ function onPlayerReady(event) {
         }
         else {
           console.log('alert 2');
+          getSongFocus();
+
           player.playVideo();
+          setSongFocus();
         }
         return false;
     });
@@ -180,6 +207,7 @@ function onPlayerStateChange(event) {
       else {
         console.log('alert 2');
         player.playVideo();
+        getSongFocus();
         // $('.escolta').text('pause');
       }
       return false;
