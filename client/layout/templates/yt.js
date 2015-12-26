@@ -1,10 +1,42 @@
-// YouTube API will call onYouTubeIframeAPIReady() when API ready.
-// Make sure it's a global variable.
+
+function playNextSong(){
+  var currentFocus = getSongFocus();
+  var list = ThisPlaylist.find().fetch();
+  var playlist = list[0].listName[0].playlist;
+
+  if(parseInt(currentFocus, 10) >= playlist.length - 1){
+    setSongFocus(0);
+    var songId = list[0].listName[0].playlist[0].id;
+    player.loadVideoById(songId);
+    player.playVideo();
+  } else {
+    var nextFocus = parseInt(currentFocus, 10) + 1;
+    console.log('nextFocus:', nextFocus);
+    setSongFocus(nextFocus);
+    console.log("Running playSongFocus");
+    var thisId = list[0].listName[0].playlist[nextFocus].id;
+    player.loadVideoById(thisId);
+    player.playVideo();
+  }
+}
+
+function playSongFocus(){
+  var currentFocus = getSongFocus();
+  var list = ThisPlaylist.find().fetch();
+  console.log("Running playSongFocus");
+  var songId = list[0].listName[0].playlist[currentFocus].id;
+  console.log("var Song:", songId);
+  player.loadVideoById(songId);
+  player.playVideo();
+}
+
 function setSongFocus(index){
   console.log('Setting song focus');
+  console.log('index:', index);
 
-  //remove previous focus
+  // remove previous focus
   var currentFocus = getSongFocus();
+  console.log("currentFocus", currentFocus);
   var removeModifier = { $set: {} };
   removeModifier.$set["listName.0.playlist." + currentFocus + ".focus"] = false;
   ThisPlaylist.update({name: 'current'}, removeModifier);
@@ -13,25 +45,31 @@ function setSongFocus(index){
   var setModifier = { $set: {} };
   setModifier.$set["listName.0.playlist." + index + ".focus"] = true;
   ThisPlaylist.update({name: 'current'}, setModifier);
-
+  getSongFocus();
   // ThisPlaylist.update ({name: 'current'}, { '$set': {"listName.0.playlist.1.focus" : true} });
 }
 
 function getSongFocus(){
   var list = ThisPlaylist.find().fetch();
+  console.log("Running getSongFocus");
+  console.log("getSongFocus list is:", list);
   var playlist = list[0].listName[0].playlist;
-
-  console.log("getSongFocus", playlist);
+  var indexValue;
+  console.log("getSongFocus playlist is:", playlist);
   playlist.forEach(function(element, index, array){
     var thisFocus = element.focus;
     console.log("forEach loop:", thisFocus);
     if(thisFocus === true){
       console.log("returning index of true", index);
-      return index;
+      indexValue = index;
     }
   });
+  return indexValue;
 }
 
+//YouTube API
+// YouTube API will call onYouTubeIframeAPIReady() when API ready.
+// Make sure it's a global variable.
 onYouTubeIframeAPIReady = function () {
 
     player = new YT.Player("player", {
@@ -66,16 +104,15 @@ function onPlayerReady(event) {
         }
         else {
           console.log('alert 2');
-          getSongFocus();
-
-          player.playVideo();
           setSongFocus();
+          player.playVideo();
         }
         return false;
     });
 
     $('#forward').on('click', function(){
-      player.nextVideo();
+      // player.nextVideo();
+      playNextSong();
     });
 
     var minutes = Math.floor((player.getDuration()) / 60);

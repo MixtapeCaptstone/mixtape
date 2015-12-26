@@ -6,6 +6,17 @@ Lists = new Mongo.Collection('lists');
 
 //Player functions
 
+function playNextSong(){
+  var currentFocus = getSongFocus();
+  var nextFocus = parseInt(currentFocus, 10) + 1;
+  console.log('nextFocus:', nextFocus);
+  setSongFocus(nextFocus);
+  var list = ThisPlaylist.find().fetch();
+  console.log("Running playSongFocus");
+  var songId = list[0].listName[0].playlist[nextFocus].id;
+  player.loadVideoById(songId);
+  player.playVideo();
+}
 
 function playSongFocus(){
   var currentFocus = getSongFocus();
@@ -13,6 +24,8 @@ function playSongFocus(){
   console.log("Running playSongFocus");
   var songId = list[0].listName[0].playlist[currentFocus].id;
   console.log("var Song:", songId);
+  player.loadVideoById(songId);
+  player.playVideo();
 }
 
 function setSongFocus(index){
@@ -322,24 +335,23 @@ Template.listViewer.helpers({
 Template.listViewer.events({
   'click .songHover': function (event) {
     //TODO is this redundant? Already in body event!
-    $('#focus').removeAttr('id'); //remove previous focus
+    // $('#focus').removeAttr('id'); //remove previous focus
     event.target.id = "focus"; //set focus
     var songIndex = this.name;
     var songId = this.id;
-    player.playVideoAt(songIndex);
   },
   'mouseenter .songName': function(event){
     thisDiv = event.target; //get "this"
-    $(thisDiv).attr("class", "songHover" );//set hover class
+    // $(thisDiv).attr("class", "songHover" );//set hover class
   },
   'mouseleave .songHover': function(event){
     thisDiv = event.target; //get "this"
-    $(thisDiv).attr("class", "songName" ); //remove hover class
+    // $(thisDiv).attr("class", "songName" ); //remove hover class
   },
   'click .songClass': function (event) {
-    $('.focus').attr('class', 'songClass'); //remove previous focus
+    // $('.focus').attr('class', 'songClass'); //remove previous focus
     var self = event.target;
-    $(self).attr( 'class', 'focus');//set focus
+    // $(self).attr( 'class', 'focus');//set focus
 
     var songIndex = $(event.currentTarget).attr("name"); //Get song index number
     setSongFocus(songIndex);
