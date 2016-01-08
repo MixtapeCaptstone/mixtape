@@ -217,10 +217,15 @@
 
 #mixName {
   font-family: 'helvetica', cursive;
-  display: inline;
-  margin-top: 5%;
+  display: inline-block;
+  margin-top: 4px;
   color: white;
-  width: 100px;;
+  margin-top: 4px;
+}
+
+.mixHeader {
+  width: 291px;
+  height: 30px;
 }
 
 #artistName {
