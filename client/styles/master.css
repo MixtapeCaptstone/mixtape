@@ -78,12 +78,33 @@
   border-color: #4c4c4c;
 }
 
+#smallPlayer {
+  /*list-style-type: disc;*/
+  list-style-position: outside;
+  display: inline-block;
+  float: left;
+  width: 15px;
+  height: 15px;
+  line-height: 10px;
+  fill: red;
+  cursor: pointer;
+  opacity: 40%;
+  z-index: -1;
+}
+
 .icon-play3 {
   fill: white;
   width: 70%;
   height: 70%;
   margin-top: 3.5px;
   margin-left: 1.5px;
+}
+
+.icon-play4 {
+  fill: yellow;
+  width: 70%;
+  height: 70%;
+  margin-top: 3.5px;
 }
 
 .icon-pause2 {
@@ -202,6 +223,12 @@
   float: right;
   margin-top: 5px;
   margin-right: 3px;
+}
+
+.heart {
+  color: red;
+  display: inline-block;
+  margin-left: 2px;
 }
 
 

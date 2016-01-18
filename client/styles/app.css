@@ -200,7 +200,6 @@ button {
 #newPlaylistButton:hover,
 #newPlaylistButton:focus,
 #newPlaylistButton:active {
-  background-color: #e41a03;
 }
 
 
@@ -214,7 +213,6 @@ button {
 #browseMineButton:hover,
 #browseMineButton:focus,
 #browseMineButton:active {
-  background-color: #039ae4;
 }
 
 #browseAllButton {
@@ -227,7 +225,6 @@ button {
 #browseAllButton:hover,
 #browseAllButton:focus,
 #browseAllButton:active {
-  background-color: #e41a03;
 }
 
 #YTplayerButton {
@@ -390,6 +387,16 @@ ul.subnav {
 
 #focus {
   color: blue;
+}
+
+.focus{
+  color: #ddd;
+  width: 250px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-align: left;
+  font-size: 13px;
 }
 
 /*.songName:hover {

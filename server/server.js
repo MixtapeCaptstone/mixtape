@@ -51,6 +51,7 @@ Meteor.methods( {
     if(contains !== true){
       Lists.update(thisId, {$addToSet: {upvoters: user}, $inc: {upvotes: 1} });
     }
+    console.log(upvoters);
   },
   downvote: function(title){
     var user = Meteor.user().username;

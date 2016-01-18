@@ -3,25 +3,6 @@ ThisPlaylist = new Mongo.Collection(null); //current playlist only on client
 Song = new Mongo.Collection('song');
 Lists = new Mongo.Collection('lists');
 
-//Set Initial Playlist
-function setPlayList(params, id){    
-  var findSong = function(){
-      return this;
-  };
-  var reqList = Lists.find({ name: id }).fetch();
-  ThisPlaylist.update(
-    { name: "current" },
-    {
-       name: "current",
-       listName: reqList,
-       findSong: findSong
-    },
-    { upsert: true}
-  );
-  console.log('!!!!!!!!!!!');
-  ThisPlaylist.update ({name: 'current'}, { '$set': {"listName.0.playlist.0.focus" : true} });
-}
-
 // Iron Router
 Router.route('/', function(){
     this.render('test');
@@ -35,22 +16,16 @@ Router.route('/playlist/:_id', {
      var id = params._id; // "List Name"
      Session.set('listName', id);
      setPlayList(params, id);
-     //find playlist object
-
-    //Cue first video
+     console.log('rendering!!!!!!!!');
    },
    onAfterAction: function () {
-
     // player.cueVideoById(currentSongId);
    }
-
 });
 
 Template.test.onRendered(function () {
   // Use the Packery jQuery plugin
-  console.log('rendered');
-  // Session.set('playa', false);
-  // Session.set('YT', true);
+
 });
 
 // METEOR THINGS
@@ -176,6 +151,7 @@ Template.searches.events ({
         //Call addSong to save to server
         Meteor.call('addSong', e);
         songNum = SongClient.find().fetch().length;
+        trackNum = songNum + 1;
         // CHANGED 'e.playlist' >> 'z'
         //Save onto client
         SongClient.insert({
@@ -187,7 +163,8 @@ Template.searches.events ({
           username: Meteor.user().username,
           playlist: z,
           index: songNum,
-          focus: false
+          focus: false,
+          track: trackNum
         });
       }
     });
@@ -250,10 +227,21 @@ Template.listViewer.helpers({
     var listTitle = Session.get("listName"); //get the name of the current playlist
     var list = Lists.find({name: listTitle}).fetch();
     var name = list[0];
-    return list[0].playlist;
+
+    //ThisList
+    var currentList = ThisPlaylist.find().fetch();
+    var returnList = currentList[0].listName[0].playlist;
+    var thisList = tape.playlist;
+
+    // return returnList;
+    return thisList;
   },
   tapeName: function () {
     return [{text: Session.get('listName')}];
+  },
+  getFocus: function(focus){
+    console.log(focus)
+    return focus;
   }
 });
 
@@ -274,15 +262,11 @@ Template.listViewer.events({
     // $(thisDiv).attr("class", "songName" ); //remove hover class
   },
   'click .songClass': function (event) {
-
-    // $('.focus').attr('class', 'songClass'); //remove previous focus
-    console.log("clicked song name");
-    // $(self).attr( 'class', 'focus');//set focus
-
     var songIndex = $(event.currentTarget).attr("name"); //Get song index number
-    setSongFocus(songIndex);
+    
+    tape.setFocus(songIndex);
+    setDivFocus()
     playSongFocus();
-    // player.playVideoAt(songIndex);//Play correct playlist song index
   }
 });
 
@@ -328,6 +312,8 @@ Template.playlist.events({
 
     SongClient.remove({}); //Remove the client's temporary playlist
     Session.set("title", ""); //Remove Session title
+
+    //cue first song
   }
 });
 
@@ -342,30 +328,39 @@ Template.mix.helpers({
 
 Template.mix.events({
   "click .playlistName": function(event){
-    var newList = Lists.find({name: event.target.id}).fetch();//get playlist
-    var listArray = [];
-    //push individual sing id's into an empty array
-    newList[0].playlist.forEach(function(element, index, array){
-      listArray.push(element.id);
-    });
-    //set playlist
-    Session.set("listName", event.target.id);
-    player.loadPlaylist({
-        'playlist': listArray,
-        'listType': 'playlist',
-        'index': 0,
-        'startSeconds': 0,
-        'suggestedQuality': 'small'
-    });
+    var id = event.target.id;
+    var fullid = "/playlist/" + id;
+    Router.go(fullid);
 
+    // var newList = Lists.find({name: event.target.id}).fetch();//get playlist
+    // var listArray = [];
+    // //push individual sing id's into an empty array
+    // newList[0].playlist.forEach(function(element, index, array){
+    //   listArray.push(element.id);
+    // });
+
+    //set state
+    // e.preventDefault();
     Session.set('mix', false);
     Session.set('YT', true);
 
-    //show player
+    //show playerBox
     $('#playerBox').css('display', 'block');
+
+    // //set playlist
+    // Session.set("listName", event.target.id);
+    // player.loadPlaylist({
+    //     'playlist': listArray,
+    //     'listType': 'playlist',
+    //     'index': 0,
+    //     'startSeconds': 0,
+    //     'suggestedQuality': 'small'
+    // });
 
     SongClient.remove({}); //Remove the client's temporary playlist
     Session.set("title", ""); //Remove Session title
+
+    //cue first song
   },
   "click .delete": function (event){
     console.log("༼ つ ◕_◕ ༽つ delete!");
@@ -411,15 +406,36 @@ Template.upvote.helpers({
 });
 
 Template.upvote.events({
-  'click .upvoteDiv': function(){
+  'click .upvoteDiv': function(event){
+
     var title = Session.get('listName');
+
     Meteor.call('upvote', title);
+
+    // event.preventDefault();
+    // var user = Meteor.user().username;
+    // var thisList = Lists.find({name: title}, {reactive: false}).fetch();
+    // var thisId = thisList[0]._id;
+    // var upvoters = thisList[0].upvoters;
+    // var contains;
+    // for(var i = 0; i < upvoters.length; i++){
+    //   if(upvoters[i] == user){
+    //     contains = true;
+    //   }
+    // }
+    // if(contains !== true){
+    //   Lists.update(thisId, {$addToSet: {upvoters: user}, $inc: {upvotes: 1}});
+    // }
+    // console.log(upvoters);
+
+
   },
   'click .downvoteDiv': function(){
     var title = Session.get('listName');
     Meteor.call('downvote', title);
   }
 });
+
 
 Template.test.helpers({
   clickCreate: function () {
@@ -496,103 +512,118 @@ Meteor.startup(function () {
 
 //YOUTUBE THINGS
 
-
 function playNextSong(){
-  var indexValue = getSongFocus();
-   var list = ThisPlaylist.find().fetch();
-  var playlist = list[0].listName[0].playlist;
-
-  console.log('indexValue:', indexValue, " Playlist.length:", playlist.length);
-
-  if(parseInt(indexValue, 10) >= playlist.length - 1){
-    setSongFocus(0);
-    var songId = list[0].listName[0].playlist[0].id;
-    player.loadVideoById(songId);
-    player.playVideo();
-  } else {
-    var nextFocus = parseInt(indexValue, 10) + 1;
-    console.log('indexValue:', indexValue, ", nextFocus:", nextFocus);
-    var thisId = list[0].listName[0].playlist[nextFocus].id;
-    player.loadVideoById(thisId);
-    player.playVideo();
-    setSongFocus(nextFocus);
-  }
-  console.log("list after change:", playlist);
+  tape.setNextFocus();
+  var currentId = tape.currentSongId();
+  player.loadVideoById(currentId);
+  setDivFocus();
 }
 
 function playSongFocus(){
-  var currentFocus = getSongFocus();
-  var list = ThisPlaylist.find().fetch();
-  var songId = list[0].listName[0].playlist[currentFocus].id;
-  player.loadVideoById(songId);
+  var songFocus = tape.currentSongId();
+  player.loadVideoById(songFocus);
   player.playVideo();
 }
 
-function getCurrentSongId(){
-  var list = ThisPlaylist.find().fetch();
-  var playlist = list[0].listName[0].playlist;
-  var indexValue;
-  playlist.forEach(function(element, index, array){
-    var thisFocus = element.focus;
-    if(thisFocus === true){
-      indexValue = index;
-    }
-  });
-  return list[0].listName[0].playlist[indexValue].id;
-}
-
-function setSongFocus(index){
-  console.log('setSongFocus', index);
-  var list = ThisPlaylist.find().fetch();
-  var playlist = list[0].listName[0].playlist;
-  console.log('current playlist', playlist);
-
-  // remove previous focus
-  var currentFocus = getSongFocus();
-  console.log('current focus:', currentFocus);
-  var removeModifier = { $set: {} };
-  removeModifier.$set["listName.0.playlist." + currentFocus + ".focus"] = false;
-  ThisPlaylist.update({name: 'current'}, removeModifier);
-  // ThisPlaylist.update({name: 'current'}, {"listName.0.playlist.0.focus": false});
-
-
-  //set new focus
-  var setModifier = { $set: {} };
-  setModifier.$set["listName.0.playlist." + index + ".focus"] = true;
-  ThisPlaylist.update({name: 'current'}, setModifier);
-
-  setDivFocus();
-
-  var updatedlist = ThisPlaylist.find().fetch();
-  var updatedplaylist = updatedlist[0].listName[0].playlist;
-  console.log('updated playlist:', updatedplaylist);
-  // ThisPlaylist.update ({name: 'current'}, { '$set': {"listName.0.playlist.1.focus" : true} });
-}
-
-function getSongFocus(){
-  var list = ThisPlaylist.find().fetch();
-  var playlist = list[0].listName[0].playlist;
-  var indexValue;
-  playlist.forEach(function(element, index, array){
-    console.log('getSongFocus index:', index, "element.focus", element.focus);
-    var thisFocus = element.focus;
-    if(thisFocus === true){
-      indexValue = index;
-    }
-  });
-  return indexValue;
-}
-
 function setDivFocus(){
-  var currentFocus = getSongFocus();
+  var currentFocus = tape.getFocus();
   var x = document.getElementsByClassName("songName");
+  var songIndex;
+  var songText;
+  var smallPlayer = '<div id="smallPlayer"><svg class="icon-play4"><use xlink:href="#icon-play4"></use></svg></div>'     
 
   //Remove Current Focus
   for(var i = 0; i < x.length; i++){
-    x[i].id = 'noFocus';    
+    songIndex = tape.playlist[i].index + 1;
+    songText = tape.playlist[i].text;
+    x[i].id = 'noFocus'; 
+    if(currentFocus == i){
+      x[i].innerHTML = smallPlayer + " " + songText;
+    } else {
+      x[i].innerHTML = songIndex + ". " + songText;
+    }  
   }
-
   x[currentFocus].id = 'focus';
+}
+
+//Set Initial Playlist Constructor 
+
+function Tape(mongoObject){
+  this.name = mongoObject[0].name;
+  this.playlist = mongoObject[0].playlist;
+  this.mongoObject = mongoObject;
+  this.focus = 0;
+  this.getFocus = function(){
+    return this.focus
+  };
+  this.setFocus = function(newFocus){
+    this.focus = newFocus;
+    //remove playlist focus
+    for (var i = 0; i < this.playlist.length; i++) {
+      this.playlist[i].focus = false;
+    };
+    this.playlist[newFocus].focus = true;
+  };
+  this.chirp = function(){
+    console.log(mongoObject);
+  };
+  this.currentSongId = function(){
+    var thisFocus = this.getFocus();
+    return this.playlist[thisFocus].id;
+  };
+  this.setNextFocus = function(){
+    var focus = parseInt(this.getFocus(), 10);
+    if( focus >= this.playlist.length - 1){
+      this.setFocus(0);
+    } else {
+      this.setFocus(focus + 1);
+    }
+    return this.focus;
+  };
+}
+
+//Global tape object
+var tape;
+
+
+function setPlayList(params, id){   
+
+  console.log("settingplaylist!!!!!!"); 
+  var findSong = function(){
+      return this;
+  };
+  var reqList = Lists.find({ name: id }).fetch();
+
+  //Set Mongo Playlist Object
+  ThisPlaylist.update(
+    { name: "current" },
+    {
+       name: "current",
+       listName: reqList,
+       findSong: findSong
+    },
+    { upsert: true}
+  );
+
+  var firstSong = reqList[0].playlist[0].id;
+
+  var list = ThisPlaylist.find().fetch();
+  var playlist = list[0].listName[0].playlist;
+  var songCue = list[0].listName[0].playlist[0].id;
+  var upvotes = list[0].listName[0].upvotes + 1;
+
+  //Set the playlist object constructor.
+  tape = new Tape(reqList);
+
+  setUpvoteDiv(upvotes);
+  player.cueVideoById(songCue);
+}
+
+//Set number of upvotes
+function setUpvoteDiv(num){
+  event.preventDefault();
+  var upvoteDiv = document.getElementsByClassName("upvoteDiv");
+  upvoteDiv[0].innerHTML = num + "<div class=heart> ♡ </div>";
 }
 
 //YouTube API
@@ -631,18 +662,15 @@ function onPlayerReady(event) {
         }
         else {
           setSongFocus();
-          player.playVideo();
           setDivFocus()
+          player.playVideo();
+
         }
         return false;
     });
 
     $('#forward').on('click', function(){
       playNextSong();
-      // var songIndex = getSongFocus() + 1;
-      // console.log("songIdex for #forward:", songIndex);
-      // setSongFocus(songIndex);
-      // playSongFocus();  
     });
 
     var minutes = Math.floor((player.getDuration()) / 60);
@@ -713,9 +741,11 @@ function onPlayerReady(event) {
       }
     );
 
-    // var currentSongId = getCurrentSongId();
-    // player.cueVideoById(currentSongId);
-}
+  var list = ThisPlaylist.find().fetch();
+  var playlist = list[0].listName[0].playlist;
+  var songCue = list[0].listName[0].playlist[0].id;
+  player.cueVideoById(songCue);
+ }
 
 var scrubber;
 
@@ -755,9 +785,11 @@ function onPlayerStateChange(event) {
 
   //Change the play button text
   if(event.data === 1) {
-      $('.escolta').html('<svg class="icon-pause2"><use xlink:href="#icon-pause2"></use></svg>');
-  }
-  else {
+    setDivFocus();
+    $('.escolta').html('<svg class="icon-pause2"><use xlink:href="#icon-pause2"></use></svg>');
+  } else if(event.data === 0){
+    playNextSong();
+  } else {
     $('.escolta').html('<svg class="icon-play3"><use xlink:href="#icon-play3"></use>');
   }
 
@@ -769,7 +801,6 @@ function onPlayerStateChange(event) {
       }
       else {
         player.playVideo();
-        getSongFocus();
         setDivFocus()
       }
       return false;

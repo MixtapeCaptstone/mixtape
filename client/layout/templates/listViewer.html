@@ -13,8 +13,15 @@
   <div class="songClass" id="playListSong" name="{{index}}">
 
     <div>{{name}}</div>
-
-    <div class="songName">{{text}}</div>
+    
+    <div class="songName">
+      {{#if getFocus focus}}
+        <div id="smallPlayer"><svg class="icon-play4"><use xlink:href="#icon-play4"></use></svg></div>      
+        {{else}}
+          {{track}}.
+      {{/if}}
+      {{text}}
+    </div>
 
   </div>
   </td>
