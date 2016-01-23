@@ -1,32 +1,64 @@
 SongClient = new Mongo.Collection(null);//Create collection only on the client.
 ThisPlaylist = new Mongo.Collection(null); //current playlist only on client
-Song = new Mongo.Collection('song');
 Lists = new Mongo.Collection('lists');
 
-// Iron Router
-Router.route('/', function(){
-    this.render('test');
+
+
+// Flow Router
+
+FlowRouter.route('/playlist/:Id', {
+    action: function(params) {
+      Session.set('listName', params.Id);
+      console.log("RENDERING!!!!!!!");
+      BlazeLayout.render("home");
+    },
+    subscriptions: function(params) {
+    this.register('Lists', Meteor.subscribe('lists'));
+  }
 });
 
-Router.route('/playlist/:_id', {
-  action: function () {
-     // render all templates and regions for this route
-     this.render('test');
-     var params = this.params; // { _id: "List Name" }
-     var id = params._id; // "List Name"
-     Session.set('listName', id);
-     setPlayList(params, id);
-     console.log('rendering!!!!!!!!');
-   },
-   onAfterAction: function () {
-    // player.cueVideoById(currentSongId);
-   }
+FlowRouter.route('/', {
+    action: function(params) {
+      Session.set('listName', "");
+      console.log("RENDERING!!!!!!!");
+      BlazeLayout.render("home");
+    },
+    subscriptions: function(params) {
+      this.register('Lists', Meteor.subscribe('lists'));
+  }
 });
 
-Template.test.onRendered(function () {
-  // Use the Packery jQuery plugin
+//Set the initial playlist
+function setPlayList(params){   
 
-});
+  console.log("settingplaylist!!!!!!"); 
+  var reqList = Lists.find({ name: params }).fetch();
+  console.log('reqList:', reqList);
+  //Set Mongo Playlist Object
+  ThisPlaylist.update(
+    { name: "current" },
+    {
+       name: "current",
+       listName: reqList,
+    },
+    { upsert: true}
+  );
+
+  var firstSong = reqList[0].playlist.id;
+  var user = Meteor.user();
+  var list = ThisPlaylist.find().fetch();
+  var playlist = list[0].listName[0].playlist;
+  var songCue = list[0].listName[0].playlist[0].id;
+  var upvotes = list[0].listName[0].upvotes + 1;
+
+  //Set the playlist object constructor.
+  tape = new Tape(reqList);
+  setUpvoteDiv(upvotes, user);
+  setTimeout(function(){
+    console.log("setting timeout");
+    player.cueVideoById(songCue);
+  }, 1000); 
+}
 
 // METEOR THINGS
 Template.user.helpers({
@@ -131,7 +163,6 @@ Template.searches.events ({
   },
   //Submits newly created playlist to server
   'click #submitPlaylist': function(){
-    // CHANGED title = Session.get('title')
     var title = Session.get('title')[0].text;
     var list = SongClient.find().fetch();
     // CHANGED 'myPlay' >> 'title'
@@ -222,33 +253,29 @@ Template.playlistsBrowseCreate.events({
   }
 });
 
+Template.listViewer.onRendered(function () {
+  var listName = Session.get('listName');
+  setPlayList(listName);
+});
+
+
 Template.listViewer.helpers({
   listTape: function(){
-    var listTitle = Session.get("listName"); //get the name of the current playlist
-    var list = Lists.find({name: listTitle}).fetch();
-    var name = list[0];
-
-    //ThisList
-    var currentList = ThisPlaylist.find().fetch();
-    var returnList = currentList[0].listName[0].playlist;
-    var thisList = tape.playlist;
-
-    // return returnList;
-    return thisList;
+    var listName = Session.get('listName');
+    var list = Lists.find({name: listName}).fetch();
+    var playlist = list[0].playlist;
+    return playlist;
   },
   tapeName: function () {
     return [{text: Session.get('listName')}];
   },
   getFocus: function(focus){
-    console.log(focus)
     return focus;
   }
 });
 
 Template.listViewer.events({
   'click .songHover': function (event) {
-    //TODO is this redundant? Already in body event!
-    // $('#focus').removeAttr('id'); //remove previous focus
     event.target.id = "focus"; //set focus
     var songIndex = this.name;
     var songId = this.id;
@@ -262,12 +289,46 @@ Template.listViewer.events({
     // $(thisDiv).attr("class", "songName" ); //remove hover class
   },
   'click .songClass': function (event) {
+    var title = Session.get('listName');
+
     var songIndex = $(event.currentTarget).attr("name"); //Get song index number
     
     tape.setFocus(songIndex);
     setDivFocus()
     playSongFocus();
-  }
+  },
+  'click #upvoteDiv': function(event){
+    console.log("clicked upvoteDiv");
+
+    var title = Session.get('listName');
+    Meteor.call('upvote', title);
+    var upvoteDiv = document.getElementsByClassName("upvoteDiv");
+
+
+    //REGEX
+    var upvoteNumber = upvoteDiv[0].innerHTML;
+    var numberPattern = /\d+/g;
+
+    var regExObject = upvoteNumber.match( numberPattern );
+    var num = parseInt(regExObject, 10) + 1;
+
+    upvoteDiv[0].innerHTML = num + "<div class=heart id=downvoteDiv> ♡ </div>";
+   },
+  'click #downvoteDiv': function(){
+    console.log("clicked downvoteDiv");
+
+    var title = Session.get('listName');
+    Meteor.call('downvote', title);
+    var upvoteDiv = document.getElementsByClassName("upvoteDiv");
+
+    //REGEX
+    var upvoteNumber = upvoteDiv[0].innerHTML;
+    var numberPattern = /\d+/g;
+
+    var regExObject = upvoteNumber.match( numberPattern );
+    var num = parseInt(regExObject, 10) - 1;
+
+    upvoteDiv[0].innerHTML = num + "<div class=heart id=upvoteDiv> ♡ </div>";  }
 });
 
 Template.playlist.helpers({
@@ -281,39 +342,21 @@ Template.playlist.helpers({
 
 Template.playlist.events({
   "click .playlistName": function(event){
+    player.stopVideo();
     var id = event.target.id;
     var fullid = "/playlist/" + id;
-    Router.go(fullid);
+    FlowRouter.go(fullid);
 
-    // var newList = Lists.find({name: event.target.id}).fetch();//get playlist
-    // var listArray = [];
-    // //push individual sing id's into an empty array
-    // newList[0].playlist.forEach(function(element, index, array){
-    //   listArray.push(element.id);
-    // });
-
-    //set state
-    // e.preventDefault();
     Session.set('playa', false);
     Session.set('YT', true);
 
     //show playerBox
     $('#playerBox').css('display', 'block');
 
-    // //set playlist
-    // Session.set("listName", event.target.id);
-    // player.loadPlaylist({
-    //     'playlist': listArray,
-    //     'listType': 'playlist',
-    //     'index': 0,
-    //     'startSeconds': 0,
-    //     'suggestedQuality': 'small'
-    // });
-
     SongClient.remove({}); //Remove the client's temporary playlist
-    Session.set("title", ""); //Remove Session title
-
-    //cue first song
+    Session.set("title", "id"); //Reset Session title
+    setPlayList(id);
+    player.cueVideoById(tape.playlist[0].id);
   }
 });
 
@@ -328,39 +371,21 @@ Template.mix.helpers({
 
 Template.mix.events({
   "click .playlistName": function(event){
+    player.stopVideo();
     var id = event.target.id;
     var fullid = "/playlist/" + id;
-    Router.go(fullid);
-
-    // var newList = Lists.find({name: event.target.id}).fetch();//get playlist
-    // var listArray = [];
-    // //push individual sing id's into an empty array
-    // newList[0].playlist.forEach(function(element, index, array){
-    //   listArray.push(element.id);
-    // });
-
-    //set state
-    // e.preventDefault();
+    // console.log("fullid:", fullid);
     Session.set('mix', false);
     Session.set('YT', true);
 
     //show playerBox
     $('#playerBox').css('display', 'block');
 
-    // //set playlist
-    // Session.set("listName", event.target.id);
-    // player.loadPlaylist({
-    //     'playlist': listArray,
-    //     'listType': 'playlist',
-    //     'index': 0,
-    //     'startSeconds': 0,
-    //     'suggestedQuality': 'small'
-    // });
-
     SongClient.remove({}); //Remove the client's temporary playlist
-    Session.set("title", ""); //Remove Session title
-
-    //cue first song
+    // Session.set("title", ""); //Remove Session title
+    FlowRouter.go(fullid);
+    setPlayList(id);
+    player.cueVideoById(tape.playlist[0].id);
   },
   "click .delete": function (event){
     console.log("༼ つ ◕_◕ ༽つ delete!");
@@ -370,80 +395,20 @@ Template.mix.events({
     }
 });
 
-Template.upvote.helpers({
-  upvotes: function(){
-    var user = Meteor.user().username;
-    var title = Session.get('listName');
-    var thisList = Lists.find({name: title}).fetch();
-    var thisId = thisList[0]._id;
-    var upvoters = thisList[0].upvoters;
-    for(var i = 0; i < upvoters.length; i++){
-      if(upvoters[i] == user){
-        return false;
-      }
-    }
-    return true;
-  },
-  downvotes: function(){
-    var user = Meteor.user().username;
-    var title = Session.get('listName');
-    var thisList = Lists.find({name: title}).fetch();
-    var thisId = thisList[0]._id;
-    var upvoters = thisList[0].upvoters;
-    for(var i = 0; i < upvoters.length; i++){
-      if(upvoters[i] == user){
-        return true;
-      }
-    }
-    return false;
-  },
-  number: function () {
-    var title = Session.get('listName');
-    var thisList = Lists.find({name: title}).fetch();
-    var upvotes = thisList[0].upvotes;
-    return [{text: upvotes}];
-  }
-});
-
-Template.upvote.events({
-  'click .upvoteDiv': function(event){
-
-    var title = Session.get('listName');
-
-    Meteor.call('upvote', title);
-
-    // event.preventDefault();
-    // var user = Meteor.user().username;
-    // var thisList = Lists.find({name: title}, {reactive: false}).fetch();
-    // var thisId = thisList[0]._id;
-    // var upvoters = thisList[0].upvoters;
-    // var contains;
-    // for(var i = 0; i < upvoters.length; i++){
-    //   if(upvoters[i] == user){
-    //     contains = true;
-    //   }
-    // }
-    // if(contains !== true){
-    //   Lists.update(thisId, {$addToSet: {upvoters: user}, $inc: {upvotes: 1}});
-    // }
-    // console.log(upvoters);
-
-
-  },
-  'click .downvoteDiv': function(){
-    var title = Session.get('listName');
-    Meteor.call('downvote', title);
-  }
-});
-
-
-Template.test.helpers({
+Template.home.helpers({
   clickCreate: function () {
       return Session.get('clickCreate');
+    },
+  isReady: function(sub) {
+    if(sub) {
+      return FlowRouter.subsReady(sub);
+    } else {
+      return FlowRouter.subsReady();
     }
+  }
 });
 
-Template.test.events({
+Template.home.events({
   "submit .search": function (event) {
     // Prevent default browser form submit
     event.preventDefault();
@@ -484,6 +449,17 @@ Template.player.events({
 
 });
 
+Template.player.helpers({
+  isReady: function(sub) {
+    if(sub) {
+      console.log("is ready ", sub);
+      return FlowRouter.subsReady(sub);
+    } else {
+      return FlowRouter.subsReady();
+    }
+  }
+});
+
 
 // JQUERY things
 Meteor.startup(function () {
@@ -517,6 +493,8 @@ function playNextSong(){
   var currentId = tape.currentSongId();
   player.loadVideoById(currentId);
   setDivFocus();
+  console.log("Tape!!!!:", tape);
+  console.log("Chirp:", tape.chirp());
 }
 
 function playSongFocus(){
@@ -546,11 +524,28 @@ function setDivFocus(){
   x[currentFocus].id = 'focus';
 }
 
+//Set number of upvotes
+function setUpvoteDiv(num, user){
+  event.preventDefault();
+  console.log("setting upvote divs");
+  var upvoteDiv = document.getElementsByClassName("upvoteDiv");
+
+  for(var i = 0; i < tape.upvoters.length; i++){
+    if(tape.upvoters[i] === user.username){
+      upvoteDiv[0].innerHTML = num + "<div class=heart id=downvoteDiv> ♡ </div>";
+      return true;
+    } else {
+      upvoteDiv[0].innerHTML = num + "<div class=heart id=upvoteDiv> ♡ </div>";
+    }
+  }
+}
+
 //Set Initial Playlist Constructor 
 
 function Tape(mongoObject){
   this.name = mongoObject[0].name;
   this.playlist = mongoObject[0].playlist;
+  this.upvoters = mongoObject[0].upvoters;
   this.mongoObject = mongoObject;
   this.focus = 0;
   this.getFocus = function(){
@@ -585,46 +580,10 @@ function Tape(mongoObject){
 //Global tape object
 var tape;
 
+//YOUTUBE API
 
-function setPlayList(params, id){   
-
-  console.log("settingplaylist!!!!!!"); 
-  var findSong = function(){
-      return this;
-  };
-  var reqList = Lists.find({ name: id }).fetch();
-
-  //Set Mongo Playlist Object
-  ThisPlaylist.update(
-    { name: "current" },
-    {
-       name: "current",
-       listName: reqList,
-       findSong: findSong
-    },
-    { upsert: true}
-  );
-
-  var firstSong = reqList[0].playlist[0].id;
-
-  var list = ThisPlaylist.find().fetch();
-  var playlist = list[0].listName[0].playlist;
-  var songCue = list[0].listName[0].playlist[0].id;
-  var upvotes = list[0].listName[0].upvotes + 1;
-
-  //Set the playlist object constructor.
-  tape = new Tape(reqList);
-
-  setUpvoteDiv(upvotes);
-  player.cueVideoById(songCue);
-}
-
-//Set number of upvotes
-function setUpvoteDiv(num){
-  event.preventDefault();
-  var upvoteDiv = document.getElementsByClassName("upvoteDiv");
-  upvoteDiv[0].innerHTML = num + "<div class=heart> ♡ </div>";
-}
+console.log("YT rendering");
+YT.load();
 
 //YouTube API
 // YouTube API will call onYouTubeIframeAPIReady() when API ready.
@@ -645,7 +604,6 @@ onYouTubeIframeAPIReady = function () {
 
 };
 
-YT.load();
 
 function onPlayerReady(event) {
 
@@ -661,10 +619,8 @@ function onPlayerReady(event) {
             player.pauseVideo();
         }
         else {
-          setSongFocus();
           setDivFocus()
-          player.playVideo();
-
+          playSongFocus();
         }
         return false;
     });
@@ -740,11 +696,6 @@ function onPlayerReady(event) {
         }
       }
     );
-
-  var list = ThisPlaylist.find().fetch();
-  var playlist = list[0].listName[0].playlist;
-  var songCue = list[0].listName[0].playlist[0].id;
-  player.cueVideoById(songCue);
  }
 
 var scrubber;
@@ -768,9 +719,6 @@ function clock(){
 }
 
 
-
-
-var done = false;
 function onPlayerStateChange(event) {
 
 
@@ -813,71 +761,75 @@ function onPlayerStateChange(event) {
 
 $(document).ready(function(){
 
-
-//SCRUBBER
-
+//Initialize Scrubber
 var timeDrag = false;   /* Drag status */
 
-$('.progressParent').mousedown(function(e) {
-    timeDrag = true;
-    updatebar(e.pageX);
+  $('.progressParent').mousedown(function(e) {
+      timeDrag = true;
+      updatebar(e.pageX);
+  });
+
+  $('.progressParent').mouseup(function(e) {
+      if(timeDrag) {
+          timeDrag = false;
+          updatebar(e.pageX);
+      }
+  });
+  $('.progressParent').mousemove(function(e) {
+      if(timeDrag) {
+          updatebar(e.pageX);
+      }
+  });
+
+  //update Progress Bar control
+  var updatebar = function(x) {
+      var progress = $('.progressParent');
+      var maxduration = player.getDuration(); //Video duraiton
+      var position = x - progress.offset().left; //Click pos
+      var percentage = 100 * position / progress.width();
+
+      //Check within range
+      if(percentage > 100) {
+          percentage = 100;
+      }
+      if(percentage < 0) {
+          percentage = 0;
+      }
+
+      //Update progress bar and video currenttime
+      $('.progress').css('width', percentage + '%');
+      player.seekTo(maxduration * percentage / 100);
+  };
+
+  //Volume DIVS
+  $('.volumeDiv').hover(
+    function(){
+      $(this).animate({'margin-top': '2px'});
+    },
+    function(){
+      $(this).animate({"margin-top": "5px"});
+    }
+  );
+
+  $('.volumeDiv').click(
+    function(){
+      var counter = parseInt($(this).attr('id'));
+
+      player.setVolume(counter);
+
+      $('.volumeDiv').css('background-color', 'rgb(143, 143, 143)');
+      for(var i =0; i <= counter; i++){
+        var divID = "#" + i;
+        $(divID).css('background-color', "rgb(255, 255, 255)");
+      }
+    }
+  );
 });
 
-$('.progressParent').mouseup(function(e) {
-    if(timeDrag) {
-        timeDrag = false;
-        updatebar(e.pageX);
-    }
-});
-$('.progressParent').mousemove(function(e) {
-    if(timeDrag) {
-        updatebar(e.pageX);
-    }
-});
 
-//update Progress Bar control
-var updatebar = function(x) {
-    var progress = $('.progressParent');
-    var maxduration = player.getDuration(); //Video duraiton
-    var position = x - progress.offset().left; //Click pos
-    var percentage = 100 * position / progress.width();
 
-    //Check within range
-    if(percentage > 100) {
-        percentage = 100;
-    }
-    if(percentage < 0) {
-        percentage = 0;
-    }
 
-    //Update progress bar and video currenttime
-    $('.progress').css('width', percentage + '%');
-    player.seekTo(maxduration * percentage / 100);
-};
 
-//Volume DIVS
-$('.volumeDiv').hover(
-  function(){
-    $(this).animate({'margin-top': '2px'});
-  },
-  function(){
-    $(this).animate({"margin-top": "5px"});
-  }
-);
 
-$('.volumeDiv').click(
-  function(){
-    var counter = parseInt($(this).attr('id'));
 
-    player.setVolume(counter);
-
-    $('.volumeDiv').css('background-color', 'rgb(143, 143, 143)');
-    for(var i =0; i <= counter; i++){
-      var divID = "#" + i;
-      $(divID).css('background-color', "rgb(255, 255, 255)");
-    }
-  }
-);
-
-});
 

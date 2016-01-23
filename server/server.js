@@ -49,7 +49,7 @@ Meteor.methods( {
       }
     }
     if(contains !== true){
-      Lists.update(thisId, {$addToSet: {upvoters: user}, $inc: {upvotes: 1} });
+      Lists.update(thisId, {$addToSet: {upvoters: user}, $inc: {upvotes: 1}}, {reactive: false});
     }
     console.log(upvoters);
   },

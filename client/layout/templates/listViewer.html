@@ -2,9 +2,20 @@
   {{#each tapeName}}
     <div class="mixHeader">
       <h3 id="mixName">{{text}}</h3>
-      {{>upvote}}
+
+    <div class="upvoteContainer">
+    <div class="upvoteDiv">
+      </div>
+      </div>
+
     </div>
+
+
   {{/each}}
+
+
+
+
 <table class="songTable" role="grid">
 
   {{#each listTape}}
@@ -15,12 +26,7 @@
     <div>{{name}}</div>
     
     <div class="songName">
-      {{#if getFocus focus}}
-        <div id="smallPlayer"><svg class="icon-play4"><use xlink:href="#icon-play4"></use></svg></div>      
-        {{else}}
-          {{track}}.
-      {{/if}}
-      {{text}}
+      {{track}}. {{text}}
     </div>
 
   </div>

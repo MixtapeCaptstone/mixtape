@@ -19,8 +19,14 @@
         <div id="15" class="volumeDiv"></div>
       </div>
     </div>
-      {{> user}}
-      {{> listViewer}}
+        {{#if isReady "Lists"}}
+              {{> user}}
+           {{> listViewer}}
+
+            {{else}}
+            ...Loading
+          {{/if}}
+
   </div>
 
 </template>

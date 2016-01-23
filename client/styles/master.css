@@ -101,7 +101,7 @@
 }
 
 .icon-play4 {
-  fill: yellow;
+  fill: red;
   width: 70%;
   height: 70%;
   margin-top: 3.5px;
@@ -225,12 +225,17 @@
   margin-right: 3px;
 }
 
-.heart {
+#downvoteDiv {
   color: red;
   display: inline-block;
   margin-left: 2px;
 }
 
+#upvoteDiv {
+  color: white;
+  display: inline-block;
+  margin-left: 2px;
+}
 
 .userDis {
   width: inherit;
