@@ -1,37 +1,34 @@
 <template name="listViewer">
   {{#each tapeName}}
-    <div class="mixHeader">
-      <h3 id="mixName">{{text}}</h3>
+    <div class="songTable">
+      <div id="mixName">{{text}}</div>
 
-    <div class="upvoteContainer">
-    <div class="upvoteDiv">
-      </div>
-      </div>
+    {{#if container}}
+      <div class="upvoteContainer">
+      <div class="upvoteDiv">
+        </div>
+        </div>
+    {{/if}}
 
     </div>
-
-
   {{/each}}
 
 
 
 
-<table class="songTable" role="grid">
+  <div class="songTable">
 
-  {{#each listTape}}
-  <tr>
-  <td class="songBlock">
-  <div class="songClass" id="playListSong" name="{{index}}">
+    {{#each listTape}}
+      <div class="songClass" id="playListSong" name="{{index}}">
 
-    <div>{{name}}</div>
-    
-    <div class="songName">
-      {{track}}. {{text}}
-    </div>
+        <div>{{name}}</div>
+        <div class="songIndex"> {{track}}.</div>
 
+        <div class="songName">
+          {{text}}
+        </div>
+
+      </div>
+    {{/each}}
   </div>
-  </td>
-  </tr>
-  {{/each}}
-  </table>
 </template>

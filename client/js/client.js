@@ -2,15 +2,15 @@ SongClient = new Mongo.Collection(null);//Create collection only on the client.
 ThisPlaylist = new Mongo.Collection(null); //current playlist only on client
 Lists = new Mongo.Collection('lists');
 
-
-
 // Flow Router
-
 FlowRouter.route('/playlist/:Id', {
     action: function(params) {
       Session.set('listName', params.Id);
+      Session.set('title', '');
+      Session.set('trash', false);
       console.log("RENDERING!!!!!!!");
       BlazeLayout.render("home");
+      YT.load();
     },
     subscriptions: function(params) {
     this.register('Lists', Meteor.subscribe('lists'));
@@ -20,11 +20,37 @@ FlowRouter.route('/playlist/:Id', {
 FlowRouter.route('/', {
     action: function(params) {
       Session.set('listName', "");
+      Session.set('title', '');
+      Session.set('trash', false);
       console.log("RENDERING!!!!!!!");
       BlazeLayout.render("home");
     },
     subscriptions: function(params) {
       this.register('Lists', Meteor.subscribe('lists'));
+  }
+});
+
+FlowRouter.route('/mixes/:userName', {
+    action: function(params) {
+      console.log("RENDERING MIX!!!!!!!");
+      BlazeLayout.render("test");
+    },
+    subscriptions: function(params) {
+    this.register('Lists', Meteor.subscribe('lists'));
+  }
+});
+
+FlowRouter.route('/new', {
+    action: function(params) {
+      BlazeLayout.render("searches");
+      Session.set('trash', true);
+      Session.set('showSearches', false);
+
+      YT.load();
+    },
+    subscriptions: function(params) {
+      this.register('Lists', Meteor.subscribe('lists'));
+      this.register('ThisPlaylist', Meteor.subscribe('ThisPlaylist'));
   }
 });
 
@@ -49,7 +75,7 @@ function setPlayList(params){
   var list = ThisPlaylist.find().fetch();
   var playlist = list[0].listName[0].playlist;
   var songCue = list[0].listName[0].playlist[0].id;
-  var upvotes = list[0].listName[0].upvotes + 1;
+  var upvotes = list[0].listName[0].upvotes;
 
   //Set the playlist object constructor.
   tape = new Tape(reqList);
@@ -60,7 +86,89 @@ function setPlayList(params){
   }, 1000); 
 }
 
-// METEOR THINGS
+//Set playlist when initiating New list
+function setNewList(params){   
+
+  console.log("settingplaylist!!!!!!"); 
+  var reqList = params;
+  console.log('reqList:', reqList);
+  //Set Mongo Playlist Object
+  ThisPlaylist.update(
+    { name: "current" },
+    {
+       name: "current",
+       listName: reqList,
+    },
+    { upsert: true}
+  );
+
+  var firstSong = reqList[0].playlist.id;
+  var user = Meteor.user();
+  var list = ThisPlaylist.find().fetch();
+  var playlist = list[0].listName[0].playlist;
+  var songCue = list[0].listName[0].playlist[0].id;
+  var upvotes = list[0].listName[0].upvotes + 1;
+
+  //Set the playlist object constructor.
+  tape = new Tape(reqList);
+  setTimeout(function(){
+    console.log("setting timeout");
+    player.cueVideoById(songCue);
+  }, 1000); 
+}
+
+Template.headerNav.events({
+  "click #logoCentered": function(){
+    var userName = Meteor.user();
+    var fullid = "/mixes/" + userName.username;
+    console.log("clicked mixtape header", userName);
+
+    FlowRouter.go(fullid);
+  },
+  "click #newMix": function(){
+    console.log("clicked new");
+    var userName = Meteor.user();
+    var fullid = "/mixes/" + userName.username;
+    console.log("clicked mixtape header", userName);
+     var playlist = ({playlist: name});
+    Session.set('playa', false);
+    Session.set('mix', false);
+    Session.set('showLast', false);
+    Session.set('clickCreate', true);
+    Session.set('songCreate', false);
+    Session.set("listName", "");
+
+    FlowRouter.go('/new');
+  }
+
+});
+
+Template.test.helpers({
+  myLists: function(){
+    return Lists.find({author: Meteor.user().username});
+  }
+});
+
+Template.test.events({
+  "click .playlistName": function(event){
+    var id = event.target.id;
+    var fullid = "/playlist/" + id;
+    //show playerBox
+    $('#playerBox').css('display', 'block');
+    console.log("Test click");
+    SongClient.remove({}); //Remove the client's temporary playlist
+    // Session.set("title", ""); //Remove Session title
+    // FlowRouter.go(fullid);
+    FlowRouter.redirect(fullid);
+  },
+  "click .delete": function (event){
+    console.log("༼ つ ◕_◕ ༽つ delete!");
+    // if () {
+      Meteor.call("deleteList", this._id);
+    // }
+    }
+});
+
 Template.user.helpers({
   // This is how to call the database and pass things
   song: function () {
@@ -108,6 +216,23 @@ Template.user.events({
         });
       }
     });
+  },
+  "click .delete": function(){
+    SongClient.remove(this._id);
+
+    var thisList = SongClient.find().fetch();
+
+    //Update the track number
+    for(var i = 0; i < thisList.length; i++){
+      var thisID = thisList[i].id;
+
+      SongClient.update(
+        {id: thisID},
+        {$set:{index: i, track: i+1}}
+      );
+    } 
+
+    setDivFocus();
   }
   
 });
@@ -129,6 +254,9 @@ Template.searches.helpers({
   },
   noTitle: function () {
     return Session.get('noTitle');
+  },
+  showSearches: function(){
+    return Session.get('showSearches');
   }
 });
 
@@ -155,24 +283,102 @@ Template.searches.events ({
       Session.set('songCreate', true);
       Session.set('noTitle', false);
 
+      //Hide title form
+      $('.savePlay').hide(); 
+
       // Clear the form
       e.target.q.value = '';
     } else {
       Session.set('noTitle', true);
     }
   },
+
   //Submits newly created playlist to server
   'click #submitPlaylist': function(){
+    console.log("clicked submit");
     var title = Session.get('title')[0].text;
     var list = SongClient.find().fetch();
     // CHANGED 'myPlay' >> 'title'
     var playlist = {text: title, player: list};
-    Meteor.call('setSong', list, title);//Add to MongoDB on the server
-    SongClient.remove({}); //Remove the client's temporary playlist
-    Session.set("title", ""); //Remove Session title
-  },
+    Meteor.call('setSong', list, title, function(error, result){
+      if(error){
+        console.log("Something went terribly wrong");
+      }else{
+         var fullid = "/playlist/" + title;
+        // //show playerBox
+        // $('#playerBox').css('display', 'block');
+        SongClient.remove({}); //Remove the client's temporary playlist
+        FlowRouter.redirect(fullid);
 
-  'click .songClass': function(ev){
+      }
+    });//Add to MongoDB on the server
+    Session.set("title", ""); //Remove Session title
+
+
+
+  },
+  'click #forwardNav': function(){
+    console.log("clicked forwardNav");
+    var textField = document.getElementById("vidSearchInput");
+    console.log("textField", textField.value);
+    var text = Session.get('title').textContent;
+    var thisToken = Session.get('forwardNav');
+
+    Meteor.call('checkYT', {record: textField.value, token: thisToken}, function(error, results) {
+      console.log("YT RESULTS:", results, "parsed", yt);
+
+      var yt = JSON.parse(results.content);
+      Session.set('forwardNav', results.data.nextPageToken);//Set the next set of YouTube results to load
+      Session.set('backwardNav', results.data.prevPageToken);
+      var x = [];
+      yt.items.forEach(function(e){
+        x.push({text: e.snippet.title,
+                id: e.id.videoId,
+                pic: e.snippet.thumbnails.default.url
+        });
+      });
+      console.log("results", x);
+      Session.set('results', x);
+    });  
+
+    // Clear the form
+    document.getElementById('vidSearchInput').value='';
+
+    // Hide title form
+    $('.savePlay').hide();
+  
+  },
+    'click #backwardNav': function(){
+    console.log("clicked backwardNav");
+    var textField = document.getElementById("vidSearchInput");
+    console.log("textField", textField.value);
+    var text = Session.get('title').textContent;
+    var thisToken = Session.get('backwardNav');
+
+    Meteor.call('checkYT', {record: textField.value, token: thisToken}, function(error, results) {
+      console.log("YT RESULTS:", results, "parsed", yt);
+
+      var yt = JSON.parse(results.content);
+      Session.set('forwardNav', results.data.nextPageToken);//Set the next set of YouTube results to load
+      Session.set('backwardNav', results.data.prevPageToken);
+      var x = [];
+      yt.items.forEach(function(e){
+        x.push({text: e.snippet.title,
+                id: e.id.videoId,
+                pic: e.snippet.thumbnails.default.url
+        });
+      });
+      console.log("results", x);
+      Session.set('results', x);
+    });
+
+    // Clear the form
+    document.getElementById('vidSearchInput').value='';
+
+    // Hide title form
+    $('.savePlay').hide();  
+  },
+  'click .searchClass': function(ev){
     var x = ev.target.id;
     var y = Session.get('results');
     var z = Session.get('title')[0].text;
@@ -199,6 +405,85 @@ Template.searches.events ({
         });
       }
     });
+
+    //Update the current playlist to include newly added songs
+    var thisList = SongClient.find().fetch();
+    var listObj = [{playlist: thisList}];
+    console.log("listObj = ", listObj);
+
+    ThisPlaylist.update(
+      { name: "current" },
+      {
+         name: "current",
+         listName: listObj,
+      },
+        { upsert: true}
+    );
+
+    setNewList(listObj);
+  },
+
+  'click #searchButton': function(){
+    Session.set('showSearches', true);
+
+    console.log("clicked youTubeSearch");
+    var textField = document.getElementById("vidSearchInput");
+    console.log("textField", textField.value);
+    var text = Session.get('title').textContent;
+    Meteor.call('checkYT', {record: textField.value, token: ''}, function(error, results) {
+      var subNav = document.getElementsByClassName('subnavParent');
+      console.log('subNav:', subNav);
+      // subNav[0].innerHTML = '<div id="hey">HEY</div>';
+      console.log("YT RESULTS:", results, "parsed", yt);
+
+      var yt = JSON.parse(results.content);
+      Session.set('forwardNav', results.data.nextPageToken);
+      console.log(results.data.nextPageToken);
+      var x = [];
+      yt.items.forEach(function(e){
+        x.push({text: e.snippet.title,
+                id: e.id.videoId,
+                pic: e.snippet.thumbnails.default.url
+        });
+      });
+      console.log("results", x);
+      Session.set('results', x);
+    });
+
+    // Clear the form
+    document.getElementById('vidSearchInput').value='';
+
+    // Hide title form
+    $('.savePlay').hide();
+  },
+    "submit .search": function (event) {
+    // Prevent default browser form submit
+    event.preventDefault();
+    // Get value from form element
+    var text = event.target.q.value;
+    // Take "text" and use that to search YT
+    Meteor.call('checkYT', text, function(error, results) {
+      var yt = JSON.parse(results.content);
+      var x = [];
+      yt.items.forEach(function(e){
+        x.push({text: e.snippet.title,
+                id: e.id.videoId,
+                pic: e.snippet.thumbnails.default.url
+        });
+      });
+      Session.set('results', x);
+    });
+    // Display the search results drop-down
+    $('.subnav').css('visibility', 'visible');
+    // Clear the form
+    event.target.q.value = '';
+  },
+    'click .songClass': function (event) {
+      var songIndex = $(event.currentTarget).attr("name"); //Get song index number
+      
+      tape.setFocus(songIndex);
+      setDivFocus()
+      playSongFocus();
   }
 });
 
@@ -264,13 +549,27 @@ Template.listViewer.helpers({
     var listName = Session.get('listName');
     var list = Lists.find({name: listName}).fetch();
     var playlist = list[0].playlist;
-    return playlist;
+
+    //Returning mongo Client instead of server client
+    var thisList = ThisPlaylist.find().fetch();
+    var thisPlaylist = thisList[0].listName[0].playlist;
+    console.log("listViewer helper", thisPlaylist, playlist);
+
+    return thisPlaylist;
   },
   tapeName: function () {
     return [{text: Session.get('listName')}];
   },
   getFocus: function(focus){
     return focus;
+  },
+  container: function(){
+    var trash = Session.get('trash');
+    if(trash === true){
+      return false;
+    } else {
+      return true;
+    }
   }
 });
 
@@ -408,46 +707,53 @@ Template.home.helpers({
   }
 });
 
-Template.home.events({
-  "submit .search": function (event) {
-    // Prevent default browser form submit
-    event.preventDefault();
-    // Get value from form element
-    var text = event.target.q.value;
-    // Take "text" and use that to search YT
-    Meteor.call('checkYT', text, function(error, results) {
-      var yt = JSON.parse(results.content);
-      var x = [];
-      yt.items.forEach(function(e){
-        x.push({text: e.snippet.title,
-                id: e.id.videoId,
-                pic: e.snippet.thumbnails.default.url
-        });
-      });
-      Session.set('results', x);
-    });
-    // Display the search results drop-down
-    $('.subnav').css('visibility', 'visible');
-    // Clear the form
-    event.target.q.value = '';
-  },
-  "click .delete": function () {
-    SongClient.remove(this._id);
-  },
-  "click": function (e) {
-    if ( $(e.target).closest('.search-con').length ) {
-        $(".subnav").show();
-    }else if ( ! $(e.target).closest('.subnav').length ) {
-        $('.subnav').hide();
-    }
-  }
-});
+// Template.home.events({
+//   "submit .search": function (event) {
 
-Template.player.events({
-  "click #escolta": function(){
-  }
+//     // console.log('submit .search');
+//     // // Prevent default browser form submit
+//     // event.preventDefault();
+//     // // Get value from form element
+//     // var text = event.target.q.value;
+//     // // Take "text" and use that to search YT
+//     // Meteor.call('checkYT', text, function(error, results) {
+//     //   var yt = JSON.parse(results.content);
+//     //   var x = [];
+//     //   yt.items.forEach(function(e){
+//     //     x.push({text: e.snippet.title,
+//     //             id: e.id.videoId,
+//     //             pic: e.snippet.thumbnails.default.url
+//     //     });
+//     //   });
+//     //   Session.set('results', x);
+//     // });
+//     // // Display the search results drop-down
+//     // $('.subnavParent').css('visibility', 'visible');
 
-});
+//     // $('.subnav').css('visibility', 'visible');
+//     // // Clear the form
+//     // event.target.q.value = '';
+//   },
+//   "click .delete": function () {
+//     // console.log("DELETE:", this.id);
+//     // SongClient.remove(this._id);
+//   },
+//   "click": function (e) {
+//     if ( $(e.target).closest('.search-con').length ) {
+//         $(".subnav").show();
+//     }else if ( ! $(e.target).closest('.subnav').length ) {
+
+//     }
+//   }
+
+// });
+
+// // Template.player.events({
+// //   "click #escolta": function(){
+// //     console.log('clicked escolta');
+// //   }
+
+// // });
 
 Template.player.helpers({
   isReady: function(sub) {
@@ -461,25 +767,7 @@ Template.player.helpers({
 });
 
 
-// JQUERY things
 Meteor.startup(function () {
-  // Allows the element to be dropped into a different div, and prevents default drop.
-  allowDrop = function (ev) {
-    ev.preventDefault();
-  };
-
-  // Allows the 'id' text to be dragged
-  drag = function (ev) {
-    ev.dataTransfer.setData("text", ev.target.id);
-    var x = ev.target.id; //ev.srcElement doesn't work in Firefox
-    Session.set('tempSave', x);
-  };
-
-  // This event gets triggered when dropped. Puts the dragged item into the new div.
-  drop = function (ev) {
-    ev.preventDefault();
-    var data = ev.dataTransfer.getData("text");
-  };
   Accounts.ui.config({
     // require username rather then email
    passwordSignupFields: 'USERNAME_ONLY'
@@ -504,31 +792,47 @@ function playSongFocus(){
 }
 
 function setDivFocus(){
+  console.log("TAPE:", tape);
   var currentFocus = tape.getFocus();
-  var x = document.getElementsByClassName("songName");
+  var x = document.getElementsByClassName("songClass");
   var songIndex;
   var songText;
   var smallPlayer = '<div id="smallPlayer"><svg class="icon-play4"><use xlink:href="#icon-play4"></use></svg></div>'     
+  var trash = Session.get('trash');
+  //Reset Current Focus
 
-  //Remove Current Focus
-  for(var i = 0; i < x.length; i++){
-    songIndex = tape.playlist[i].index + 1;
-    songText = tape.playlist[i].text;
-    x[i].id = 'noFocus'; 
-    if(currentFocus == i){
-      x[i].innerHTML = smallPlayer + " " + songText;
-    } else {
-      x[i].innerHTML = songIndex + ". " + songText;
-    }  
-  }
-  x[currentFocus].id = 'focus';
+  if(trash === false){
+    for(var i = 0; i < x.length; i++){
+      songIndex = tape.playlist[i].index + 1;
+      songText = tape.playlist[i].text;
+      var thumbPic = tape.playlist[i].pic;
+      x[i].id = 'noFocus'; 
+      if(currentFocus == i){
+        x[i].innerHTML = smallPlayer + '<img id="searchImage" src="' + thumbPic + '"/>' + '<div class="songName">' + songText + '</div>';
+      } else {
+        x[i].innerHTML = '<div class="songIndex">' + songIndex + ". " + '</div>' + '<img id="searchImage" src="' + thumbPic + '"/>' + '<div class="songName">' + songText + '</div>';
+      }  
+    }
+   } else {
+    for(var i = 0; i < x.length; i++){
+      songIndex = i + 1;
+      songText = tape.playlist[i].text;
+      x[i].id = 'noFocus'; 
+      if(currentFocus == i){
+        x[i].innerHTML = smallPlayer + '<div class="songName">' + songText + '</div>' + '<a href="#" id="nope" class="delete"><i class="fa fa-trash-o"></i></a>';
+      } else {
+        x[i].innerHTML = '<div class="songIndex">' + songIndex + ". " + '</div>' + '<div class="songName">' + songText + '</div>' + '<a href="#" id="nope" class="delete"><i class="fa fa-trash-o"></i></a>';
+      }  
+    }
+   } 
+    x[currentFocus].id = 'focus';
 }
 
 //Set number of upvotes
 function setUpvoteDiv(num, user){
-  event.preventDefault();
   console.log("setting upvote divs");
   var upvoteDiv = document.getElementsByClassName("upvoteDiv");
+
 
   for(var i = 0; i < tape.upvoters.length; i++){
     if(tape.upvoters[i] === user.username){
@@ -583,7 +887,6 @@ var tape;
 //YOUTUBE API
 
 console.log("YT rendering");
-YT.load();
 
 //YouTube API
 // YouTube API will call onYouTubeIframeAPIReady() when API ready.
@@ -591,9 +894,9 @@ YT.load();
 onYouTubeIframeAPIReady = function () {
 
   player = new YT.Player("player", {
-    height: '191',
-    width: '291',
-    videoId: 'M7lc1UVf-VE',
+    height: '234',
+    width: '416',
+    // videoId: 'M7lc1UVf-VE',
     playerVars: { 'autoplay': 0, 'controls': 0, 'showinfo': 0 },
     allowfullscreen: '0',
       events: {
@@ -606,10 +909,12 @@ onYouTubeIframeAPIReady = function () {
 
 
 function onPlayerReady(event) {
+    console.log('playeris ready');
 
     var artist = player.getVideoData();
-    $('#artistName').text(artist.author + " " + artist.title);
+    // $('#artistName').text(artist.author + " " + artist.title);
 
+    $('#forward').unbind("click");
 
     $('.escolta').unbind("click");
 
@@ -696,6 +1001,10 @@ function onPlayerReady(event) {
         }
       }
     );
+
+    console.log("Tapeid", tape.playlist[0].id);
+    var songCue = tape.playlist[0].id;
+    player.cueVideoById(songCue);
  }
 
 var scrubber;

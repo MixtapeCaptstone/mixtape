@@ -1,8 +1,8 @@
 <template name="searches">
 
 <strong>
-  {{#if clickCreate}}
-
+<!--   {{#if clickCreate}}
+ -->
     <strong>
     {{#if noTitle}}
       <h5 id="nameMixError">*Please enter a title or title already exists</h5>
@@ -12,41 +12,56 @@
     <form class="savePlay">
 
       <input type="text" class="q" id="mixNameinput" name="q" placeholder="Mix Title">
+      <svg class="icon icon-plus"><use xlink:href="#icon-plus"></use></svg>
 
     </form>
-  {{/if}}
-</strong>
+<!--   {{/if}}
+ --></strong>
 
 {{#if songCreate}}
 
-<section class="search-con">
 
-  <form class="search" id="options">
 
     <strong>
       {{#if showLast}}
-        <input id="vidSearchInput" type="text" name="q" placeholder="Search Videos...">
+      <div class="searchParent">
+        <div id="searchSet">
+          <input id="vidSearchInput" type="text" name="q" placeholder="Search Videos...">
+          <div id="searchButton" class="searchButton"><svg class="icon icon-search"><use xlink:href="#icon-search"></use></svg></div>
+        </div>  
+      </div>
       {{/if}}
     </strong>
 
-  <ul class="subnav">
-    {{#each results}}
-      <li draggable="true" ondragstart="drag(event)" class="songClass" id="{{id}}"><img id="searchImage" src="{{pic}}" alt="{{text}}"/>
-        {{text}}
-      </li>
-    {{/each}}
-  </ul>
+<strong>
+  {{#if showLast}}
+    <div class="submitPlaylistParent">
+      <div class="submitButton" id="submitPlaylist">Done!</div>
+    </div>
+  {{/if}}
+</strong>
 
-  <strong>
-    {{#if showLast}}
-      <button class="button small" id="submitPlaylist" type="button">Done!</button>
-    {{/if}}
-  </strong>
-
-  </form>
-
-</section>
 {{/if}}
+
+{{#if showSearches}}
+  
+  <div class="subnavParent">
+    <div class="subnav">
+      {{#each results}}
+        <div class="searchClass" id="{{id}}"><img id="searchImage" src="{{pic}}" alt="{{text}}"/>
+          {{text}}
+        </div>
+      {{/each}}
+      <div class="navParent">
+        <div id="forwardNav">next</div>
+        <div id="backwardNav">last</div>
+      </div>
+    </div>
+  </div>
+{{/if}}
+
+{{> player}}
+
 
 
 </template>

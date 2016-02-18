@@ -22,7 +22,7 @@ html::-webkit-scrollbar {
 
 body {
   font-family: 'helvetica', sans-serif;
-  background-color: #000;
+  background-color: #181817;
 }
 
   .panel {
@@ -32,13 +32,6 @@ body {
   margin-top: 1rem;
 
 }
-/*TODO SET MIN-WIDTH, etc. prevent overlap*/
-#leftPanel {
-  overflow: auto;
-  display:block;
-  padding-left: 1%;
-  padding-right: 1%;
-}
 
 #rightPanel {
   padding-top: 0.25rem;
@@ -46,10 +39,11 @@ body {
   padding-right: 1%;
   overflow: scroll;
   height: 90%;
-  min-width: 300px;
+  min-width: 430px;
   max-width: 40%;
   margin: 0 auto;
   margin-top: 4px;
+  background-color: red;
 }
 
 #rightSide {
@@ -79,8 +73,24 @@ p {
   font-size: 14px;
 }
 
+nav {
+  border-bottom: 1px solid #C9C9C9;
+}
+
 /*"Mixtapez"*/
 #logoCentered {
+  display: inline-block;
+  font-family: 'helvetica', serif;
+  float: left;
+  text-align: left;
+  font-size:1.10em;
+  color: white;
+  font-size: 18px;
+  margin-top: 2px;
+  margin-right: 10px;
+}
+
+#newMix {
   display: inline-block;
   font-family: 'helvetica', serif;
   float: left;
@@ -104,17 +114,18 @@ form {
 
 #parentUserControls {
   width: 100%;
+  height: 36px;
   margin-bottom: 5px;
 }
 
-table {
+/*table {
   overflow-x: scroll;
   border: none;
   display: inline-block;
 
-}
+}*/
 
-tr {
+/*tr {
   background-color: #222;
   cursor: pointer;
 }
@@ -125,7 +136,7 @@ td {
   font-size: 12px;
   border:none;
   padding: 0%;
-}
+}*/
 
 /*Playlist Name, "My Mixes", "All Playlists"*/
 h2 {
@@ -302,19 +313,28 @@ input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
   color: rgb(0, 0, 0);
 }
 
+.subnavParent {
+  display: inline-block;
+  width: 100%;
+/*  height: 398px;
+*/}
+
+
 .subnav {
-  visibility: hidden;
   position: sticky;
-  width: 70%;
-  height: auto;
-  margin-left: auto;
-  margin-right:auto;
-  opacity: 1;
+  width: 416px;
+/*  height: 398px;
+*/  opacity: 1;
   z-index: 1;
   transition: all 0.1s;
   background: rgba(0, 0, 0, 0.5);
   cursor: pointer;
+  margin: 0 auto;
+  margin-bottom: 0;
+  overflow-x: scroll;
+  border: none;
 }
+
 .subnav li {
   float: none;
   list-style-type: none;
@@ -325,20 +345,65 @@ input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
   border-bottom: 1px;
 }
 
+.navParent {
+  display: inline-block;
+  width: 416px;
+  height: 36px;
+  background-color: #222222;
+}
+
+#forwardNav {
+  float: right;
+  display: inline-block;
+}
+
+#backwardNav {
+  float: left;
+  display: inline-block;
+}
+
+
+
 .songClass {
   color: #ddd;
-  width: 280px;
+  background-color: #222222;
+  width: 416px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
   text-align: left;
-  /*height: auto;
-  width: inherit;*/
+  height: 36px;
   font-size: 13px;
   /*box-shadow: 0 4px 2px -2px rgba(0,0,0,0.4);*/
-  min-width: 291px;
   float: left;
   margin: 0;
+  display: inline-block;
+}
+
+
+.songClass:hover {
+  background-color: #282828;
+}
+
+.searchClass {
+  color: #ddd;
+  background-color: #222222;
+  width: 416px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-align: left;
+  height: 36px;
+  font-size: 13px;
+  /*box-shadow: 0 4px 2px -2px rgba(0,0,0,0.4);*/
+  float: left;
+  margin: 0;
+  display: inline-block;
+}
+
+
+.searchClass:hover {
+  background-color: #282828;
 }
 
 ul.subnav {
@@ -372,16 +437,6 @@ ul.subnav {
   text-align: left;
   /*height: auto;
   width: inherit;*/
-  font-size: 13px;
-}
-
-.songName {
-  color: #ddd;
-  width: 250px;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  text-align: left;
   font-size: 13px;
 }
 
@@ -445,15 +500,19 @@ ul.subnav {
   /*padding-right: 42px;*/
 }
 
+.submitPlaylistParent {
+  width: 100%;
+}
 
 /*"Done!" button*/
 #submitPlaylist {
   font-family: 'helvetica', sans-serif;
   color: #fff;
-  width: 100px;
+  width: 418px;
   font-weight: normal;
   padding: 7px 5px;
   letter-spacing: 0.0625em;
+  margin: 0 auto;
 }
 
 #submitPlaylist:hover,
@@ -662,11 +721,505 @@ label {
 #back-to-login-link {}
 
 .songTable{
-  width: 291px;
-}
+  width: 416px;
+  height: 100%;
+  margin-bottom: 0;
+  overflow-x: scroll;
+  border: none;
+/*  display: inline-block;
+*/}
 
 #addThisSong {
   float: right;
   display: inline;
   width: 20px;
 }
+
+ /*CSS declarations go here */
+
+/*Global*/
+h1 {
+  text-align: center;
+  /*margin-left: 50%;
+  margin-right: 40%;*/
+  position: static;
+}
+
+/*img {
+  width: 50px;
+  height: 50px;
+}*/
+
+/*The Player*/
+.container {
+  text-align:center;
+  width:48%;
+}
+iframe{
+  width: 300px;
+}
+
+
+/*Playlists*/
+
+.playlistDiv {
+  padding: 2%;
+  border-radius: 2px;
+  /*margin-left: 20%;
+  margin-right: 20%;*/
+}
+
+.playlistName {
+  color: #ddd;
+  cursor: pointer;
+  max-width: 291px;
+  margin: 0 auto;
+
+  /*display: flex;
+  justify-content:flex-end;*/
+}
+
+.playlistName:hover {
+  color: #f98686;
+  font-weight: bolder;
+}
+
+.upvoteMix {
+  width: 30px;
+  float: right;
+  color: rgba(92, 92, 92, 0.38);
+  font-size: .85em;
+  margin-top: 1px;
+}
+
+/*trashcan icon*/
+.delete {
+  color: #c21603;
+  float: right;
+  margin-right: 5px;
+}
+
+.delete:hover,
+.delete:focus,
+.delete:active {
+  color: #f41c03;
+}
+
+ /*----PLAYER AND TRACK LIST STYLES---*/
+/*#leftDiv {
+  display: inline-block;
+  float: left;
+  width: 49.5%;
+  height: 800px;
+  border: solid 1px grey;
+  margin: 0;
+}
+
+#rightDiv {
+  display: inline-block;
+  float: right;
+  width: 50%;
+  height: 800px;
+  border: solid 1px grey;
+  margin: 0;
+  align-items: center;
+}*/
+
+/*#video{position:absolute;top:100px;left:20px;}*/
+
+#player {
+  /*padding: .5%;*/
+  width: 418px;
+  height: 234px;
+  margin-left: .10%;
+  margin-right: .5%;
+
+}
+
+#playerBox {
+  width: 420px;
+  margin-top: 4px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 0;
+  /*justify-content:center;*/
+  /*display: inline-block;*/
+  display: block;
+  background-color: #1A1A1A;
+  border: 1px solid #C9C9C9;
+  height:100%;
+}
+
+.playerBar{
+  display: block;
+  width: inherit;
+  cursor: pointer;
+  margin-left: 2px;
+  margin-top: 8px;
+}
+
+#parentButtons {
+  display: inline-block;
+  /*background-color: #000;*/
+  /*color: #666;*/
+  font-size:14px;
+  font-family: helvetica;
+  /*letter-spacing:1px;*/
+  text-align: center;
+  width: 52px;
+  height: 27px;
+  border-radius: 2px;
+  box-sizing: border-box;
+}
+
+.escolta {
+  /*list-style-type: disc;*/
+  list-style-position: outside;
+  display: inline-block;
+  float: left;
+  width: 25px;
+  height: 25px;
+  line-height: 20px;
+  background-color: #333;
+  color: #71f0e8;
+  border: 1px solid #555;
+  cursor: pointer;
+  opacity: 40%;
+  z-index: -1;
+}
+
+.escolta:hover {
+  background-color: #444;
+  border-color: #4c4c4c;
+}
+
+#smallPlayer {
+  /*list-style-type: disc;*/
+  list-style-position: outside;
+  display: inline-block;
+  float: left;
+  width: 15px;
+  height: 36px;
+  fill: red;
+  cursor: pointer;
+  margin-left: 6px;
+}
+
+.songIndex {
+  display: inline-block;
+  float: left;
+  color: #ddd;
+  width: 15px;
+  height: 36px;
+  text-align: left;
+  font-size: 13px;
+  margin-right: 0px;
+  padding-right: 1px;
+  margin-top: 10px;
+  margin-left: 6px;
+}
+
+.songName {
+  color: #ddd;
+  width: 200px;
+  height: 36px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-align: left;
+  font-size: 13px;
+  margin-right: 0px;
+  padding-left: 5px;
+  margin-top: 10px;
+  display: inline-block;
+  float: left;
+}
+
+#vidSearchInput {
+  display: inline-block;
+}
+.icon-plus {
+  fill: white;
+  width: 15px;
+  height: 15px;
+  margin-top: 3.5px;
+  margin-left: 1.5px;
+  display: inline-block;
+}
+
+.icon-search {
+  fill: white;
+  width: 20px;
+  height: 20px;
+  margin-top: 3.5px;
+  margin-left: 1.5px;
+  display: inline-block;
+}
+
+.icon-play3 {
+  fill: white;
+  width: 70%;
+  height: 70%;
+  margin-top: 3.5px;
+  margin-left: 1.5px;
+}
+
+.icon-play4 {
+  fill: red;
+  width: 70%;
+  height: 70%;
+  margin-top: 3.5px;
+}
+
+.icon-pause2 {
+  display: inline-block;
+  width: 70%;
+  height: 70%;
+  fill: white;
+  margin-top: 3.5px;
+  margin-left: 1.5px;
+}
+
+.icon-next2 {
+  display: inline-block;
+  width: 75%;
+  height: 75%;
+  fill: white;
+  margin-top: 3px;
+  margin-left: 1.25px;
+  margin-right: 1px;
+}
+
+#forward {
+  float: right;
+  display: inline-block;
+  width: 25px;
+  height: 25px;
+  background-color: #333;
+  color: #71f0e8;
+  border: 1px solid #555;
+  line-height: 20px;
+  list-style-position: inside;
+  cursor: pointer;
+  opacity: 40%;
+  z-index: -1;
+}
+
+#forward:hover{
+  background-color: #444;
+  border-color: #4c4c4c;
+}
+
+#searchButton {
+  float: right;
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+}
+
+#stopVideo {
+  display: inline-block;
+  width: 40px;
+  height: 20px;
+  font-size:11px;
+  text-align: center;
+  letter-spacing:1px;
+  line-height: 20px;
+  color: #71f0e8;
+  background-color: #333;
+  border-radius: 3px;
+  opacity: 40%;
+  z-index: -1;
+  cursor: pointer;
+}
+
+.progress {
+  height: 23px;
+  width: 0;
+  position: relative;
+  background-color: rgb(255, 251, 231);
+  opacity: 0.1;
+}
+
+.progressParent{
+  display: inline;
+  margin-left: 2px;
+  position: absolute;
+  width: 300px;
+  height: 25px;
+  border: 1px solid #555;
+  z-index: 1;
+  /*float: right;*/
+}
+
+
+.volumeDiv {
+  bottom: 3;
+  display: inline-block;
+  float: right;
+  width: 4px;
+  height: 12px;
+  margin-top: 5px;
+  margin-right: 2px;
+  margin-bottom: 1px;
+  background-color: white;
+}
+
+.volumeBar {
+  float: right;
+  height: 20px;
+  width: 30px;
+  margin-right: 15px;
+}
+
+.upvoteContainer {
+  float: right;
+  margin-top: 4px;
+  width: 40px;
+  height: 38px;
+  color: white;
+}
+
+.downvoteDiv {
+  color: red;
+  float: right;
+  margin-top: 5px;
+  cursor: pointer;
+}
+.upvoteDiv {
+  float: right;
+  margin-top: 5px;
+  cursor: pointer;
+  margin-right: 2px;
+}
+
+.upvoteNumber {
+  float: right;
+  margin-top: 5px;
+  margin-right: 3px;
+}
+
+#downvoteDiv {
+  color: red;
+  display: inline-block;
+  margin-left: 2px;
+}
+
+#upvoteDiv {
+  color: white;
+  display: inline-block;
+  margin-left: 2px;
+}
+
+.userDis {
+  width: inherit;
+  height: inherit;
+  cursor: pointer;
+}
+
+.mixesHeader {
+  width: 100%;
+}
+
+#mixName {
+  font-family: 'helvetica';
+  display: inline-block;
+  color: white;
+  margin-top: 5px;
+  margin-left: 5px;
+  font-size: 25px;
+}
+
+.mixHeader {
+  font-family: helvetica;
+  background-color: #1A1A1A;
+}
+
+#artistName {
+  display:inline-block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  letter-spacing:1px;
+  width: 200px;
+  float: right;
+  text-align: center;
+  height: 20px;
+  line-height: 20px;
+  z-index: 5;
+}
+
+.song {
+  width: inherit;
+  /*height: 30px;*/
+  height: auto;
+  /*text-overflow: ellipsis;*/
+  letter-spacing:1px;
+  font-size: 12px;
+  text-align: center;
+  background-color: #222;
+  color: #ddd;
+  border: none;
+  box-shadow: none;
+}
+
+.song:hover {
+  background-color: #2a2a2a;
+  color: #fff;
+  box-shadow: none;
+}
+
+#playListSong{
+  display: inline-block;
+  font-size: 12px;
+  color: #ddd;
+  text-align: center;
+  box-shadow: none;
+}
+.songHover {
+  color: #fff;
+  font-size: 13px;
+  box-shadow: none;
+}
+
+#vidSearchInput {
+  margin: 0 auto;
+}
+
+#searchSet {
+  width: 205px;
+  display: inline-block;
+}
+
+.searchParent {
+  width: 100%;
+  text-align: center;
+  margin: 0 auto;
+}
+
+#youtTubeSearch {
+  margin: 0 auto;
+}
+.submitSearchParent {
+  width: 100%;
+  text-align: center;
+}
+#submitPlaylist {
+  margin: 0 auto;
+}
+
+.parent {
+    width: 100%;
+    border: 1px solid blue;
+    text-align: center;
+}
+
+.child {
+    display: inline-block;  
+    border: 1px solid red;
+    margin: 2px;
+}
+
+
+
+
