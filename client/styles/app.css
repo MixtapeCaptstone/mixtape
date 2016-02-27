@@ -1,14 +1,6 @@
 
 /*-----------GLOBAL STYLES-----------*/
 
-html {
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
-  font-size: 1em; /* 1 */
-   -webkit-text-size-adjust: 1em; /* 2 */ -ms-text-size-adjust: 1em; /* 2 */
-  cursor: pointer;
-}
 
 html::-webkit-scrollbar {
     display: none;
@@ -25,15 +17,15 @@ body {
   background-color: #181817;
 }
 
-  .panel {
+/*  .panel {
   background-color: #191919;
   border-color: #2a2a2a;
   /*border: none;*/
   margin-top: 1rem;
 
-}
+}*/
 
-#rightPanel {
+/*#rightPanel {
   padding-top: 0.25rem;
   padding-left: 1%;
   padding-right: 1%;
@@ -44,12 +36,12 @@ body {
   margin: 0 auto;
   margin-top: 4px;
   background-color: red;
-}
+}*/
 
-#rightSide {
+/*#rightSide {
   width: 100%;
 }
-
+*/
 
 input[type="text"], input[type="password"], input[type="email"], input[type="number"], input[type="url"], textarea {
   width: 160px;
@@ -74,7 +66,22 @@ p {
 }
 
 nav {
-  border-bottom: 1px solid #C9C9C9;
+    height: 36px;
+}
+
+
+/* PLAYER BOX*/
+#playerBox {
+  width: 418px;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  background-color: #1A1A1A;
+  border: 1px solid #C9C9C9;
+}
+
+#parentUserControls {
+  height: 36px;
 }
 
 /*"Mixtapez"*/
@@ -110,12 +117,6 @@ form {
 #usercontrolsandheader {
   margin: 0 auto;
   width: 291px;
-}
-
-#parentUserControls {
-  width: 100%;
-  height: 36px;
-  margin-bottom: 5px;
 }
 
 /*table {
@@ -410,7 +411,7 @@ ul.subnav {
   min-width: 291px;
 }
 
-#searchImage {
+.searchImage {
   width: 67px;
   height: 50px;
   margin-right: 5px;
@@ -444,7 +445,7 @@ ul.subnav {
   color: #C7E4ED;
 }
 
-.focus{
+/*.focus{
   color: #ddd;
   width: 250px;
   white-space: nowrap;
@@ -452,7 +453,7 @@ ul.subnav {
   text-overflow: ellipsis;
   text-align: left;
   font-size: 13px;
-}
+}*/
 
 /*.songName:hover {
   color: #fff;
@@ -484,11 +485,6 @@ ul.subnav {
   color: #fff;
   background-color: #222;
 }
-
-/*.playlistDiv:hover {
-  color: #fff;
-  background-color: #222;
-}*/
 
 #options a{
   border-left: 0 none;
@@ -834,20 +830,6 @@ iframe{
   margin-left: .10%;
   margin-right: .5%;
 
-}
-
-#playerBox {
-  width: 420px;
-  margin-top: 4px;
-  margin-left: auto;
-  margin-right: auto;
-  margin-bottom: 0;
-  /*justify-content:center;*/
-  /*display: inline-block;*/
-  display: block;
-  background-color: #1A1A1A;
-  border: 1px solid #C9C9C9;
-  height:100%;
 }
 
 .playerBar{
@@ -1208,7 +1190,7 @@ iframe{
   margin: 0 auto;
 }
 
-.parent {
+/*.parent {
     width: 100%;
     border: 1px solid blue;
     text-align: center;
@@ -1218,7 +1200,7 @@ iframe{
     display: inline-block;  
     border: 1px solid red;
     margin: 2px;
-}
+}*/
 
 
 

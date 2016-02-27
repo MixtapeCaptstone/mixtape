@@ -2,32 +2,23 @@
   {{#each tapeName}}
     <div class="songTable">
       <div id="mixName">{{text}}</div>
-
     {{#if container}}
       <div class="upvoteContainer">
-      <div class="upvoteDiv">
-        </div>
-        </div>
+        <div class="upvoteDiv"></div>
+      </div>
     {{/if}}
-
     </div>
   {{/each}}
-
-
-
-
   <div class="songTable">
-
     {{#each listTape}}
       <div class="songClass" id="playListSong" name="{{index}}">
-
         <div>{{name}}</div>
         <div class="songIndex"> {{track}}.</div>
-
-        <div class="songName">
-          {{text}}
-        </div>
-
+        <img class="searchImage" src="{{pic}}">
+        <div class="songName" id='{{_id}}'>{{text}}</div>
+        {{#if trash}}
+          <a href="#" id="nope" class="delete"><i class="fa fa-trash-o"></i></a>
+        {{/if}}
       </div>
     {{/each}}
   </div>

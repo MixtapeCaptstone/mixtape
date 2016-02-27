@@ -1,36 +1,20 @@
 <template name="user">
-
-  <div class="userDis" ondrop="drop(event)" ondragover="allowDrop(event)">
-
-    <strong>
-      {{#if title}}
+  <div class="songssss">
+    {{#if title}}
       {{#each title}}
-    <h2>{{text}}</h2>
+        <div id="mixName">{{text}}</div>
       {{/each}}
-      {{/if}}
-    </strong>
-
-    {{#each songClient}}
-<!--       <div class="song" id="playListSong">
-
-        <div class="songName" id={{id}}>{{text}}
-        
-        </div>
-
-      </div> -->
-
-      <div class="songClass" id="playListSong" name="{{index}}">
-        <div>{{name}}</div> 
-        <div class="songIndex"> {{track}}.</div>
-        <div class="songName" id={{id}}>
-           {{text}}
-        </div>
-        <a href="#" id="nope" class="delete"><i class="fa fa-trash-o"></i></a>
-      </div>
-
-      <!-- <button class="button tiny delete" id="deleteTrack">&times;</button> -->
-    {{/each}}
+    {{/if}}
   </div>
+    
+<!--   {{#each songClient}}
+    <div class="songClass" id="playListSong" name="{{index}}">
+      <div>{{name}}</div> 
+      <div class="songIndex"> {{track}}.</div>
+      <div class="songName" id='{{id}}'>{{text}}</div>
+      <a href="#" id="nope" class="delete"><i class="fa fa-trash-o"></i></a>
+    </div> -->
 
-
-</template>
+    <!-- <button class="button tiny delete" id="deleteTrack">&times;</button> -->
+<!--   {{/each}}
+ --></template>

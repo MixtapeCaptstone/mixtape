@@ -1,27 +1,12 @@
 <template name="searches">
-
-<strong>
-<!--   {{#if clickCreate}}
- -->
-    <strong>
-    {{#if noTitle}}
-      <h5 id="nameMixError">*Please enter a title or title already exists</h5>
-    {{/if}}
-    </strong>
-
-    <form class="savePlay">
-
-      <input type="text" class="q" id="mixNameinput" name="q" placeholder="Mix Title">
-      <svg class="icon icon-plus"><use xlink:href="#icon-plus"></use></svg>
-
-    </form>
-<!--   {{/if}}
- --></strong>
-
-{{#if songCreate}}
-
-
-
+  {{#if noTitle}}
+    <h5 id="nameMixError">*Please enter a title or title already exists</h5>
+  {{/if}}
+  <form class="savePlay">
+    <input type="text" class="q" id="mixNameinput" name="q" placeholder="Mix Title">
+    <svg class="icon icon-plus"><use xlink:href="#icon-plus"></use></svg>
+  </form>
+  {{#if songCreate}}
     <strong>
       {{#if showLast}}
       <div class="searchParent">
@@ -48,7 +33,7 @@
   <div class="subnavParent">
     <div class="subnav">
       {{#each results}}
-        <div class="searchClass" id="{{id}}"><img id="searchImage" src="{{pic}}" alt="{{text}}"/>
+        <div class="searchClass" id="{{id}}"><img class="searchImage" src="{{pic}}" alt="{{text}}"/>
           {{text}}
         </div>
       {{/each}}
