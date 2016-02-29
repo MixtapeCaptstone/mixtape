@@ -124,23 +124,7 @@ Template.headerNav.events({
     console.log("clicked mixtape header", userName);
 
     FlowRouter.go(fullid);
-  },
-  "click #newMix": function(){
-    console.log("clicked new");
-    var userName = Meteor.user();
-    var fullid = "/mixes/" + userName.username;
-    console.log("clicked mixtape header", userName);
-     var playlist = ({playlist: name});
-    Session.set('playa', false);
-    Session.set('mix', false);
-    Session.set('showLast', false);
-    Session.set('clickCreate', true);
-    Session.set('songCreate', false);
-    Session.set("listName", "");
-
-    FlowRouter.go('/new');
   }
-
 });
 
 Template.test.helpers({
@@ -166,7 +150,22 @@ Template.test.events({
     // if () {
       Meteor.call("deleteList", this._id);
     // }
-    }
+  },
+    "click #newMix": function(){
+    console.log("clicked new");
+    var userName = Meteor.user();
+    var fullid = "/mixes/" + userName.username;
+    console.log("clicked mixtape header", userName);
+     var playlist = ({playlist: name});
+    Session.set('playa', false);
+    Session.set('mix', false);
+    Session.set('showLast', false);
+    Session.set('clickCreate', true);
+    Session.set('songCreate', false);
+    Session.set("listName", "");
+
+    FlowRouter.go('/new');
+  }
 });
 
 Template.user.helpers({
@@ -794,29 +793,49 @@ function onPlayerReady(event) {
         player.seekTo(maxduration * percentage / 100);
     };
 
-    //Volume DIVS
-    $('.volumeDiv').hover(
-      function(){
-        $(this).animate({'margin-top': '2px'});
-      },
-      function(){
-        $(this).animate({"margin-top": "5px"});
+//Initialize Volume
+var drag = false;   /* Drag status */
+
+  $('.volumeBarParent').mousedown(function(e) {
+      console.log("mousedown");
+      drag = true;
+      updateVol(e.pageX);
+  });
+
+  $('.volumeBarParent').mouseup(function(e) {
+      if(drag) {
+          console.log("drag");
+          drag = false;
+          updateVol(e.pageX);
       }
-    );
-
-    $('.volumeDiv').click(
-      function(){
-        var counter = parseInt($(this).attr('id'));
-
-        player.setVolume(counter);
-
-        $('.volumeDiv').css('background-color', 'rgb(143, 143, 143)');
-        for(var i =0; i <= counter; i++){
-          var divID = "#" + i;
-          $(divID).css('background-color', "rgb(255, 255, 255)");
-        }
+  });
+  $('.volumeBarParent').mousemove(function(e) {
+      if(drag) {
+          updateVol(e.pageX);
       }
-    );
+  });
+
+  //update Progress Bar control
+  var updateVol = function(x) {
+      var prog = $('.volumeBarParent');
+      var maxdur = player.getVolume(); //Video duraiton
+      console.log("player volume:", maxdur);
+      var pos = x - prog.offset().left; //Click pos
+      var percent = 100 * pos / prog.width();
+      console.log("percentage clicked", percent);
+
+      //Check within range
+      if(percent > 100) {
+          percent = 100;
+      }
+      if(percent < 0) {
+          percent = 0;
+      }
+
+      //Update progress bar and video currenttime
+      $('.volumeBar').css('width', percent + '%');
+      player.setVolume(percent);
+  };
 
     // console.log("Tapeid", tape.playlist[0].id);
     // var songCue = tape.playlist[0].id;
@@ -890,6 +909,7 @@ $(document).ready(function(){
 var timeDrag = false;   /* Drag status */
 
   $('.progressParent').mousedown(function(e) {
+    console.log('Moseeee');
       timeDrag = true;
       updatebar(e.pageX);
   });
@@ -927,28 +947,70 @@ var timeDrag = false;   /* Drag status */
   };
 
   //Volume DIVS
-  $('.volumeDiv').hover(
-    function(){
-      $(this).animate({'margin-top': '2px'});
-    },
-    function(){
-      $(this).animate({"margin-top": "5px"});
-    }
-  );
+  // $('.volumeDiv').hover(
+  //   function(){
+  //     $(this).animate({'margin-top': '2px'});
+  //   },
+  //   function(){
+  //     $(this).animate({"margin-top": "5px"});
+  //   }
+  // );
 
-  $('.volumeDiv').click(
-    function(){
-      var counter = parseInt($(this).attr('id'));
+  // $('.volumeDiv').click(
+  //   function(){
+  //     var counter = parseInt($(this).attr('id'));
 
-      player.setVolume(counter);
+  //     player.setVolume(counter);
 
-      $('.volumeDiv').css('background-color', 'rgb(143, 143, 143)');
-      for(var i =0; i <= counter; i++){
-        var divID = "#" + i;
-        $(divID).css('background-color', "rgb(255, 255, 255)");
+  //     $('.volumeDiv').css('background-color', 'rgb(143, 143, 143)');
+  //     for(var i =0; i <= counter; i++){
+  //       var divID = "#" + i;
+  //       $(divID).css('background-color', "rgb(255, 255, 255)");
+  //     }
+  //   }
+  // );
+
+//Initialize Volume
+var drag = false;   /* Drag status */
+
+  $('.volumeBarParent').mousedown(function(e) {
+      console.log("mousedown");
+      drag = true;
+      updateVol(e.pageX);
+  });
+
+  $('.volumeBarParent').mouseup(function(e) {
+      if(drag) {
+          console.log("drag");
+          drag = false;
+          updateVol(e.pageX);
       }
-    }
-  );
+  });
+  $('.volumeBarParent').mousemove(function(e) {
+      if(drag) {
+          updateVol(e.pageX);
+      }
+  });
+
+  //update Progress Bar control
+  var updateVol = function(x) {
+      var prog = $('.volumeBarParent');
+      var maxdur = player.getDuration(); //Video duraiton
+      var pos = x - prog.offset().left; //Click pos
+      var percentage = 100 * pos / prog.width();
+
+      //Check within range
+      if(percentage > 100) {
+          percentage = 100;
+      }
+      if(percentage < 0) {
+          percentage = 0;
+      }
+
+      //Update progress bar and video currenttime
+      $('.volumeBar').css('width', percentage + '%');
+      player.seekTo(maxdur * percentage / 100);
+  };
 });
 
 

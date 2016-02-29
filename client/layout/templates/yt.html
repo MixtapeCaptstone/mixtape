@@ -10,12 +10,8 @@
         <div class="progressParent">
           <div class="progress"></div>
         </div>
-        <div class="volumeBar">
-          <div id="100" class="volumeDiv"></div>
-          <div id="75" class="volumeDiv"></div>
-          <div id="50" class="volumeDiv"></div>
-          <div id="35" class="volumeDiv"></div>
-          <div id="15" class="volumeDiv"></div>
+        <div class="volumeBarParent">
+          <div id="100" class="volumeBar"></div>
         </div>
       </div>
     {{#if isReady "Lists"}}
@@ -24,5 +20,6 @@
     {{else}}
       ...Loading
     {{/if}}
+    {{> footer}}
   </div>
 </template>

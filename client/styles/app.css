@@ -17,32 +17,6 @@ body {
   background-color: #181817;
 }
 
-/*  .panel {
-  background-color: #191919;
-  border-color: #2a2a2a;
-  /*border: none;*/
-  margin-top: 1rem;
-
-}*/
-
-/*#rightPanel {
-  padding-top: 0.25rem;
-  padding-left: 1%;
-  padding-right: 1%;
-  overflow: scroll;
-  height: 90%;
-  min-width: 430px;
-  max-width: 40%;
-  margin: 0 auto;
-  margin-top: 4px;
-  background-color: red;
-}*/
-
-/*#rightSide {
-  width: 100%;
-}
-*/
-
 input[type="text"], input[type="password"], input[type="email"], input[type="number"], input[type="url"], textarea {
   width: 160px;
   margin-left: auto;
@@ -82,19 +56,133 @@ nav {
 
 #parentUserControls {
   height: 36px;
+  text-align: center;
 }
 
-/*"Mixtapez"*/
 #logoCentered {
-  display: inline-block;
-  font-family: 'helvetica', serif;
   float: left;
-  text-align: left;
-  font-size:1.10em;
   color: white;
   font-size: 18px;
+  margin-top: 6px;
+  margin-left: 4px;
+}
+
+.progress {
+  height: 23px;
+  width: 0;
+  position: relative;
+  background-color: rgb(255, 251, 231);
+  opacity: 0.1;
+}
+
+.progressParent{
+  display: inline;
+  margin-left: 2px;
+  position: absolute;
+  width: 300px;
+  border: 1px solid #555;
+  z-index: 1;
+}
+
+.volumeBarParent {
+  display: inline;
+  position: absolute;
+  width: 46px;
+  border: 1px solid #555;
+  z-index: 1;
+  float: right;
+  margin-left: 310px;
+  margin-top: 6px;
+
+}
+
+.volumeBar {
+  height: 6px;
+  width: 70%;
+  background-color: #167AC6;
+  opacity: 0.7;
+  position: relative;
+}
+
+.songTable{
+  width: 416px;
+  height: 100%;
+  margin-bottom: 0;
+  overflow-x: scroll;
+  border: none;
+}
+
+#mixName {
+  display: inline-block;
+  color: white;
+  margin-top: 5px;
+  margin-left: 5px;
+  font-size: 25px;
+}
+
+.songClass {
+  color: #ddd;
+  background-color: #222222;
+  width: 416px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-align: left;
+  height: 55px;
+  font-size: 13px;
+  float: left;
+  margin: 0;
+  display: inline-block;
+}
+
+.songClass:hover {
+  background-color: #282828;
+}
+
+#focus {
+  color: #C7E4ED;
+}
+
+#focus > .searchImage {
+  border: 1px solid red;
+}
+
+.songName {
+  color: #ddd;
+  width: 280px;
+  height: 36px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-align: left;
+  font-size: 13px;
+  margin-right: 0px;
+  padding-left: 5px;
+  margin-top: 16px;
+  display: inline-block;
+  float: left;
+}
+
+.searchImage {
+  width: 67px;
+  height: 50px;
+  margin-right: 5px;
   margin-top: 2px;
-  margin-right: 10px;
+  float: left;
+}
+
+.songIndex {
+  display: inline-block;
+  float: left;
+  color: #ddd;
+  width: 15px;
+  height: 36px;
+  text-align: left;
+  font-size: 13px;
+  margin-right: 0px;
+  padding-right: 1px;
+  margin-top: 18px;
+  margin-left: 6px;
 }
 
 #newMix {
@@ -363,29 +451,6 @@ input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
   display: inline-block;
 }
 
-
-
-.songClass {
-  color: #ddd;
-  background-color: #222222;
-  width: 416px;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  text-align: left;
-  height: 36px;
-  font-size: 13px;
-  /*box-shadow: 0 4px 2px -2px rgba(0,0,0,0.4);*/
-  float: left;
-  margin: 0;
-  display: inline-block;
-}
-
-
-.songClass:hover {
-  background-color: #282828;
-}
-
 .searchClass {
   color: #ddd;
   background-color: #222222;
@@ -411,13 +476,6 @@ ul.subnav {
   min-width: 291px;
 }
 
-.searchImage {
-  width: 67px;
-  height: 50px;
-  margin-right: 5px;
-  float: left;
-}
-
 #addThisSongText {
   color: #ddd;
   white-space: nowrap;
@@ -441,36 +499,11 @@ ul.subnav {
   font-size: 13px;
 }
 
-#focus {
-  color: #C7E4ED;
-}
-
-/*.focus{
-  color: #ddd;
-  width: 250px;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  text-align: left;
-  font-size: 13px;
-}*/
-
-/*.songName:hover {
-  color: #fff;
-  font-size: 13px;
-  margin-top: 10px;
-  margin-bottom: 10px;
-}
-
-.songName::after {
-  color: #ddd;
-  font-size: 13px;
-}*/
-
 #nope {
   color: #c21603;
   float: right;
   margin-left: 5px;
+  margin-top: 16px;
 }
 
 #nope:hover,
@@ -716,15 +749,6 @@ label {
 /*"Sign In" below form. basically a nevermind link*/
 #back-to-login-link {}
 
-.songTable{
-  width: 416px;
-  height: 100%;
-  margin-bottom: 0;
-  overflow-x: scroll;
-  border: none;
-/*  display: inline-block;
-*/}
-
 #addThisSong {
   float: right;
   display: inline;
@@ -887,36 +911,6 @@ iframe{
   margin-left: 6px;
 }
 
-.songIndex {
-  display: inline-block;
-  float: left;
-  color: #ddd;
-  width: 15px;
-  height: 36px;
-  text-align: left;
-  font-size: 13px;
-  margin-right: 0px;
-  padding-right: 1px;
-  margin-top: 10px;
-  margin-left: 6px;
-}
-
-.songName {
-  color: #ddd;
-  width: 200px;
-  height: 36px;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  text-align: left;
-  font-size: 13px;
-  margin-right: 0px;
-  padding-left: 5px;
-  margin-top: 10px;
-  display: inline-block;
-  float: left;
-}
-
 #vidSearchInput {
   display: inline-block;
 }
@@ -950,7 +944,7 @@ iframe{
   fill: red;
   width: 70%;
   height: 70%;
-  margin-top: 3.5px;
+  margin-top: 14px;
 }
 
 .icon-pause2 {
@@ -964,13 +958,24 @@ iframe{
 
 .icon-next2 {
   display: inline-block;
-  width: 75%;
-  height: 75%;
+  width: 85%;
+  height: 85%;
   fill: white;
-  margin-top: 3px;
+  margin-top: 2px;
   margin-left: 1.25px;
   margin-right: 1px;
 }
+
+.twitter-share {
+   display: inline-block;
+  width: 40px;
+  height: 80%;
+  fill: white;
+  margin-top: 2px;
+  margin-left: 1.25px;
+  margin-right: 1px;
+}
+
 
 #forward {
   float: right;
@@ -1013,45 +1018,6 @@ iframe{
   opacity: 40%;
   z-index: -1;
   cursor: pointer;
-}
-
-.progress {
-  height: 23px;
-  width: 0;
-  position: relative;
-  background-color: rgb(255, 251, 231);
-  opacity: 0.1;
-}
-
-.progressParent{
-  display: inline;
-  margin-left: 2px;
-  position: absolute;
-  width: 300px;
-  height: 25px;
-  border: 1px solid #555;
-  z-index: 1;
-  /*float: right;*/
-}
-
-
-.volumeDiv {
-  bottom: 3;
-  display: inline-block;
-  float: right;
-  width: 4px;
-  height: 12px;
-  margin-top: 5px;
-  margin-right: 2px;
-  margin-bottom: 1px;
-  background-color: white;
-}
-
-.volumeBar {
-  float: right;
-  height: 20px;
-  width: 30px;
-  margin-right: 15px;
 }
 
 .upvoteContainer {
@@ -1101,15 +1067,6 @@ iframe{
 
 .mixesHeader {
   width: 100%;
-}
-
-#mixName {
-  font-family: 'helvetica';
-  display: inline-block;
-  color: white;
-  margin-top: 5px;
-  margin-left: 5px;
-  font-size: 25px;
 }
 
 .mixHeader {
@@ -1190,17 +1147,10 @@ iframe{
   margin: 0 auto;
 }
 
-/*.parent {
-    width: 100%;
-    border: 1px solid blue;
-    text-align: center;
+.footer {
+  border-top: 1px solid white;
 }
 
-.child {
-    display: inline-block;  
-    border: 1px solid red;
-    margin: 2px;
-}*/
 
 
 
