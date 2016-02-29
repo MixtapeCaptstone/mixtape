@@ -1,26 +1,25 @@
 <template name="player">
   <div id="playerBox">
-    <div id="player" controls="0" name="iframe_a">
-      <!-- Video Plays Here -->
-    </div>
-    <div class="playerBar">
-      <div id="parentButtons">
-        <div id="escolta" class="escolta"><i class="fa fa-play"></i></div>
-        <div id="forward"><i class="fa fa-step-forward"></i></div>
-    </div>
-      <div class="progressParent">
-        <div class="progress"></div>
+    {{> headerNav}}
+    <div id="player" controls="0" name="iframe_a"></div>
+      <div class="playerBar">
+        <div id="parentButtons">
+          <div id="escolta" class="escolta"><svg class="icon-play3"><use xlink:href="#icon-play3"></use></svg></div>
+          <div id="forward"><svg class="icon-next2"><use xlink:href="#icon-next2"></use></svg></div>
+        </div>
+        <div class="progressParent">
+          <div class="progress"></div>
+        </div>
+        <div class="volumeBarParent">
+          <div id="100" class="volumeBar"></div>
+        </div>
       </div>
-      <div class="volumeBar">
-        <div id="100" class="volumeDiv"></div>
-        <div id="75" class="volumeDiv"></div>
-        <div id="50" class="volumeDiv"></div>
-        <div id="35" class="volumeDiv"></div>
-        <div id="15" class="volumeDiv"></div>
-      </div>
-    </div>
-    {{>upvote}}
-    {{> user}}
+    {{#if isReady "Lists"}}
+      {{> user}}
       {{> listViewer}}
+    {{else}}
+      ...Loading
+    {{/if}}
+    {{> footer}}
   </div>
 </template>

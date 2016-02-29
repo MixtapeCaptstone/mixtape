@@ -3,17 +3,21 @@ Lists = new Mongo.Collection('lists');
 
 Meteor.methods( {
   checkYT : function (search) {
+    console.log(search);
     var url = "https://www.googleapis.com/youtube/v3/search";
     var params = {
         key: apiKey,
         part: "snippet",
-        q: search,
+        q: search.record,
         type: "video",
-        maxResults: 5
+        videoEmbeddable: true,
+        maxResults: 10,
+        pageToken: search.token
     };
     var res = Meteor.http.call('GET', url, {params: params});
     return res;
-  },//TODO Do we need the addSong method anymore?
+  },
+  //TODO Do we need the addSong method anymore?
   addSong: function (text) {
     // console.log("added song", text);
     // var name = Meteor.user().username;
@@ -24,7 +28,7 @@ Meteor.methods( {
       pic: text.pic,
       owner: Meteor.userId(),
       username: Meteor.user().username,
-      playlist: text.playlist
+      playlist: text.playlist,
     });
   },
 
@@ -49,8 +53,9 @@ Meteor.methods( {
       }
     }
     if(contains !== true){
-      Lists.update(thisId, {$addToSet: {upvoters: user}, $inc: {upvotes: 1} });
+      Lists.update(thisId, {$addToSet: {upvoters: user}, $inc: {upvotes: 1}}, {reactive: false});
     }
+    console.log(upvoters);
   },
   downvote: function(title){
     var user = Meteor.user().username;

@@ -1,75 +1,29 @@
+
 /*-----------GLOBAL STYLES-----------*/
 
-html {
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
-  font-size: 1em; /* 1 */
-  -webkit-text-size-adjust: 1em; /* 2 */ -ms-text-size-adjust: 1em; /* 2 */
-  cursor: pointer;
-}
 
 html::-webkit-scrollbar {
-  display: none;
+    display: none;
 }
 
 *, *:before, *:after {
   -webkit-box-sizing: inherit;
   -moz-box-sizing: inherit;
   box-sizing: inherit;
-}
-
-body {
-  font-family: 'Lato', sans-serif;
-  background-color: #000;
-}
-
-.panel {
-  background-color: #191919;
-  border-color: #2a2a2a;
-  margin-top: 1rem;
-}
-
-#leftPanel {
-  overflow: auto;
-  display:block;
-  padding-left: 1%;
-  padding-right: 1%;
-}
-
-#rightPanel {
-  padding-top: 0.25rem;
-  padding-left: 1%;
-  padding-right: 1%;
-  overflow: scroll;
-}
-
-/*Logo and form styles */
-#logoCentered {
-  font-family: 'Kalam', serif;
-  text-align: center;
-  font-size:2.5em;
-  color: #33eade;
-}
-
-  #logoCentered:hover,
-  #logoCentered:focus,
-  #logoCentered:active {
-    color: #8ff4ed;
   }
 
-form {
-  text-align: center;
+body {
+  font-family: 'helvetica', sans-serif;
+  background-color: #181817;
 }
 
-input[type="text"],
-input[type="password"] {
+input[type="text"], input[type="password"], input[type="email"], input[type="number"], input[type="url"], textarea {
   width: 160px;
   margin-left: auto;
   margin-right: auto;
   margin-bottom: 1rem;
+  /*font-size:1em;*/
   font-size: 0.875em;
-  border-radius: 2px;
 }
 
 input[type="search"] {
@@ -77,93 +31,238 @@ input[type="search"] {
   font-size: 0.875em;
   margin-left: auto;
   margin-right: auto;
-  border-radius: 2px;
 }
 
-/*Table styles, applies to track list*/
-table {
+
+p {
+  font-family: 'helvetica', sans-serif;
+  font-size: 14px;
+}
+
+nav {
+    height: 36px;
+}
+
+
+/* PLAYER BOX*/
+#playerBox {
+  width: 418px;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  background-color: #1A1A1A;
+  border: 1px solid #C9C9C9;
+}
+
+#parentUserControls {
+  height: 36px;
+  text-align: center;
+}
+
+#logoCentered {
+  float: left;
+  color: white;
+  font-size: 18px;
+  margin-top: 6px;
+  margin-left: 4px;
+}
+
+.progress {
+  height: 23px;
+  width: 0;
+  position: relative;
+  background-color: rgb(255, 251, 231);
+  opacity: 0.1;
+}
+
+.progressParent{
+  display: inline;
+  margin-left: 2px;
+  position: absolute;
+  width: 300px;
+  border: 1px solid #555;
+  z-index: 1;
+}
+
+.volumeBarParent {
+  display: inline;
+  position: absolute;
+  width: 46px;
+  border: 1px solid #555;
+  z-index: 1;
+  float: right;
+  margin-left: 310px;
+  margin-top: 6px;
+
+}
+
+.volumeBar {
+  height: 6px;
+  width: 70%;
+  background-color: #167AC6;
+  opacity: 0.7;
+  position: relative;
+}
+
+.songTable{
+  width: 416px;
+  height: 100%;
+  margin-bottom: 0;
   overflow-x: scroll;
   border: none;
+}
+
+#mixName {
+  display: inline-block;
+  color: white;
+  margin-top: 5px;
+  margin-left: 5px;
+  font-size: 25px;
+}
+
+.songClass {
+  color: #ddd;
+  background-color: #222222;
+  width: 416px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-align: left;
+  height: 55px;
+  font-size: 13px;
+  float: left;
+  margin: 0;
   display: inline-block;
 }
 
-tr {
+.songClass:hover {
+  background-color: #282828;
+}
+
+#focus {
+  color: #C7E4ED;
+}
+
+#focus > .searchImage {
+  border: 1px solid red;
+}
+
+.songName {
+  color: #ddd;
+  width: 280px;
+  height: 36px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-align: left;
+  font-size: 13px;
+  margin-right: 0px;
+  padding-left: 5px;
+  margin-top: 16px;
+  display: inline-block;
+  float: left;
+}
+
+.searchImage {
+  width: 67px;
+  height: 50px;
+  margin-right: 5px;
+  margin-top: 2px;
+  float: left;
+}
+
+.songIndex {
+  display: inline-block;
+  float: left;
+  color: #ddd;
+  width: 15px;
+  height: 36px;
+  text-align: left;
+  font-size: 13px;
+  margin-right: 0px;
+  padding-right: 1px;
+  margin-top: 18px;
+  margin-left: 6px;
+}
+
+#newMix {
+  display: inline-block;
+  font-family: 'helvetica', serif;
+  float: left;
+  text-align: left;
+  font-size:1.10em;
+  color: white;
+  font-size: 18px;
+  margin-top: 2px;
+}
+
+form {
+  text-align: center;
+  /*font-style: italic;*/
+}
+
+/*div containing meteor login and logo*/
+#usercontrolsandheader {
+  margin: 0 auto;
+  width: 291px;
+}
+
+/*table {
+  overflow-x: scroll;
+  border: none;
+  display: inline-block;
+
+}*/
+
+/*tr {
   background-color: #222;
   cursor: pointer;
 }
+
 
 td {
   background-color: #222;
   font-size: 12px;
   border:none;
   padding: 0%;
-}
+}*/
 
-/*-----------TEXT--------------*/
-
-p {
-  font-family: 'Lato', sans-serif;
-  font-size: 14px;
-}
-
-h1 {
-  text-align: center;
-  margin-left: 50%;
-  margin-right: 40%;
-  position: static;
-}
-
+/*Playlist Name, "My Mixes", "All Playlists"*/
 h2 {
-  font-family: 'Kalam', serif;
-  color: #33eade;
+  font-family: 'helvetica', serif;
+  color: white;
 }
 
-.panel h2 { color: #33eade; }
+.panel h2 {
+  color: white;
+}
 
-/* "My Mixes" & "All Mixes"*/
-#mixesHeader,
+.mixlist {
+  width: 100%;
+  max-height: 300px;
+  overflow: auto;
+}
+
+/* h2, "My Mixes"*/
+#mixesHeader {
+  /*padding-top: .5em;*/
+  text-align: center;
+  color: white;
+}
+
+/*"All Playlists"*/
 #playlistsHeader {
-  color: #33eade;
+  float: left;
+  width: 100%;
+  /*padding-top: .5em;*/
+  text-align: center;
+
+  color: white;
 }
 
-/*lists of mixes*/
-.list,
-.mixlist { margin-left: 30%; }
 
-
-.playlistDiv {
-  padding: 2%;
-  border-radius: 2px;
-}
-
-.playlistName {
-  color: #ddd;
-  cursor: pointer;
-  /*display: flex;
-  justify-content:flex-end;*/
-}
-
-  .playlistName:hover {
-    color: #eee;
-    font-weight: bolder;
-  }
-
-/*trashcan icon*/
-.delete {
-  color: #c21603;
-  float: right;
-}
-
-  .delete:hover,
-  .delete:focus,
-  .delete:active {
-  	color: #f41c03;
-  }
-
-/*-------------BUTTONS------------*/
 button {
-  font-family: 'Lato', sans-serif;
-  background-color: #33eade;
+  font-family: 'helvetica', sans-serif;
   border-bottom: 3px inset #17e4d6;
 }
 
@@ -171,61 +270,75 @@ button {
   padding: 5px 5px;
 }
 
-/* (<span> holding the buttons) */
+/*span containing buttons (JUST buttons, not search or anything)*/
 #mixActionButtons {
-  font-family: 'Lato', sans-serif;
-  font-style: italic;
+  font-family: 'helvetica', sans-serif;
   display: inline-block;
-  margin-top: 10px;
-  display: flex;
   justify-content:center;
+  margin: 0 auto;
+  width: 100%;
+  height: 32px;
+  margin-top: 12px;
+  margin-right: 1px;
+  margin-left: 1px;
+}
+
+#parentMixActionButtons {
+  margin-bottom: 5px;
+  text-align: center;
 }
 
 #newPlaylistButton {
-  font-family: 'Lato', sans-serif;
+  font-family: 'helvetica', sans-serif;
   color: #fff;
-  width: 130px;
+  width: 65px;
   padding: none;
   margin-right: 1%;
-  background-color: #f41c03;
-  border-bottom: 3px inset #c21603;
-  box-shadow: 0 4px 2px -2px rgba(0,0,0,0.4);
+  background-color: #CC181E;
 }
 
-  #newPlaylistButton:hover,
-  #newPlaylistButton:focus,
-  #newPlaylistButton:active {
-    background-color: #e41a03;
-  }
+#newPlaylistButton:hover,
+#newPlaylistButton:focus,
+#newPlaylistButton:active {
+}
+
 
 #browseMineButton {
-  font-family: 'Lato', sans-serif;
-  width: 130px;
+  font-family: 'helvetica', sans-serif;
+  width: 65px;
   margin-right: 1%;
-  background-color: #f41c03;
-  border-bottom: 3px inset #c21603;
-  box-shadow: 0 4px 2px -2px rgba(0,0,0,0.4);
+  background-color: #CC181E;
 }
 
-  #browseMineButton:hover,
-  #browseMineButton:focus,
-  #browseMineButton:active {
-    background-color: #e41a03;
-  }
+#browseMineButton:hover,
+#browseMineButton:focus,
+#browseMineButton:active {
+}
 
 #browseAllButton {
-  font-family: 'Lato', sans-serif;
-  width: 130px;
-  background-color: #f41c03;
-  border-bottom: 3px inset #c21603;
-  box-shadow: 0 4px 2px -2px rgba(0,0,0,0.4);
+  font-family: 'helvetica', sans-serif;
+  width: 65px;
+  background-color: #CC181E;
+  margin-right: 1%;
 }
 
-  #browseAllButton:hover,
-  #browseAllButton:focus,
-  #browseAllButton:active {
-    background-color: #e41a03;
-  }
+#browseAllButton:hover,
+#browseAllButton:focus,
+#browseAllButton:active {
+}
+
+#YTplayerButton {
+  font-family: 'helvetica', sans-serif;
+  width: 65px;
+  background-color: #CC181E;
+}
+
+/*div containing h2 "all mixes", and displays all mixes*/
+.list {
+  width: 100%;
+  max-height: 300px;
+  overflow: auto;
+}
 
 .showCreate {
   text-align: center;
@@ -246,81 +359,159 @@ button {
 /*div containing give your mix a name...*/
 .savePlay {
   margin-top: 10px;
+  /*border: 1px solid green;*/
 }
 
-/* see input */
 #mixNameInput {
   font-size: 12px;
   width: 150px;
 }
 
-  #mixNameInput:hover,
-  #mixNameInput:focus,
-  #mixNameInput:active {
-  color: #ccc;
-  }
+#mixNameInput:hover,
+#mixNameInput:focus,
+#mixNameInput:active {
+color: #ccc;
+}
 
 #nameMixError {
   color: red;
-  font-family: 'Lato', sans-serif;
+  font-family: 'helvetica', sans-serif;
   font-size: 0.875em;
   text-align: center;
 }
 
-/* THE SEARCH */
+/*div containing everything search-related*/
 section {
   padding: 5%;
   width: auto;
   margin-left: auto;
   margin-right: auto;
+  /*display: block;*/
 }
 
 #vidSearchInput {
+  /*font size: 12px;*/
+  /*padding: 0 0;*/
   padding: 1%;
   width: 175px;
 }
-
-/* sadly,this doesn't seem to have any effect but ideally it would change the input's color of the search from user agent stylesheet's yellow to white*/
+/* this doesn't seem to have any effect but ideally it would change the inputs color of the search from user agent stylesheet's yellow to white*/
 input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
   background-color: #ccc;
   background-image: none;
   color: rgb(0, 0, 0);
 }
 
+.subnavParent {
+  display: inline-block;
+  width: 100%;
+/*  height: 398px;
+*/}
+
+
 .subnav {
-  visibility: hidden;
   position: sticky;
-  width: 70%;
-  height: auto;
-  margin-left: auto;
-  margin-right: auto;
-  opacity: 1;
+  width: 416px;
+/*  height: 398px;
+*/  opacity: 1;
   z-index: 1;
   transition: all 0.1s;
   background: rgba(0, 0, 0, 0.5);
   cursor: pointer;
+  margin: 0 auto;
+  margin-bottom: 0;
+  overflow-x: scroll;
+  border: none;
 }
 
-  .subnav li {
-    float: none;
-    list-style-type: none;
-    text-align: left;
-    color: #eee;
-    border-radius: 2px;
-  }
+.subnav li {
+  float: none;
+  list-style-type: none;
+  text-align: left;
+  color: #eee;
+}
+.subnav li a {
+  border-bottom: 1px;
+}
 
-    .subnav li a {
-      border-bottom: 1px;
-    }
+.navParent {
+  display: inline-block;
+  width: 416px;
+  height: 36px;
+  background-color: #222222;
+}
 
-.songClass {
-  text-overflow: ellipsis;
-  text-align: center;
-  background-color: #222;
-  font-size: 12px;
+#forwardNav {
+  float: right;
+  display: inline-block;
+}
+
+#backwardNav {
+  float: left;
+  display: inline-block;
+}
+
+.searchClass {
   color: #ddd;
-  height:auto;
-  border: none;
+  background-color: #222222;
+  width: 416px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-align: left;
+  height: 36px;
+  font-size: 13px;
+  /*box-shadow: 0 4px 2px -2px rgba(0,0,0,0.4);*/
+  float: left;
+  margin: 0;
+  display: inline-block;
+}
+
+
+.searchClass:hover {
+  background-color: #282828;
+}
+
+ul.subnav {
+  min-width: 291px;
+}
+
+#addThisSongText {
+  color: #ddd;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-align: left;
+  font-size: 13px;
+  float: left;
+  max-width: 70%;
+}
+
+.songHover {
+  color: #9a0000;
+  width: 250px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-align: left;
+  /*height: auto;
+  width: inherit;*/
+  font-size: 13px;
+}
+
+#nope {
+  color: #c21603;
+  float: right;
+  margin-left: 5px;
+  margin-top: 16px;
+}
+
+#nope:hover,
+#nope:focus,
+#nope:active {
+  color: #CC181E;
+  float: right;
+  margin-left: 5px;
 }
 
 .subnav .songClass:hover {
@@ -328,297 +519,38 @@ input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
   background-color: #222;
 }
 
-.songClass img {
-  width: 67px;
-  height: 50px;
-  margin-right: 5px;
-  border-radius: 1px;
-}
-
-  .songClass:visited,
-  .songClass:focus,
-  .songClass:active{
-    font-size: 13px;
-  }
-
-.songName {
-  color: #ddd;
-  text-align: center;
-  font-size: 13px;
-}
-
-  .songName:hover {
-    color: #fff;
-    font-size: 13px;
-    margin-top: 10px;
-    margin-bottom: 10px;
-  }
-
-  .songName::after {
-    color: #ddd;
-    font-size: 13px;
-  }
-
-/* trash icon while creating a mix */
-#nope {
-  color: #c21603;
-  float: right;
-  margin-left: 5px;
-}
-
-  #nope:hover,
-  #nope:focus,
-  #nope:active {
-    color: #f41c03;
-    float: right;
-    margin-left: 5px;
-  }
-
-/*??*/
 #options a{
   border-left: 0 none;
   text-decoration: none;
 }
-
 #options>a {
   background-position: 85% center;
   background-repeat: no-repeat;
+  /*padding-right: 42px;*/
 }
 
+.submitPlaylistParent {
+  width: 100%;
+}
 
 /*"Done!" button*/
 #submitPlaylist {
-  font-family: 'Lato', sans-serif;
+  font-family: 'helvetica', sans-serif;
   color: #fff;
-  width: 100px;
+  width: 418px;
   font-weight: normal;
   padding: 7px 5px;
   letter-spacing: 0.0625em;
-  background-color: #33eade;
-  border-bottom: 3px inset #16d4c8;
-  box-shadow: 0 4px 2px -2px rgba(0,0,0,0.4);
-  border-radius: 3px;
+  margin: 0 auto;
 }
 
-  #submitPlaylist:hover,
-  #submitPlaylist:focus,
-  #submitPlaylist:active {
-    background-color: #26d6ca
-  }
+#submitPlaylist:hover,
+#submitPlaylist:focus,
+#submitPlaylist:active {
+  background-color: #26d6ca
+}
 
-  /*----PLAYER AND TRACK LIST STYLES----*/
-
- #player {
-   width: 291px;
-   margin-left: .10%;
-   margin-right: .5%;
- }
-
- /*iframe{
-   width: 300px;
- }*/
-
- #playerBox {
-   width: 291px;
-   margin-left: auto;
-   margin-right: auto;
- }
-
- .playerBar {
-   display: block;
-   width: inherit;
-   cursor: pointer;
- }
-
- #parentButtons {
-   display: inline-block;
-   font-size:14px;
-   text-align: center;
-   width: 52px;
-   height: 27px;
-   border-radius: 2px;
-   box-sizing: border-box;
- }
-
- .escolta {
-   list-style-position: outside;
-   display: inline-block;
-   float: left;
-   width: 25px;
-   height: 25px;
-   line-height: 20px;
-   background-color: #333;
-   color: #71f0e8;
-   border: 1px solid #555;
-   border-radius: 3px;
-   cursor: pointer;
-   opacity: 40%;
-   z-index: -1;
- }
-
-   .escolta:hover {
-     background-color: #444;
-     border-color: #4c4c4c;
-   }
-
- #forward {
-   float: right;
-   display: inline-block;
-   width: 25px;
-   height: 25px;
-   background-color: #333;
-   color: #71f0e8;
-   border: 1px solid #555;
-   border-radius: 3px;
-   line-height: 20px;
-   list-style-position: inside;
-   cursor: pointer;
-   opacity: 40%;
-   z-index: -1;
- }
-
-   #forward:hover {
-     background-color: #444;
-     border-color: #4c4c4c;
-   }
-
- #stopVideo {
-   display: inline-block;
-   width: 40px;
-   height: 20px;
-   font-size:11px;
-   text-align: center;
-   letter-spacing:1px;
-   line-height: 20px;
-   color: #71f0e8;
-   background-color: #333;
-   border-radius: 3px;
-   opacity: 40%;
-   z-index: -1;
-   cursor: pointer;
- }
-
- .progressParent {
-   display: inline;
-   margin-left: 2px;
-   position: absolute;
-   width: 195px;
-   height: 25px;
-   border-radius: 2px;
-   border: 1px solid #555;
-   z-index: 1;
- }
-
- .progress {
-   border: 1px solid #555;
-   border-radius: 2px;
-   height: 25px;
-   width: 0;
-   position: relative;
-   background-color: #33e0d6;
- }
-
- .volumeDiv {
-   bottom: 3;
-   display: inline-block;
-   float: right;
-   width: 4px;
-   height: 12px;
-   margin-top: 5px;
-   margin-right: 2px;
-   margin-bottom: 1px;
-   background-color: rgb(0, 209, 197);
- }
-
- .volumeBar {
-   float: right;
-   height: 20px;
-   width: 30px;
-   margin-right: 5px;
- }
-
- .downvoteDiv {
-   color: red;
-   float: right;
-   margin: 0;
-   cursor: pointer;
- }
- .upvoteDiv {
-   float: right;
-   margin: 0;
-   cursor: pointer;
- }
-
- .upvoteNumber {
-   float: right;
-   margin-right: 3px;
- }
-
- /*--TRACK LIST. See also: table, tr, td-*/
- .userDis {
-   width: inherit;
-   height: inherit;
-   cursor: pointer;
- }
-
- #mixName {
-   font-family: 'Kalam', cursive;
-   color: #33eade;
-   margin-top: 5%;
- }
-
- #artistName {
-   display:inline-block;
-   white-space: nowrap;
-   overflow: hidden;
-   text-overflow: ellipsis;
-   letter-spacing:1px;
-   width: 200px;
-   float: right;
-   text-align: center;
-   height: 20px;
-   line-height: 20px;
-   z-index: 5;
- }
-
- .song {
-   width: inherit;
-   height: auto;
-   letter-spacing:1px;
-   font-size: 12px;
-   text-align: center;
-   background-color: #222;
-   color: #ddd;
-   border: none;
-   box-shadow: none;
- }
-
-   .song:hover {
-     background-color: #2a2a2a;
-     color: #fff;
-     box-shadow: none;
-   }
-
-   .songHover {
-     background-color: #2a2a2a;
-     color: #fff;
-     font-size: 13px;
-     box-shadow: none;
-   }
-
- #playListSong {
-   display: inline-block;
-   font-size: 12px;
-   color: #ddd;
-   text-align: center;
-   box-shadow: none;
- }
-
- #focus {
-   font-size:12px;
- }
-
-/*----- METEOR'S USER CTRL STYLES -----*/
+/*----------- METEOR'S LOGIN STYLES-----------*/
 
 /* contains the ENTIRE SHEBANG auto height, auto width (spans across panel)*/
 #login-buttons {
@@ -626,80 +558,86 @@ input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
   line-height: 1.5;
   padding: 1%;
   cursor: pointer;
-  display: flex;
-  justify-content: center;
+  display: inline-block;
+  justify-content:center;
+  float: right;
+  font-size: 18px;
 }
 
 /* "SIGN IN" link that triggers entire drop down */
+.login-link-text {}
 #login-sign-in-link {
-  font-family: 'Lato', sans-serif;
-  font-size: 1.25em;
-  color: #33eade;
+  font-family: 'helvetica', sans-serif;
+  color: white;
 }
 
-  #login-sign-in-link:hover,
-  #login-sign-in-link:focus,
-  #login-sign-in-link:active {
-    color: #8ff4ed;
-  }
+#login-sign-in-link:hover,
+#login-sign-in-link:focus,
+#login-sign-in-link:active {
+  color: white;
+}
+
 
 .login-close-text {
   letter-spacing: 0.0625em;
-  color: #8ff4ed;
+  color: white;
 }
 
-  .login-close-text:hover,
-  .login-close-text:focus,
-  .login-close-text:active {
-    text-align: center;
-    letter-spacing: 0.0625em;
-    color: #aef7f2;
-  }
+.login-close-text:hover,
+.login-close-text:focus,
+.login-close-text:active {
+  text-align: center;
+  letter-spacing: 0.0625em;
+  color: white;
+}
 
 /*div containing "SIGN IN" link to submit form*/
+#login-buttons-password {}
 .login-button {
   letter-spacing: 0.0625em;
-  color: #33eade;
-}
+  color: white;
+  }
+.login-form-submit {}
 
-  .login-button:hover,
-  .login-button:focus,
-  .login-button:active {
-    color: #8ff4ed;
+.login-button:hover,
+.login-button:focus,
+.login-button:active {
+  color: white;
   }
 
-.login-button-form-submit {
+.login-button-form-submit{
   text-align: center;
   font-size: 1.10em;
   letter-spacing: 0.0625em;
-  color: #26d6ca;
-}
+  color: #ffffff;
+  }
 
 
-.additional-link {
+.additional-link{
   letter-spacing: 0.0625em;
-  color: #33eade;
+  color: white;
 }
 
-  .additional-link:hover,
-  .additional-link:focus,
-  .additional-link:active {
-    letter-spacing: 0.0625em;
-    color: #8ff4ed;
+.additional-link:hover,
+.additional-link:focus,
+.additional-link:active {
+  letter-spacing: 0.0625em;
+  color: #ffffff;
   }
 
 /*"Create Account" text and button to submit form */
+.login-button {}
 .login-button-form-submit {
   text-align: center;
   padding-bottom: 2%;
   letter-spacing: 0.0625em;
-  color: #33eade;
+  color: white;
 }
 
-  .login-button-form-submit:hover,
-  .login-button-form-submit:focus,
-  .login-button-form-submit:active {
-    color: #8ff4ed;
+.login-button-form-submit:hover,
+.login-button-form-submit:focus,
+.login-button-form-submit:active {
+  color: #ffffff;
   }
 
 label {
@@ -710,67 +648,510 @@ label {
   margin-bottom: 0.3rem;
 }
 
-/* ERROR MESSAGES must be at least 3 characters long, etc.*/
+/* ERROR MESSAGES  username must be at least 3 characters long etc*/
+.messsage{}
 .error-message{
   color: red;
   text-align:center;
 }
 
-/*logged in user's username, a dropdown link*/
+/*logged in user's username, is a dropdown link*/
+.login-link-text {}
 #login-name-link {
-  font-family: 'Lato', sans-serif;
-  font-size: 1.1em;
-  color: #33eade;
+  font-family: 'helvetica', sans-serif;
+  font-size: 18px;
+  color: white;
 }
 
-  #login-name-link:hover,
-  #login-name-link:focus,
-  #login-name-link:active {
-    color: #8ff4ed;
-  }
+#login-name-link:hover,
+#login-name-link:focus,
+#login-name-link:active {
+  color: #ffffff;
+}
 
-/* within above div, contains ACTUAL signup link */
+/*within above div, contains ACTUAL signup link, which has the following id and class*/
+.additional-link {}
 #signup-link {
-  font-family: 'Lato', sans-serif;
+  font-family: 'helvetica', sans-serif;
   font-size: 1.10em;
-  color: #33eade;
+  color: white;
   }
 
-  #signup-link:hover,
-  #signup-link:focus,
-  #signup-link:active {
-    color: #8ff4ed;
-  }
-
-/*"SIGN OUT" goes back to original Sign In */
-#login-buttons-logout {
-  font-family: 'Lato', sans-serif;
-  font-size: 1.10em;
-  color: #8ff4ed;
+#signup-link:hover,
+#signup-link:focus,
+#signup-link:active {
+  color: #ffffff;
 }
 
-  #login-buttons-logout:hover,
-  #login-buttons-logout:focus,
-  #login-buttons-logout:active {
-    color: #aef7f2;
+/*"SIGN OUT" goes back to original Sign In thing*/
+.login-button {}
+#login-buttons-logout {
+  font-family: 'helvetica', sans-serif;
+  font-size: 1.10em;
+  color: #ffffff;
+  /*padding: 2%;*/
+}
+
+#login-buttons-logout:hover,
+#login-buttons-logout:focus,
+#login-buttons-logout:active {
+    color: white;
   }
+
 
 /* "Close" text which closes account options form*/
 .login-close-text {
-  color: #8ff4ed;
+  color: white;
   margin-top: 5px;
-}
-
-  .login-close-text:hover,
-  .login-close-text:focus,
-  .login-close-text:active {
-    color: #aef7f2;
   }
 
-/* input */
-#login-password,
-#login-old-password,
-#login-username,
-#login-password-again {
+.login-close-text:hover,
+.login-close-text:focus,
+.login-close-text:active {
+      color: white;
+  }
+
+/*input field for password (empty by default)*/
+  #login-password {
+    text-align: center;
+  }
+  /*input*/
+  #login-password {
+    text-align: center;
+  }
+  /*input*/
+  #login-old-password {
+    text-align: center;
+  }
+  /*input field for username (empty by default)*/
+  #login-username {
+    text-align: center;
+  }
+  /*input*/
+  #login-password-again {
+    text-align: center;
+  }
+
+/*----------- Extras from Meteor template  -----------*/
+
+/*contains EVERYTHING that will show in the drop downs when you click sign in, as well as the log-in form that first appears*/
+.login-link-and-dropdown-list {
+  display: inline-block;
+}
+/*div holding all account dropdownmenu options  */
+.login-dropdown-list {}
+#accounts-dialog {}
+
+/*div containing the form*/
+.login-form {}
+.login-password-form {}
+
+/*"Sign In" below form. basically a nevermind link*/
+#back-to-login-link {}
+
+#addThisSong {
+  float: right;
+  display: inline;
+  width: 20px;
+}
+
+ /*CSS declarations go here */
+
+/*Global*/
+h1 {
+  text-align: center;
+  /*margin-left: 50%;
+  margin-right: 40%;*/
+  position: static;
+}
+
+/*img {
+  width: 50px;
+  height: 50px;
+}*/
+
+/*The Player*/
+.container {
+  text-align:center;
+  width:48%;
+}
+iframe{
+  width: 300px;
+}
+
+
+/*Playlists*/
+
+.playlistDiv {
+  padding: 2%;
+  border-radius: 2px;
+  /*margin-left: 20%;
+  margin-right: 20%;*/
+}
+
+.playlistName {
+  color: #ddd;
+  cursor: pointer;
+  max-width: 291px;
+  margin: 0 auto;
+
+  /*display: flex;
+  justify-content:flex-end;*/
+}
+
+.playlistName:hover {
+  color: #f98686;
+  font-weight: bolder;
+}
+
+.upvoteMix {
+  width: 30px;
+  float: right;
+  color: rgba(92, 92, 92, 0.38);
+  font-size: .85em;
+  margin-top: 1px;
+}
+
+/*trashcan icon*/
+.delete {
+  color: #c21603;
+  float: right;
+  margin-right: 5px;
+}
+
+.delete:hover,
+.delete:focus,
+.delete:active {
+  color: #f41c03;
+}
+
+ /*----PLAYER AND TRACK LIST STYLES---*/
+/*#leftDiv {
+  display: inline-block;
+  float: left;
+  width: 49.5%;
+  height: 800px;
+  border: solid 1px grey;
+  margin: 0;
+}
+
+#rightDiv {
+  display: inline-block;
+  float: right;
+  width: 50%;
+  height: 800px;
+  border: solid 1px grey;
+  margin: 0;
+  align-items: center;
+}*/
+
+/*#video{position:absolute;top:100px;left:20px;}*/
+
+#player {
+  /*padding: .5%;*/
+  width: 418px;
+  height: 234px;
+  margin-left: .10%;
+  margin-right: .5%;
+
+}
+
+.playerBar{
+  display: block;
+  width: inherit;
+  cursor: pointer;
+  margin-left: 2px;
+  margin-top: 8px;
+}
+
+#parentButtons {
+  display: inline-block;
+  /*background-color: #000;*/
+  /*color: #666;*/
+  font-size:14px;
+  font-family: helvetica;
+  /*letter-spacing:1px;*/
+  text-align: center;
+  width: 52px;
+  height: 27px;
+  border-radius: 2px;
+  box-sizing: border-box;
+}
+
+.escolta {
+  /*list-style-type: disc;*/
+  list-style-position: outside;
+  display: inline-block;
+  float: left;
+  width: 25px;
+  height: 25px;
+  line-height: 20px;
+  background-color: #333;
+  color: #71f0e8;
+  border: 1px solid #555;
+  cursor: pointer;
+  opacity: 40%;
+  z-index: -1;
+}
+
+.escolta:hover {
+  background-color: #444;
+  border-color: #4c4c4c;
+}
+
+#smallPlayer {
+  /*list-style-type: disc;*/
+  list-style-position: outside;
+  display: inline-block;
+  float: left;
+  width: 15px;
+  height: 36px;
+  fill: red;
+  cursor: pointer;
+  margin-left: 6px;
+}
+
+#vidSearchInput {
+  display: inline-block;
+}
+.icon-plus {
+  fill: white;
+  width: 15px;
+  height: 15px;
+  margin-top: 3.5px;
+  margin-left: 1.5px;
+  display: inline-block;
+}
+
+.icon-search {
+  fill: white;
+  width: 20px;
+  height: 20px;
+  margin-top: 3.5px;
+  margin-left: 1.5px;
+  display: inline-block;
+}
+
+.icon-play3 {
+  fill: white;
+  width: 70%;
+  height: 70%;
+  margin-top: 3.5px;
+  margin-left: 1.5px;
+}
+
+.icon-play4 {
+  fill: red;
+  width: 70%;
+  height: 70%;
+  margin-top: 14px;
+}
+
+.icon-pause2 {
+  display: inline-block;
+  width: 70%;
+  height: 70%;
+  fill: white;
+  margin-top: 3.5px;
+  margin-left: 1.5px;
+}
+
+.icon-next2 {
+  display: inline-block;
+  width: 85%;
+  height: 85%;
+  fill: white;
+  margin-top: 2px;
+  margin-left: 1.25px;
+  margin-right: 1px;
+}
+
+.twitter-share {
+   display: inline-block;
+  width: 40px;
+  height: 80%;
+  fill: white;
+  margin-top: 2px;
+  margin-left: 1.25px;
+  margin-right: 1px;
+}
+
+
+#forward {
+  float: right;
+  display: inline-block;
+  width: 25px;
+  height: 25px;
+  background-color: #333;
+  color: #71f0e8;
+  border: 1px solid #555;
+  line-height: 20px;
+  list-style-position: inside;
+  cursor: pointer;
+  opacity: 40%;
+  z-index: -1;
+}
+
+#forward:hover{
+  background-color: #444;
+  border-color: #4c4c4c;
+}
+
+#searchButton {
+  float: right;
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+}
+
+#stopVideo {
+  display: inline-block;
+  width: 40px;
+  height: 20px;
+  font-size:11px;
+  text-align: center;
+  letter-spacing:1px;
+  line-height: 20px;
+  color: #71f0e8;
+  background-color: #333;
+  border-radius: 3px;
+  opacity: 40%;
+  z-index: -1;
+  cursor: pointer;
+}
+
+.upvoteContainer {
+  float: right;
+  margin-top: 4px;
+  width: 40px;
+  height: 38px;
+  color: white;
+}
+
+.downvoteDiv {
+  color: red;
+  float: right;
+  margin-top: 5px;
+  cursor: pointer;
+}
+.upvoteDiv {
+  float: right;
+  margin-top: 5px;
+  cursor: pointer;
+  margin-right: 2px;
+}
+
+.upvoteNumber {
+  float: right;
+  margin-top: 5px;
+  margin-right: 3px;
+}
+
+#downvoteDiv {
+  color: red;
+  display: inline-block;
+  margin-left: 2px;
+}
+
+#upvoteDiv {
+  color: white;
+  display: inline-block;
+  margin-left: 2px;
+}
+
+.userDis {
+  width: inherit;
+  height: inherit;
+  cursor: pointer;
+}
+
+.mixesHeader {
+  width: 100%;
+}
+
+.mixHeader {
+  font-family: helvetica;
+  background-color: #1A1A1A;
+}
+
+#artistName {
+  display:inline-block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  letter-spacing:1px;
+  width: 200px;
+  float: right;
+  text-align: center;
+  height: 20px;
+  line-height: 20px;
+  z-index: 5;
+}
+
+.song {
+  width: inherit;
+  /*height: 30px;*/
+  height: auto;
+  /*text-overflow: ellipsis;*/
+  letter-spacing:1px;
+  font-size: 12px;
+  text-align: center;
+  background-color: #222;
+  color: #ddd;
+  border: none;
+  box-shadow: none;
+}
+
+.song:hover {
+  background-color: #2a2a2a;
+  color: #fff;
+  box-shadow: none;
+}
+
+#playListSong{
+  display: inline-block;
+  font-size: 12px;
+  color: #ddd;
+  text-align: center;
+  box-shadow: none;
+}
+.songHover {
+  color: #fff;
+  font-size: 13px;
+  box-shadow: none;
+}
+
+#vidSearchInput {
+  margin: 0 auto;
+}
+
+#searchSet {
+  width: 205px;
+  display: inline-block;
+}
+
+.searchParent {
+  width: 100%;
+  text-align: center;
+  margin: 0 auto;
+}
+
+#youtTubeSearch {
+  margin: 0 auto;
+}
+.submitSearchParent {
+  width: 100%;
   text-align: center;
 }
+#submitPlaylist {
+  margin: 0 auto;
+}
+
+.footer {
+  border-top: 1px solid white;
+}
+
+
+
+
+

@@ -1,0 +1,16 @@
+<template name="test">
+  <div class="mixlist">
+    <h2 id="mixesHeader">My Mixes</h2>
+    {{#each myLists}}
+      <div class="playlistDiv">
+        <div class="playlistName" id="{{name}}">{{name}}
+          <div class="upvoteMix">
+            {{upvotes}} ♡
+          </div>
+          <a href="#"  class="delete"><i class="fa fa-trash-o"></i></a>
+        </div>
+      </div>
+    {{/each}}
+  </div>
+  <div class="navButtons" id="newMix">New</div>
+</template>
