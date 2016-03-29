@@ -80,6 +80,7 @@ nav {
   margin-left: 2px;
   position: absolute;
   width: 300px;
+  height: 23px;
   border: 1px solid #555;
   z-index: 1;
 }
@@ -105,11 +106,12 @@ nav {
 }
 
 .songTable{
-  width: 416px;
+  width: 418px;
   height: 100%;
   margin-bottom: 0;
   overflow-x: scroll;
   border: none;
+  border-bottom: 1px solid #C9C9C9;
 }
 
 #mixName {
@@ -974,6 +976,7 @@ iframe{
   margin-top: 2px;
   margin-left: 1.25px;
   margin-right: 1px;
+  float: right;
 }
 
 
@@ -1147,9 +1150,10 @@ iframe{
   margin: 0 auto;
 }
 
-.footer {
-  border-top: 1px solid white;
+label {
+  color: black;
 }
+
 
 
 
