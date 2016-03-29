@@ -1,0 +1,39 @@
+<template name="userLog">
+{{#if currentUser}}
+			<li id="createNewMix">
+				<a href="">
+					New Mix
+				</a>
+			</li>
+			<li id="myMixes">
+				<a href="" >
+					myMixes
+				</a>
+			</li>
+			<li id="logout">
+				<a href="">
+					Logout
+				</a>
+			</li>
+	{{else}}
+		{{#if loggingIn}}
+			<li class="active">
+				<a href>
+					Logging In...
+				</a>
+			</li>
+		{{else}}
+			<li class="active" id="loginLink">
+				<a href data-action="login">
+					login
+				</a>
+			</li>
+			<li class="active" id="registerLink">
+				<a href data-action="register">
+					register
+				</a>
+			</li>
+	{{/if}} 
+{{/if}}
+
+</template>

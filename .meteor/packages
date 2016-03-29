@@ -18,10 +18,11 @@ ecmascript              # Enable ECMAScript2015+ syntax in app code
 
 insecure                # Allow all DB writes from clients (for prototyping)
 http
-accounts-password
 adrianliaw:youtube-iframe-api
-matthew:foundation5-sass
 fortawesome:fontawesome
-accounts-ui-unstyled
 kadira:flow-router
 kadira:blaze-layout
+twbs:bootstrap
+accounts-password
+accounts-ui
+accounts-facebook

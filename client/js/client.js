@@ -54,6 +54,30 @@ FlowRouter.route('/new', {
   }
 });
 
+FlowRouter.route('/login', {
+    action: function(params) {
+      BlazeLayout.render("login");
+      Session.set('trash', false);
+      Session.set('showSearches', false);
+    },
+    subscriptions: function(params) {
+      this.register('Lists', Meteor.subscribe('lists'));
+      this.register('ThisPlaylist', Meteor.subscribe('ThisPlaylist'));
+  }
+});
+
+FlowRouter.route('/register', {
+    action: function(params) {
+      BlazeLayout.render("register");
+      Session.set('trash', false);
+      Session.set('showSearches', false);
+    },
+    subscriptions: function(params) {
+      this.register('Lists', Meteor.subscribe('lists'));
+      this.register('ThisPlaylist', Meteor.subscribe('ThisPlaylist'));
+  }
+});
+
 //Set the initial playlist
 function setPlayList(params){   
 
@@ -117,6 +141,75 @@ function setNewList(params){
   }, 1000); 
 }
 
+Template.userLog.events({
+  "click #loginLink": function(){
+    console.log('clicked loginlink');
+    FlowRouter.go("/login");
+  },
+  "click #myMixes": function(){
+    var userName = Meteor.user();
+    var fullid = "/mixes/" + userName.username;
+
+    FlowRouter.go(fullid);
+  },
+    "click #logout": function(){
+    console.log("clicked logout");
+    Meteor.logout();
+  },
+    "click #createNewMix": function(){
+    console.log("clicked new");
+    var userName = Meteor.user();
+    var fullid = "/mixes/" + userName.username;
+    console.log("clicked mixtape header", userName);
+     var playlist = ({playlist: name});
+    Session.set('playa', false);
+    Session.set('mix', false);
+    Session.set('showLast', false);
+    Session.set('clickCreate', true);
+    Session.set('songCreate', false);
+    Session.set("listName", "");
+
+    FlowRouter.go('/new');
+  }
+});
+
+Template.login.events({
+    'submit .login-form': function (event) {
+        event.preventDefault();
+        var email = event.target.email.value;
+        var password = event.target.password.value;
+        
+        Meteor.loginWithPassword(email,password,function(err){
+            if(!err) {
+              FlowRouter.go('/');
+            }
+        });
+    }
+});
+
+Template.register.events({
+    'submit .register-form': function (event) {
+        console.log("submiting register-form");
+        event.preventDefault();
+  
+        var email = event.target.email.value;
+        var password = event.target.password.value;
+        var firstname = event.target.firstname.value;
+        var lastname = event.target.lastname.value;
+ 
+        var user = {'email':email,password:password,profile:{name:firstname +" "+lastname}};
+ 
+        Accounts.createUser(user,function(err){
+            if(!err) {
+              FlowRouter.go('/');
+            } else {
+              console.log("Error!:", err);
+            }
+        });
+    }
+});
+
+
 Template.headerNav.events({
   "click #logoCentered": function(){
     var userName = Meteor.user();
@@ -124,6 +217,12 @@ Template.headerNav.events({
     console.log("clicked mixtape header", userName);
 
     FlowRouter.go(fullid);
+  }
+});
+
+Template.headerNav.events({
+  "click #registerLink": function(){
+    FlowRouter.go("/register");
   }
 });
 
@@ -577,14 +676,6 @@ Template.player.helpers({
       return FlowRouter.subsReady();
     }
   }
-});
-
-
-Meteor.startup(function () {
-  Accounts.ui.config({
-    // require username rather then email
-   passwordSignupFields: 'USERNAME_ONLY'
-  });
 });
 
 //YOUTUBE THINGS
