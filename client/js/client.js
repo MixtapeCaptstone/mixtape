@@ -141,38 +141,6 @@ function setNewList(params){
   }, 1000); 
 }
 
-Template.userLog.events({
-  "click #loginLink": function(){
-    console.log('clicked loginlink');
-    FlowRouter.go("/login");
-  },
-  "click #myMixes": function(){
-    var userName = Meteor.user();
-    var fullid = "/mixes/" + userName.username;
-
-    FlowRouter.go(fullid);
-  },
-    "click #logout": function(){
-    console.log("clicked logout");
-    Meteor.logout();
-  },
-    "click #createNewMix": function(){
-    console.log("clicked new");
-    var userName = Meteor.user();
-    var fullid = "/mixes/" + userName.username;
-    console.log("clicked mixtape header", userName);
-     var playlist = ({playlist: name});
-    Session.set('playa', false);
-    Session.set('mix', false);
-    Session.set('showLast', false);
-    Session.set('clickCreate', true);
-    Session.set('songCreate', false);
-    Session.set("listName", "");
-
-    FlowRouter.go('/new');
-  }
-});
-
 Template.login.events({
     'submit .login-form': function (event) {
         event.preventDefault();
@@ -217,6 +185,35 @@ Template.headerNav.events({
     console.log("clicked mixtape header", userName);
 
     FlowRouter.go(fullid);
+  },
+    "click #loginLink": function(){
+    console.log('clicked loginlink');
+    FlowRouter.go("/login");
+  },
+  "click #myMixes": function(){
+    var userName = Meteor.user();
+    var fullid = "/mixes/" + userName.username;
+
+    FlowRouter.go(fullid);
+  },
+    "click #logout": function(){
+    console.log("clicked logout");
+    Meteor.logout();
+  },
+    "click #createNewMix": function(){
+    console.log("clicked new");
+    var userName = Meteor.user();
+    var fullid = "/mixes/" + userName.username;
+    console.log("clicked mixtape header", userName);
+     var playlist = ({playlist: name});
+    Session.set('playa', false);
+    Session.set('mix', false);
+    Session.set('showLast', false);
+    Session.set('clickCreate', true);
+    Session.set('songCreate', false);
+    Session.set("listName", "");
+
+    FlowRouter.go('/new');
   }
 });
 

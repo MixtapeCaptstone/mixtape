@@ -1,9 +1,44 @@
 <template name="headerNav">
-	<nav class="navbar navbar-default">
-		<div class="container-fluid">
-			<ul class="nav navbar-nav navbar-right">
-				{{> userLog}}
+<!-- 	<nav class="navbar navbar-default">
+ -->		<div class="container-fluid">
+			<ul class="nav navbar-nav" id="headerNavigation">
+				{{#if currentUser}}
+					<li class="userNav" id="createNewMix">
+						<a href="">
+							New Mix
+						</a>
+					</li>
+					<li class="userNav" id="myMixes">
+						<a href="" >
+							My Mixes
+						</a>
+					</li>
+					<li class="userNav" id="logout">
+						<a href="">
+							Logout
+						</a>
+					</li>
+				{{else}}
+					{{#if loggingIn}}
+						<li class="active">
+							<a href>
+								Logging In...
+							</a>
+						</li>
+					{{else}}
+						<li class="active" id="loginLink">
+							<a href data-action="login">
+								login
+							</a>
+						</li>
+						<li class="active" id="registerLink">
+							<a href data-action="register">
+								register
+							</a>
+						</li>
+					{{/if}} 
+				{{/if}}
 			</ul>
 		</div>
-	</nav>
-</template>
+<!-- 	</nav>
+ --></template>
