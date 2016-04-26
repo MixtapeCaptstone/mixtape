@@ -1,6 +1,5 @@
 # Wolf-Tape
-Want Mixtape?
 
-You got Mixtape.
-
+Wolf tape is an easy way to share mixtapes across the internet.
 Mix it.
+
